@@ -51,3 +51,193 @@ Example.class_eval do
 end
 {% endhighlight %}
 
+## Monkeypatch
+Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
+{% highlight ruby linenos %} 
+# define original class
+class Example
+  def say_hello
+    puts "hello"
+  end
+end
+
+# re-open the class and monkeypatch some of its existing functionality
+class Example
+  # re-define existing funnctionality
+  def say_hello
+    puts "hello from monkeypatch"
+  end
+end
+
+# usage
+Example.new.say_hello # => hello from monkeypatch
+{% endhighlight %}
+
+## Namespace
+Use Ruby modules to create namespaces to avoid naming collisions.
+{% highlight ruby linenos %}
+# create a namespace to avoid naming collisions
+module Example
+  class String
+    def length
+      100
+    end
+  end
+end
+
+# usage
+String.new.length # => 0
+Example::String.new.length # => 100 
+{% endhighlight %}
+
+## Kernel Method
+Defining methods in the Kernel module will make those methods available to all objects.
+{% highlight ruby linenos %} 
+# add a kernel method to make it available to all objects
+# this example also serves to illustrate that everything in Ruby is an object
+module Kernel
+  def say_hello
+    puts "hello from #{self.class.name}"
+  end
+end
+
+# usage
+Class.say_hello # => hello from Class
+Object.say_hello # => hello from Class
+Object.new.say_hello # => hello from Object
+1.say_hello # => hello from Fixnum
+"".say_hello # => hello from String
+{% endhighlight %}
+
+## Dynamic Dispatch
+Ruby supports calling methods at runtime even if you don't know what those methods are at design time.
+{% highlight ruby linenos %} 
+# add methods that provide the ability
+# to dynamically call unknown methods on objects
+def invoke(object, method_name)
+  object.send(method_name)
+end
+
+def invoke_with_args(object, method_name, *args)
+  object.send(method_name, *args)
+end
+
+# usage
+invoke("get my length", :length) # => 13
+invoke("reverse me", :reverse) # => em esrever
+invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
+{% endhighlight %}
+
+
+## Pattern Dispatch
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Dynamic Method
+{% highlight ruby linenos %} 
+{% endhighlight %}	
+
+
+## Ghost Method
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Dynamic Proxy
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Blank Slate
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Scope Gate
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Flat Scope
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Shared Scope
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Context Probe
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Clean Room
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Deferred Evaluation
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Class Instance Variable
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Singleton Method
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Class Macro
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Class Extension
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Object Extension
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Around Alias
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## String of Code
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Code Processor
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Sandbox
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Hook Method
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Class Extension Mixin
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Mimic Method
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Lazy Instance Variable
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Named Arguments
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Argument Array
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Self Yield
+{% highlight ruby linenos %} 
+{% endhighlight %}
+
+## Symbol to Proc
+{% highlight ruby linenos %} 
+{% endhighlight %}
