@@ -216,7 +216,7 @@ $method_names = [:hello, :goodbye]
 class Example
   # define some dynamic methods
   $method_names.each do |method_name|
-    define_method method_name do |name|
+    define_method(method_name) do |name|
       puts "#{method_name} #{name}!"
     end
   end
@@ -227,13 +227,37 @@ Example.new.respond_to? :hello # => true
 Example.new.respond_to? :goodbye # => true
 Example.new.hello("nathan") # => hello nathan!
 Example.new.goodbye("nathan") # => hello nathan!
-{% endhighlight %}	
-
-
-## Ghost Method
-{% highlight ruby linenos %} 
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/777118)	
 
+
+
+{% include section_divider.html %}
+<a name="ghost_method"></a>
+## Ghost Method
+Ruby provides a mechanism that allows you to catch calls to methods that don't even exist.  Its possible to leverage this feature to provide functionality that doesn't otherwise exist.
+{% highlight ruby linenos %} 
+# define our example class
+class Example
+  # catch all calls to methods that don't exist
+  def method_missing(method_name, *args)
+    puts "You called '#{method_name}' with these arguments: #{args.inspect}"
+  end
+end
+
+# invoke methods that haven't been defined
+Example.new.some_method # => You called 'some_method' with these arguments: []
+Example.new.another_method(1, 2, 3) # => You called 'another_method' with these arguments: [1, 2, 3]
+Example.new.this_is_cool(true) # => You called 'this_is_cool' with these arguments: [true]
+Example.new.and_powerful # => You called 'and_powerful' with these arguments: []
+{% endhighlight %}
+[Discuss this code](https://gist.github.com/777133)
+
+
+
+
+{% include section_divider.html %}
+<a name="dynamic_proxy"></a>
 ## Dynamic Proxy
 {% highlight ruby linenos %} 
 {% endhighlight %}
