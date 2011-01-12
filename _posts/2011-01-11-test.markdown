@@ -1,0 +1,59 @@
+---
+layout: base
+title: Ruby Metaprogramming Idioms
+categories: 
+  - ruby
+  - metaprogramming
+---
+
+I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/ppmetr/metaprogramming-ruby) by [Paolo Perrotta](http://forums.pragprog.com/users/21653) and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot; in the book.  I've used most of the techniques he describes, but have never been fully aware of their formal names.
+
+The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
+
+Perhaps you will find it useful too.
+
+## Open Classes
+
+In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
+
+{% highlight ruby %} 
+# define original class
+class Example
+
+  def say_hello
+    puts "hello"
+  end
+
+end
+
+# re-open the class
+class Example
+
+  # add new functionality
+  def do_stuff
+    puts "doing stuff"
+  end
+
+end
+
+# usage
+Example.new.say_hello # => hello
+Example.new.do_stuff # => doing stuff
+
+# other ways to reopen the class
+
+# open the instance of the class definition
+Example.instance_eval do
+end
+
+# open the eigenclass
+# you need to understand Ruby's object model
+# to fully understand what the eigenclass is
+class << Example
+end
+
+# syntactic sugar for class << Example
+Example.class_eval do
+end
+{% endhighlight %}
+
