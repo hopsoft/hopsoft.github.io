@@ -1,6 +1,7 @@
 ---
 layout: base
 title: Ruby Metaprogramming Idioms
+published: true
 categories: 
   - ruby
   - metaprogramming
@@ -246,3 +247,5 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
+
+Hi Travis.
