@@ -254,3 +254,5 @@ Similar to Dynamic Dispatch, but uses a convention or pattern to identify which 
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
+
+force change
