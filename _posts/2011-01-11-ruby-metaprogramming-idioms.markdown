@@ -284,5 +284,3 @@ end
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
-
-force change
