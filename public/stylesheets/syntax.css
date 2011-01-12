@@ -1,5 +1,5 @@
 .highlight  { background: #F1EFE2; border: solid 2px #C0BFB4; padding: 10px; border-radius: 10px; -moz-border-radius: 10px; }
-.highlight * { font-family: "Monaco", "Lucida Console", monospace; font-size: 0.85em; }
+.highlight * { font-family: "Monaco", "Lucida Console", monospace; font-size: 0.95em; line-height: 1.125em; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
