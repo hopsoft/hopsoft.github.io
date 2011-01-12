@@ -1,11 +1,9 @@
 .highlight  { background: #F1EFE2; border: solid 2px #DED9BA; padding: 10px; 
 	border-radius: 10px; 
 	-moz-border-radius: 10px; 
-	-moz-box-shadow: 3px 3px 4px #37331B;
-    -webkit-box-shadow: 3px 3px 4px #37331B;
-	box-shadow: 3px 3px 4px #37331B;
-	
-	
+	-moz-box-shadow: 4px 4px 10px #37331B;
+    -webkit-box-shadow: 4px 4px 10px #37331B;
+	box-shadow: 4px 4px 10px #37331B;
 	}
 .highlight * { font-family: "Monaco", "Lucida Console", monospace; font-size: 0.95em; line-height: 1.125em; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
