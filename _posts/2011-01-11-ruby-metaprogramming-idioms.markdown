@@ -14,7 +14,7 @@ Perhaps you will find it useful too.
 
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # define original class
 class Example
   def say_hello
@@ -53,7 +53,7 @@ end
 
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # define original class
 class Example
   def say_hello
@@ -92,7 +92,7 @@ Example::String.new.length # => 100
 
 ## Kernel Method
 Defining methods in the Kernel module will make those methods available to all objects.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # add a kernel method to make it available to all objects
 # this example also serves to illustrate that everything in Ruby is an object
 module Kernel
@@ -111,7 +111,7 @@ Object.new.say_hello # => hello from Object
 
 ## Dynamic Dispatch
 Ruby supports calling methods at runtime even if you don't know what those methods are at design time.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # add methods that provide the ability
 # to dynamically call unknown methods on objects
 def invoke(object, method_name)
