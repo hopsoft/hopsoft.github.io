@@ -143,6 +143,36 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 ## Pattern Dispatch
 Similar to Dynamic Dispatch, but uses a convention or pattern to identify which methods to call.
 {% highlight ruby linenos %} 
+# setup a contrived class to demonstrate pattern dispatch
+class Person
+  attr_accessor :first_name
+  attr_accessor :last_name
+  attr_accessor :pets_name
+  attr_accessor :mothers_maiden_name
+
+  def drag_queen_name
+    "#{pets_name} #{mothers_maiden_name}"
+  end
+end
+
+# construct an instance of the class
+person = Person.new
+person.first_name = "john"
+person.last_name = "doe"
+person.pets_name = "muffin"
+person.mothers_maiden_name = "brown"
+
+# use pattern dispatch to invoke all 'name' methods
+person.public_methods.each do |method_name|
+  puts "#{method_name} = #{person.send(method_name)}" if method_name =~ /_name$/
+end
+
+# -- output --
+# first_name = john
+# last_name = doe
+# pets_name = muffin
+# mothers_maiden_name = brown
+# drag_queen_name = muffin brown
 {% endhighlight %}
 
 
