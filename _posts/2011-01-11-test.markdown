@@ -16,7 +16,7 @@ Perhaps you will find it useful too.
 
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
 
-{% highlight ruby %} 
+{% highlight ruby linenos %} 
 # define original class
 class Example
 
