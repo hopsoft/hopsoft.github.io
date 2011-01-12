@@ -14,6 +14,7 @@ The idioms defined in the book are so helpful as a reference, I wanted to create
 Perhaps you will find it useful too.
 
 {% include section_divider.html %}
+
 <a name="open_classes"></a>
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
