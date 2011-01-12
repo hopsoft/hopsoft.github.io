@@ -2,8 +2,20 @@
 
 body { padding: 15px; }
 
-.section_divider {
+.section_divider .top {
+  background-image: url(/public/images/section_divider_top.png);
+  background-repeat: repeat-x;
+  background-position: top left;
+}
+.section_divider .top_left {
+  width: 100px;
+  background-image: url(/public/images/section_divider_top_left.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+.section_divider .top_right {
+  width: 100px;
   background-image: url(/public/images/section_divider_top_right.png);
-  background-repeat: norepeat;
-  
+  background-repeat: no-repeat;
+  background-position: top left;
 }
