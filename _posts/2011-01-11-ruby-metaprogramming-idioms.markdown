@@ -204,8 +204,29 @@ end
 
 
 
+{% include section_divider.html %}
+<a name="dyanamic_method"></a>
 ## Dynamic Method
+Ruby supports defining methods at runtime even if you don't know what those methods are at design time.
 {% highlight ruby linenos %} 
+# setup some data that will drive what methods get defined
+$method_names = [:hello, :goodbye]
+
+# define our example class
+class Example
+  # define some dynamic methods
+  $method_names.each do |method_name|
+    define_method method_name do |name|
+      puts "#{method_name} #{name}!"
+    end
+  end
+end
+
+# test out our dynamic methods
+Example.new.respond_to? :hello # => true
+Example.new.respond_to? :goodbye # => true
+Example.new.hello("nathan") # => hello nathan!
+Example.new.goodbye("nathan") # => hello nathan!
 {% endhighlight %}	
 
 
