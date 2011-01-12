@@ -13,6 +13,9 @@ The idioms defined in the book are so helpful as a reference, I wanted to create
 
 Perhaps you will find it useful too.
 
+
+
+
 {% include section_divider.html %}
 <a name="open_classes"></a>
 ## Open Classes
@@ -55,6 +58,9 @@ end
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/774061)
 
+
+
+
 {% include section_divider.html %}
 <a name="monkeypatch"></a>
 ## Monkeypatch
@@ -78,8 +84,13 @@ end
 # usage
 Example.new.say_hello # => hello from monkeypatch
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/774105)
 
 
+
+
+{% include section_divider.html %}
+<a name="namespace"></a>
 ## Namespace
 Use Ruby modules to create namespaces to avoid naming collisions.
 {% highlight ruby linenos %}
@@ -96,6 +107,9 @@ end
 String.new.length # => 0
 Example::String.new.length # => 100 
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/774118)
+
+
 
 
 {% include section_divider.html %}
@@ -118,7 +132,13 @@ Object.new.say_hello # => hello from Object
 1.say_hello # => hello from Fixnum
 "".say_hello # => hello from String
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/774638)
 
+
+
+
+{% include section_divider.html %}
+<a name="dynamic_dispatch"></a>
 ## Dynamic Dispatch
 Ruby supports calling methods at runtime even if you don't know what those methods are at design time.
 {% highlight ruby linenos %}
@@ -137,6 +157,10 @@ invoke("get my length", :length) # => 13
 invoke("reverse me", :reverse) # => em esrever
 invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/774813)
+
+
+
 
 {% include section_divider.html %}
 <a name="pattern_dispatch"></a>
@@ -174,6 +198,9 @@ end
 # mothers_maiden_name = brown
 # drag_queen_name = muffin brown
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/776726)
+
+
 
 
 ## Dynamic Method
