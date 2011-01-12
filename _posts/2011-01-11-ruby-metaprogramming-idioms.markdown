@@ -167,7 +167,7 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 <a name="pattern_dispatch"></a>
 ## Pattern Dispatch
 Similar to Dynamic Dispatch, but uses a convention or pattern to identify which methods to call.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # setup a contrived class to demonstrate pattern dispatch
 class Person
   attr_accessor :first_name
@@ -208,7 +208,7 @@ end
 <a name="dyanamic_method"></a>
 ## Dynamic Method
 Ruby supports defining methods at runtime even if you don't know what those methods are at design time.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # setup some data that will drive what methods get defined
 $method_names = [:hello, :goodbye]
 
@@ -235,8 +235,8 @@ Example.new.goodbye("nathan") # => hello nathan!
 {% include section_divider.html %}
 <a name="ghost_method"></a>
 ## Ghost Method
-Ruby provides a mechanism that allows you to catch calls to methods that don't even exist.  Its possible to leverage this feature to provide functionality that doesn't otherwise exist.
-{% highlight ruby linenos %} 
+Ruby provides a mechanism that allows you to catch calls to methods that don't even exist.  Its possible to leverage this feature to support functionality that hasn't been defined.
+{% highlight ruby linenos %}
 # define our example class
 class Example
   # catch all calls to methods that don't exist
