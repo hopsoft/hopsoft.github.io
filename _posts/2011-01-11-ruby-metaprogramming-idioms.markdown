@@ -2,6 +2,7 @@
 layout: base
 title: Ruby Metaprogramming Idioms
 published: true
+author: Nathan Hopkins
 categories: 
   - ruby
   - metaprogramming
@@ -16,8 +17,9 @@ Perhaps you will find it useful too.
 
 
 
-{% include section_divider.html %}
 <a name="open_classes"></a>
+{% include section_divider.html %}
+<div class="section">
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
 {% highlight ruby linenos %}
@@ -57,7 +59,8 @@ Example.class_eval do
 end
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/774061)
-
+</div>
+	
 
 
 
