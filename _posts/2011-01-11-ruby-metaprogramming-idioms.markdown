@@ -13,6 +13,8 @@ The idioms defined in the book are so helpful as a reference, I wanted to create
 
 Perhaps you will find it useful too.
 
+<hr />
+<a name="open_classes"></a>
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
 {% highlight ruby linenos %}
@@ -53,7 +55,8 @@ end
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/774061)
 
-
+<hr />
+<a name="monkeypatch"></a>
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
 {% highlight ruby linenos %}
@@ -95,6 +98,8 @@ Example::String.new.length # => 100
 {% endhighlight %}
 
 
+<hr />
+<a name="kernel_method"></a>
 ## Kernel Method
 Defining methods in the Kernel module will make those methods available to all objects.
 {% highlight ruby linenos %}
@@ -133,8 +138,10 @@ invoke("reverse me", :reverse) # => em esrever
 invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 {% endhighlight %}
 
-
+<hr />
+<a name="pattern_dispatch"></a>
 ## Pattern Dispatch
+Similar to Dynamic Dispatch, but uses a convention or pattern to identify which methods to call.
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
