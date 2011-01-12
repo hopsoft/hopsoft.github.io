@@ -52,6 +52,7 @@ end
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/774061)
 
+
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
 {% highlight ruby linenos %}
@@ -74,6 +75,7 @@ end
 Example.new.say_hello # => hello from monkeypatch
 {% endhighlight %}
 
+
 ## Namespace
 Use Ruby modules to create namespaces to avoid naming collisions.
 {% highlight ruby linenos %}
@@ -90,6 +92,7 @@ end
 String.new.length # => 0
 Example::String.new.length # => 100 
 {% endhighlight %}
+
 
 ## Kernel Method
 Defining methods in the Kernel module will make those methods available to all objects.
@@ -133,6 +136,7 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 ## Pattern Dispatch
 {% highlight ruby linenos %} 
 {% endhighlight %}
+
 
 ## Dynamic Method
 {% highlight ruby linenos %} 
