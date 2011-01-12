@@ -3,6 +3,7 @@
 body { padding: 15px; }
 
 .section_divider {
+  margin: 20px 0 10px 0;
   display: table;
 }
 .section_divider .top {
