@@ -1,13 +1,8 @@
 * { font-family: "Lucida Grande", "Helvetica", sans-serif; }
+body { padding: 20px; }
 
-body { padding: 15px; }
-
-
-.section {
-  padding: 10px;
-}
 .section_divider {
-  margin: 20px 0 -100px 0;
+  margin: 20px 0 -100px -10px;
   display: table;
   height: 100px;
   width: 100%;
@@ -21,13 +16,6 @@ body { padding: 15px; }
 .section_divider .top_left {
   width: 100px;
   background-image: url(/public/images/section_divider_top_left.png);
-  background-repeat: no-repeat;
-  background-position: top left;
-  display: table-cell;
-}
-.section_divider .top_right {
-  width: 100px;
-  background-image: url(/public/images/section_divider_top_right.png);
   background-repeat: no-repeat;
   background-position: top left;
   display: table-cell;
