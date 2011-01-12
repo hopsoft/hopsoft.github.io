@@ -12,10 +12,12 @@ body { padding: 15px; }
   background-image: url(/public/images/section_divider_top_left.png);
   background-repeat: no-repeat;
   background-position: top left;
+  float: left;
 }
 .section_divider .top_right {
   width: 100px;
   background-image: url(/public/images/section_divider_top_right.png);
   background-repeat: no-repeat;
   background-position: top left;
+  float: right;
 }
