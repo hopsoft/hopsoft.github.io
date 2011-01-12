@@ -17,21 +17,17 @@ In Ruby all classes are open, meaning that you can define new functionality for 
 {% highlight ruby linenos %} 
 # define original class
 class Example
-
   def say_hello
     puts "hello"
   end
-
 end
 
 # re-open the class
 class Example
-
   # add new functionality
   def do_stuff
     puts "doing stuff"
   end
-
 end
 
 # usage
@@ -53,6 +49,5 @@ end
 # syntactic sugar for class << Example
 Example.class_eval do
 end
-
 {% endhighlight %}
 
