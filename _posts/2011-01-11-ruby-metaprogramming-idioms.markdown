@@ -50,8 +50,7 @@ end
 Example.class_eval do
 end
 {% endhighlight %}
-[Gist](https://gist.github.com/774061)
-<script src="https://gist.github.com/774061.js?file=open_classes.rb"></script>
+[Discuss this code](https://gist.github.com/774061)
 
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
