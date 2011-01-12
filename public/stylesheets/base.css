@@ -6,6 +6,7 @@ body { padding: 15px; }
 .section_divider {
   margin: 20px 0 10px 0;
   display: table;
+  width: 100%;
 }
 .section_divider .top {
   background-image: url(/public/images/section_divider_top.png);
