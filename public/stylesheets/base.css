@@ -1,3 +1,9 @@
 * { font-family: "Lucida Grande", "Helvetica", sans-serif; }
+
 body { padding: 15px; }
-hr { border: 0; border-top: solid 1px #806A00; margin: 15px 0 15px 0; display: block; }
+
+.section_divider {
+  background-image: url(/public/images/section_divider_top_right.png);
+  background-repeat: norepeat;
+  
+}
