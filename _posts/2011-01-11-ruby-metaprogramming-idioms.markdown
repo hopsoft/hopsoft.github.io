@@ -288,14 +288,18 @@ Proxy.new(true).length # => length is not supported by the wrapped object!
 [Discuss this code](https://gist.github.com/777156)
 
 
+
+
+{% include section_divider.html %}
+<a name="dynamic_proxy"></a>
 ## Blank Slate
 Ruby also allows you to remove functionality from a class at runtime.  This technique can be useful to ensure that your class doesn't expose unexpected or unwanted features.
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 # demonstrate how to remove functionality
 String.class_eval do
   undef_method :length
 end
-"test".length # => # => NoMethodError: undefined method `length' for "test":String
+"test".length # => NoMethodError: undefined method `length' for "test":String
 
 # create a blank slate class
 class BlankSlate
@@ -307,6 +311,7 @@ end
 # see what methods are now available
 BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?", "__id__"]
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/777889)
 
 ## Scope Gate
 {% highlight ruby linenos %} 
