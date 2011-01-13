@@ -10,7 +10,7 @@ categories:
 ---
 {% include post_info.html %}
 
-<img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" style="float:left;margin:12px;border:solid 1px #000">
+<img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" style="float:left;margin:0 15px 15px 0;border:solid 1px #000">
 I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/ppmetr/metaprogramming-ruby) by [Paolo Perrotta](http://forums.pragprog.com/users/21653) and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot; in the book.  I've used most of the techniques he describes, but have never been fully aware of their formal names.
 
 The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
@@ -263,7 +263,7 @@ Example.new.and_powerful # => You called 'and_powerful' with these arguments: []
 {% include section_divider.html %}
 <a name="dynamic_proxy"></a>
 ## Dynamic Proxy
-Forwarding method calls to another object is known as dynamic proxying.
+Wrapping an object or service and then forwarding method calls to the wrapped item is known as dynamic proxying.
 {% highlight ruby linenos %}
 # define our proxy class
 class Proxy
@@ -273,11 +273,9 @@ class Proxy
 
   # forward all calls to the wrapped object
   def method_missing(method_name, *args)
-    if @object.respond_to?(method_name)
-      @object.send(method_name, *args)
-    else
-      super
-    end
+    @object.send(method_name, *args)
+  rescue 
+    puts "#{method_name} is not supported by the wrapped object!"  
   end
 end
 
@@ -285,12 +283,29 @@ end
 Proxy.new("this is a string").length # => 16
 Proxy.new([1, 2, 3]).length # => 3
 Proxy.new({:a => 1, :b => 2}).length # => 2
+Proxy.new(true).length # => length is not supported by the wrapped object!
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/777156)
 
 
 ## Blank Slate
+Ruby also allows you to remove functionality from a class at runtime.  This technique can be useful to ensure that your class doesn't expose unexpected or unwanted features.
 {% highlight ruby linenos %} 
+# demonstrate how to remove functionality
+String.class_eval do
+  undef_method :length
+end
+"test".length # => # => NoMethodError: undefined method `length' for "test":String
+
+# create a blank slate class
+class BlankSlate
+  public_instance_methods.each do |method_name|
+    undef_method(method_name) unless method_name =~ /^__|^(public_methods|method_missing|respond_to\?)$/
+  end
+end
+
+# see what methods are now available
+BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?", "__id__"]
 {% endhighlight %}
 
 ## Scope Gate
