@@ -5,10 +5,11 @@ body { padding: 20px; }
   font-size: .8em;
 }
 
-.footer {
+#footer {
   border-top: solid 1px #E4E4E4;
   margin: 20px 0 0 0;
   padding: 10px;
+  font-size: .8em;
 }
 
 .section_divider {
