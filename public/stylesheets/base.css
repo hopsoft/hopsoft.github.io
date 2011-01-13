@@ -1,6 +1,16 @@
 * { font-family: "Lucida Grande", "Helvetica", sans-serif; }
 body { padding: 20px; }
 
+.post_info {
+  font-size: .8em;
+}
+
+.footer {
+  border-top: solid 1px #E4E4E4;
+  margin: 20px 0 0 0;
+  padding: 10px;
+}
+
 .section_divider {
   margin: 20px 0 -100px -15px;
   display: table;

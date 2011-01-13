@@ -1,12 +1,14 @@
 ---
 layout: base
 title: Ruby Metaprogramming Idioms
-published: true
 author: Nathan Hopkins
+date: 2011-01-13
+published: true
 categories: 
   - ruby
   - metaprogramming
 ---
+{% include post_info.html %}
 
 I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/ppmetr/metaprogramming-ruby) by [Paolo Perrotta](http://forums.pragprog.com/users/21653) and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot; in the book.  I've used most of the techniques he describes, but have never been fully aware of their formal names.
 
@@ -379,3 +381,4 @@ Proxy.new({:a => 1, :b => 2}).length # => 2
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
+
