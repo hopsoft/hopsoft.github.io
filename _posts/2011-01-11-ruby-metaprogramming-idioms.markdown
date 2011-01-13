@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Ruby Metaprogramming Idioms
-author: Nathan Hopkins
+authors: Nathan Hopkins
 date: 2011-01-13
 published: true
 categories: 
