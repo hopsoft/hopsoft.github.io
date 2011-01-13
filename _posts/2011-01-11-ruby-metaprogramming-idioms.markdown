@@ -12,9 +12,7 @@ I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/p
 
 The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
 
-Perhaps you will find it useful too.
-
-*Remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.*
+Perhaps you will find it useful too.  *Just remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.*
 
 
 
@@ -260,8 +258,31 @@ Example.new.and_powerful # => You called 'and_powerful' with these arguments: []
 {% include section_divider.html %}
 <a name="dynamic_proxy"></a>
 ## Dynamic Proxy
-{% highlight ruby linenos %} 
+Forwarding method calls to another object is know as dynamic proxying.
+{% highlight ruby linenos %}
+# define our proxy class
+class Proxy
+  def initialize(object)
+    @object = object
+  end
+
+  # forward all calls to the wrapped object
+  def method_missing(method_name, *args)
+    if @object.respond_to?(method_name)
+      @object.send(method_name, *args)
+    else
+      super
+    end
+  end
+end
+
+# usage
+Proxy.new("this is a string").length # => 16
+Proxy.new([1, 2, 3]).length          # => 3
+Proxy.new({:a => 1, :b => 2}).length # => 2
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/777156)
+
 
 ## Blank Slate
 {% highlight ruby linenos %} 
