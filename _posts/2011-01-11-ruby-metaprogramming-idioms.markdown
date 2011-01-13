@@ -14,6 +14,7 @@ The idioms defined in the book are so helpful as a reference, I wanted to create
 
 Perhaps you will find it useful too.
 
+*Remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.*
 
 
 
