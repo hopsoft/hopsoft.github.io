@@ -258,7 +258,7 @@ Example.new.and_powerful # => You called 'and_powerful' with these arguments: []
 {% include section_divider.html %}
 <a name="dynamic_proxy"></a>
 ## Dynamic Proxy
-Forwarding method calls to another object is know as dynamic proxying.
+Forwarding method calls to another object is known as dynamic proxying.
 {% highlight ruby linenos %}
 # define our proxy class
 class Proxy
@@ -278,7 +278,7 @@ end
 
 # usage
 Proxy.new("this is a string").length # => 16
-Proxy.new([1, 2, 3]).length          # => 3
+Proxy.new([1, 2, 3]).length # => 3
 Proxy.new({:a => 1, :b => 2}).length # => 2
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/777156)
