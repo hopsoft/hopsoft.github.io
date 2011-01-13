@@ -3,6 +3,8 @@ body { padding: 20px; }
 
 .post_info {
   font-size: .8em;
+  margin: -10px 0 20px 0;
+  clear: both;
 }
 
 #footer {
