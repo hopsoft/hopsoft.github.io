@@ -10,13 +10,14 @@ categories:
 ---
 {% include post_info.html %}
 
+<img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" style="float:left;margin:12px">
 I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/ppmetr/metaprogramming-ruby) by [Paolo Perrotta](http://forums.pragprog.com/users/21653) and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot; in the book.  I've used most of the techniques he describes, but have never been fully aware of their formal names.
 
 The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
 
 Perhaps you will find it useful too.  *Just remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.*
 
-
+<div style="clear:both">
 
 <a name="open_classes"></a>
 {% include section_divider.html %}
