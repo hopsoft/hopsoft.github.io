@@ -293,7 +293,7 @@ Proxy.new(true).length # => length is not supported by the wrapped object!
 {% include section_divider.html %}
 <a name="dynamic_proxy"></a>
 ## Blank Slate
-Ruby also allows you to remove functionality from a class at runtime.  This technique can be useful to ensure that your class doesn't expose unexpected or unwanted features.
+Ruby allows you to remove functionality from a class.  This technique can be useful to ensure that your class doesn't expose unexpected or unwanted features.
 {% highlight ruby linenos %}
 # demonstrate how to remove functionality
 String.class_eval do
