@@ -313,9 +313,54 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/777889)
 
+
+
+
+{% include section_divider.html %}
+<a name="scope_gate"></a>
 ## Scope Gate
-{% highlight ruby linenos %} 
+There are three ways to define a new scope in Ruby.  You create a new scope whenever you define a class, module, or method.
+{% highlight ruby linenos %}
+# demonstrate scoping in ruby 
+scope = "global scope"
+puts(scope) # => global scope
+
+class ExampleClass
+  # the globally scoped variable isn't defined in the classes' scope
+  defined?(scope) # => nil
+  scope = "class scope"
+  puts(scope) # => class scope
+end
+
+# the globally scoped variable is unchanged by the classes' scoped variable
+puts(scope) # => global scope
+
+module ExampleModule
+  # the globally scoped variable isn't defined in the module's scope
+  defined?(scope) # => nil
+  scope = "module scope"
+  puts(scope) # => module scope
+end
+
+# the globally scoped variable is unchanged by the module's scoped variable
+puts(scope) # => global scope
+
+def example_method
+  # the globally scoped variable isn't defined in the method's scope
+  defined?(scope) # => nil
+  scope = "method scope"
+  puts(scope)
+end
+
+example_method # => method scope
+
+# the globally scoped variable is unchanged by the method's scoped variable
+puts(scope) # => global scope
 {% endhighlight %}
+[Discuss this code](https://gist.github.com/)
+
+
+
 
 ## Flat Scope
 {% highlight ruby linenos %} 
