@@ -6,7 +6,7 @@ published: true
 categories: 
   - ruby
   - metaprogramming
-layout: base  
+layout: post  
 ---
 {% include post_info.html %}
 
@@ -404,5 +404,3 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
-
-{% include discus.html %}
