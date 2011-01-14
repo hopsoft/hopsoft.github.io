@@ -404,3 +404,5 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 ## Symbol to Proc
 {% highlight ruby linenos %} 
 {% endhighlight %}
+
+
