@@ -1,5 +1,4 @@
 ---
-layout: base
 title: Ruby Metaprogramming Idioms
 authors: Nathan Hopkins
 date: 2011-01-13
@@ -7,6 +6,7 @@ published: true
 categories: 
   - ruby
   - metaprogramming
+layout: base  
 ---
 {% include post_info.html %}
 
@@ -170,7 +170,7 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 {% include section_divider.html %}
 <a name="pattern_dispatch"></a>
 ## Pattern Dispatch
-Similar to Dynamic Dispatch, but uses a convention or pattern to identify which methods to call.
+Similar to [Dynamic Dispatch](#dynamic_dispatch), but uses a convention or pattern to identify which methods to call.
 {% highlight ruby linenos %}
 # setup a contrived class to demonstrate pattern dispatch
 class Person
@@ -293,7 +293,7 @@ Proxy.new(true).length # => length is not supported by the wrapped object!
 {% include section_divider.html %}
 <a name="dynamic_proxy"></a>
 ## Blank Slate
-Ruby allows you to remove functionality from a class.  This technique can be useful to ensure that your class doesn't expose unexpected or unwanted features.
+Ruby allows you to remove functionality from a class.  This technique can be useful to ensure that your class doesn't expose unwanted or unexpected features.
 {% highlight ruby linenos %}
 # demonstrate how to remove functionality
 String.class_eval do
@@ -405,3 +405,4 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
+{% include discus.html %}

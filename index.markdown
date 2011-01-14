@@ -1,6 +1,6 @@
 ---
-layout: base
 title: Hopsoft LLC
+layout: base
 ---
 
 ## Blog Posts
