@@ -319,7 +319,7 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 {% include section_divider.html %}
 <a name="scope_gate"></a>
 ## Scope Gate
-There are three ways to define a new scope in Ruby.  You create a new scope whenever you define a class, module, or method.  
+There are three ways to define a new scope in Ruby.  A new scope is created whenever you define a class, module, or method.  
 
 Be aware that scoping in Ruby is different than some other languages.  Ruby does not chain scopes when performing lookups, so don't expect it to find variables defined in an outer scope.
 {% highlight ruby linenos %}
