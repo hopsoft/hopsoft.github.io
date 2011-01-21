@@ -410,17 +410,12 @@ shared_scope = Proc.new do
   Example = Class.new do
     puts shared # => a shared variable
 
-    # set a reference to the eigenclass so we can define a class method
+    # set a reference to the eigenclass so we can later define a class method
     # while retaining access to the shared variable
     eigenclass = class << self
       # this is a scope gate without access to the shared variable
       self
     end
-
-    # demonstrate that the eigenclass is in fact a
-    # different object than the class definition
-    puts eigenclass.object_id # => 2150393080
-    puts object_id            # => 2150393100
 
     # use the eigenclass to define a class method
     # with access to the shared variable
@@ -442,6 +437,10 @@ shared_scope.call
 
 # the scoped variable 'shared' is not available to the main scope
 defined?(shared) # => nil
+
+# demonstrate the methods
+Example.class_method # => a shared variable
+Example.new.instance_method # => a shared variable
 {% endhighlight %}
 
 
