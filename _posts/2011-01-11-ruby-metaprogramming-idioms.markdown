@@ -377,15 +377,15 @@ class Example
 
   def initialize
     @read_only = true
-    # determine if the main scoped variable is available
-    puts "value defined? #{defined?(value) == true}"
+    # the main scoped variable is not defined in this scope gate
+    defined?(value) # => nil
   end
 end
 
-example = Example.new # => value defined? false
-example.read_only # => true
+Example.new.read_only # => true
 
-# flatten the scope with a closure to share variables between scopes
+# flatten the scope with a closure (block) to share variables between scopes
+# note that we are also violating encapsulation here
 example.instance_eval do
   @read_only = value
 end
