@@ -364,12 +364,40 @@ puts(scope) # => global scope
 
 
 
+{% include section_divider.html %}
+<a name="flat_scope"></a>
 ## Flat Scope
-{% highlight ruby linenos %} 
+You can flatten the scope to gain access to variables that are otherwise unaccessible.
+{% highlight ruby linenos %}
+# define a variable in the main scope
+value = "sort of"
+
+class Example
+  attr_reader :read_only
+
+  def initialize
+    @read_only = true
+    # determine if the main scoped variable is available
+    puts "value defined? #{defined?(value) == true}"
+  end
+end
+
+example = Example.new # => value defined? false
+example.read_only # => true
+
+# flatten the scope with a closure to share variables between scopes
+example.instance_eval do
+  @read_only = value
+end
+
+example.read_only # => sort of
 {% endhighlight %}
 
+
+
+
 ## Shared Scope
-{% highlight ruby linenos %} 
+{% highlight ruby linenos %}
 {% endhighlight %}
 
 ## Context Probe
