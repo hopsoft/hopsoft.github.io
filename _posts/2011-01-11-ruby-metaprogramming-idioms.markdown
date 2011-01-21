@@ -324,31 +324,31 @@ There are three ways to define a new scope in Ruby.  A new scope is created when
 Be aware that scoping in Ruby is different than some other languages.  Ruby does not chain scopes when performing lookups, so don't expect it to find variables defined in an outer scope.
 {% highlight ruby linenos %}
 # demonstrate scoping in ruby 
-scope = "global scope"
-puts(scope) # => global scope
+scope = "main scope"
+puts(scope) # => main scope
 
 class ExampleClass
-  # the globally scoped variable isn't defined in the classes' scope
+  # the main scoped variable isn't defined in the classes' scope
   defined?(scope) # => nil
   scope = "class scope"
   puts(scope) # => class scope
 end
 
-# the globally scoped variable is unchanged by the classes' scoped variable
+# the main scoped variable is unchanged by the classes' scoped variable
 puts(scope) # => global scope
 
 module ExampleModule
-  # the globally scoped variable isn't defined in the module's scope
+  # the main scoped variable isn't defined in the module's scope
   defined?(scope) # => nil
   scope = "module scope"
   puts(scope) # => module scope
 end
 
-# the globally scoped variable is unchanged by the module's scoped variable
-puts(scope) # => global scope
+# the main scoped variable is unchanged by the module's scoped variable
+puts(scope) # => main scope
 
 def example_method
-  # the globally scoped variable isn't defined in the method's scope
+  # the main scoped variable isn't defined in the method's scope
   defined?(scope) # => nil
   scope = "method scope"
   puts(scope)
@@ -356,7 +356,7 @@ end
 
 example_method # => method scope
 
-# the globally scoped variable is unchanged by the method's scoped variable
+# the main scoped variable is unchanged by the method's scoped variable
 puts(scope) # => global scope
 {% endhighlight %}
 [Discuss this code](https://gist.github.com/779209)
@@ -367,7 +367,7 @@ puts(scope) # => global scope
 {% include section_divider.html %}
 <a name="flat_scope"></a>
 ## Flat Scope
-You can flatten the scope to gain access to variables that are otherwise unaccessible.
+Flatten the scope to gain access to variables that are otherwise unaccessible.
 {% highlight ruby linenos %}
 # define a variable in the main scope
 value = "sort of"
@@ -396,9 +396,57 @@ example.read_only # => sort of
 
 
 
+{% include section_divider.html %}
+<a name="shared_scope"></a>
 ## Shared Scope
+Create a [Scope Gate](#scope_gate) to share variables across several contexts.
 {% highlight ruby linenos %}
+# create a shared scope
+shared_scope = Proc.new do
+  # define a variable to share
+  shared = "a shared variable"
+
+  # use closures (blocks) to ensure access to the variable
+  Example = Class.new do
+    puts shared # => a shared variable
+
+    # set a reference to the eigenclass so we can define a class method
+    # while retaining access to the shared variable
+    eigenclass = class << self
+      # this is a scope gate without access to the shared variable
+      self
+    end
+
+    # demonstrate that the eigenclass is in fact a
+    # different object than the class definition
+    puts eigenclass.object_id # => 2150393080
+    puts object_id            # => 2150393100
+
+    # use the eigenclass to define a class method
+    # with access to the shared variable
+    eigenclass.class_eval do
+      define_method :class_method do
+        shared
+      end
+    end
+
+    # define an instance method with access to the shared variable
+    define_method :instance_method do
+      shared
+    end
+  end
+end
+
+# call the shared scope proc to execute its code
+shared_scope.call
+
+# the scoped variable 'shared' is not available to the main scope
+defined?(shared) # => nil
 {% endhighlight %}
+
+
+
+
 
 ## Context Probe
 {% highlight ruby linenos %} 
