@@ -491,9 +491,40 @@ Ruby allows you to break the rules of encapsulation and reach into the internals
 
 {% endhighlight %}
 
+
+
+
+
+
+{% include section_divider.html %}
+<a name="clean_room"></a>
 ## Clean Room
-{% highlight ruby linenos %} 
+A class or object used for the express purpose of evaluating Ruby inside of its context is called a clean room.
+Clean rooms are used to change the current context to something expected or clean which can help to avoid surprises.
+{% highlight ruby linenos %}
+
+    def do_stuff
+      @scope
+    end
+
+    @scope = "outer scope"
+    puts do_stuff # => outer scope
+
+    # illustrate how to use a simple clean room
+    Object.new.instance_eval do
+      @scope = "clean room scope"
+      puts do_stuff # => clean room scope
+    end
+
 {% endhighlight %}
+
+
+
+
+
+
+
+
 
 ## Deferred Evaluation
 {% highlight ruby linenos %} 
