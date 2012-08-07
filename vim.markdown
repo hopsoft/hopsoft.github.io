@@ -6,7 +6,7 @@ layout: bootstrap
 <div class="row">
   <div class="span6">
 
-    # Navigation
+# Navigation
 
     <table class="table table-bordered">
       <thead>
@@ -20,13 +20,7 @@ layout: bootstrap
 
         <tr>
           <td><pre>h</pre></td>
-          <td>
-          <pre>
- k
-h l
- j
-          </pre>
-          </td>
+          <td></td>
           <td>Left</td>
         </tr>
 
