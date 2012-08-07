@@ -17,25 +17,25 @@ layout: bootstrap
       <tbody>
 
         <tr>
-          <td>`h`</td>
+          <td><pre>h</pre></td>
           <td></td>
           <td>Left</td>
         </tr>
 
         <tr>
-          <td>`j`</td>
+          <td><pre>j</pre></td>
           <td></td>
           <td>Down</td>
         </tr>
 
         <tr>
-          <td>`k`</td>
+          <td><pre>k</pre></td>
           <td></td>
           <td>Up</td>
         </tr>
 
         <tr>
-          <td>`l`</td>
+          <td><pre>l</pre></td>
           <td></td>
           <td>Right</td>
         </tr>
