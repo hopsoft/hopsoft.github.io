@@ -4,9 +4,20 @@ layout: bootstrap
 ---
 
 <div class="row">
+  <ul class="breadcrumb">
+    <li>
+      <a href="/">Home</a> <span class="divider">/</span>
+    </li>
+    <li class="active">VIM Reference</li>
+  </ul>
+</div>
+
+<div class="row">
+
+
   <div class="span6">
 
-    <h2>Navigation</h2>
+    <h2 id="navigation">Navigation</h2>
 
     <table class="table table-bordered">
       <thead>
@@ -40,6 +51,12 @@ layout: bootstrap
           <td><pre>l</pre></td>
           <td></td>
           <td>Right</td>
+        </tr>
+
+        <tr>
+          <td><pre>w</pre></td>
+          <td><span class="u">w</span>ord</td>
+          <td>Move to the start of the next word</td>
         </tr>
 
       </tbody>
