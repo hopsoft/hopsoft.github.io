@@ -6,7 +6,7 @@ layout: bootstrap
 <div class="row">
   <div class="span6">
 
-# Navigation
+    <h2>Navigation</h2>
 
     <table class="table table-bordered">
       <thead>
