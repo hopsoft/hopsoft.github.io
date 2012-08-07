@@ -55,7 +55,25 @@ layout: bootstrap
         <tr>
           <td><pre>w</pre></td>
           <td><span class="u">w</span>ord</td>
-          <td>Move to the start of the next word</td>
+          <td>Move to the <b>start</b> of the <b>next word</b></td>
+        </tr>
+
+        <tr>
+          <td><pre>e</pre></td>
+          <td><span class="u">e</span>nd</td>
+          <td>Move to the <b>end</b> of the <b>current word</b></td>
+        </tr>
+
+        <tr>
+          <td><pre>^</pre></td>
+          <td></td>
+          <td>Move to the <b>start</b> of the <b>line</b></td>
+        </tr>
+
+        <tr>
+          <td><pre>$</pre></td>
+          <td></td>
+          <td>Move to the <b>end</b> of the <b>line</b></td>
         </tr>
 
       </tbody>
