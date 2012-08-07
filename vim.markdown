@@ -73,7 +73,7 @@ layout: bootstrap
         <tr>
           <td><pre>$</pre></td>
           <td></td>
-          <td>Move to the <b>end</b> of the <b>line</b></td>
+          <td>Move to the <span class="label">end of</span> the <span class="label">line</span></td>
         </tr>
 
       </tbody>
