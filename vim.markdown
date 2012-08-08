@@ -1,5 +1,5 @@
 ---
-title: VIM Reference
+title: VIM Reference / Cheat Sheet
 layout: bootstrap 
 ---
 
@@ -18,6 +18,13 @@ layout: bootstrap
 </div>
 
 <div class="row">
+  <div class="span12">
+    <h3>
+      VIM is hard. <small>Don't sweat it... we've got your back</small>
+    </h3>
+    <hr />
+  </div>
+
   <div class="span5">
 
     <table class="table table-bordered table-awesome">
@@ -106,4 +113,11 @@ layout: bootstrap
     </table>
 
   </div>
+
+  <div class="span12">
+    <p>
+      Keep your eye on this page for updates.
+    </p>
+  </div>
+
 </div>
