@@ -116,13 +116,13 @@ layout: bootstrap
         </tr>
 
         <tr>
-          <td><pre class="command">CTRL-w s</pre></td>
+          <td><pre class="command"><CTRL-w>s</pre></td>
           <td><span class="u">s</span>plit</td>
           <td><span class="label">Split</span> the <span class="label">window horizontally</span></td>
         </tr>
 
         <tr>
-          <td><pre class="command">CTRL-w v</pre></td>
+          <td><pre class="command"><CTRL-w>v</pre></td>
           <td></td>
           <td><span class="label">Split</span> the <span class="label">window vertically</span></td>
         </tr>
