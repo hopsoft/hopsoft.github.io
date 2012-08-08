@@ -109,6 +109,24 @@ layout: bootstrap
           <td>Move to the <span class="label">matching bracket</span></td>
         </tr>
 
+        <tr>
+          <td><pre class="command">%</pre></td>
+          <td></td>
+          <td>Move to the <span class="label">matching bracket</span></td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">CTRL-w s</pre></td>
+          <td><span class="u">s</span>plit</td>
+          <td><span class="label">Split</span> the <span class="label">window horizontally</span></td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">CTRL-w v</pre></td>
+          <td></td>
+          <td><span class="label">Split</span> the <span class="label">window vertically</span></td>
+        </tr>
+
       </tbody>
     </table>
 
