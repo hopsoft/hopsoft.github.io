@@ -127,6 +127,12 @@ layout: bootstrap
           <td><span class="label">Split</span> the <span class="label">window vertically</span></td>
         </tr>
 
+        <tr>
+          <td><pre class="command">:ls</pre></td>
+          <td><span class="u">l</span>li<span class="u">s</span>t</td>
+          <td><span class="label">List buffers</span></td>
+        </tr>
+
       </tbody>
     </table>
 
