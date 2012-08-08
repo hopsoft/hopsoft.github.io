@@ -22,11 +22,12 @@ layout: bootstrap
       <li><a href="#misc" data-toggle="tab">Misc</a></li>
     </ul>
   </div>
+</div>
 
-
-  <div class="tab-content">
+<div class="row">
+  <div class="span12 tab-content">
     <div id="navigating" class="tab-pane active">
-      <div class="span6">
+      <div class="span5">
 
         <table class="table table-bordered">
           <thead>
@@ -39,37 +40,37 @@ layout: bootstrap
           <tbody>
 
             <tr>
-              <td><pre>h</pre></td>
+              <td><pre class="command">h</pre></td>
               <td></td>
               <td>Move <span class="label">left 1 char</span></td>
             </tr>
 
             <tr>
-              <td><pre>j</pre></td>
+              <td><pre class="command">j</pre></td>
               <td></td>
               <td>Move <span class="label">down 1 line</span></td>
             </tr>
 
             <tr>
-              <td><pre>k</pre></td>
+              <td><pre class="command">k</pre></td>
               <td></td>
               <td>Move <span class="label">up 1 line</span></td>
             </tr>
 
             <tr>
-              <td><pre>l</pre></td>
+              <td><pre class="command">l</pre></td>
               <td></td>
               <td>Move <span class="label">right 1 char</span></td>
             </tr>
 
             <tr>
-              <td><pre>w</pre></td>
+              <td><pre class="command">w</pre></td>
               <td><span class="u">w</span>ord</td>
               <td>Move to the <span class="label">start of</span> the <span class="label">next word</span></td>
             </tr>
 
             <tr>
-              <td><pre>e</pre></td>
+              <td><pre class="command">e</pre></td>
               <td><span class="u">e</span>nd</td>
               <td>Move to the <span class="label">end of</span> the <span class="label">current word</span></td>
             </tr>
@@ -79,7 +80,7 @@ layout: bootstrap
 
       </div>
 
-      <div class="span6">
+      <div class="span5">
 
         <table class="table table-bordered">
           <thead>
@@ -92,37 +93,37 @@ layout: bootstrap
           <tbody>
 
             <tr>
-              <td><pre>^</pre></td>
+              <td><pre class="command">^</pre></td>
               <td></td>
               <td>Move to the <span class="label">start of</span> the <span class="label">line</span></td>
             </tr>
 
             <tr>
-              <td><pre>$</pre></td>
+              <td><pre class="command">$</pre></td>
               <td></td>
               <td>Move to the <span class="label">end of</span> the <span class="label">line</span></td>
             </tr>
 
             <tr>
-              <td><pre>gg</pre></td>
+              <td><pre class="command">gg</pre></td>
               <td><span class="u">g</span>oto</td>
               <td>Move to the <span class="label">top of</span> the <span class="label">file</span></td>
             </tr>
 
             <tr>
-              <td><pre>G</pre></td>
+              <td><pre class="command">G</pre></td>
               <td><span class="u">g</span>oto</td>
               <td>Move to the <span class="label">bottom of</span> the <span class="label">file</span></td>
             </tr>
 
             <tr>
-              <td><pre>[number]G</pre></td>
+              <td><pre class="command">[number]G</pre></td>
               <td><span class="u">g</span>oto</td>
               <td>Move to the specified <span class="label">line number</span></td>
             </tr>
 
             <tr>
-              <td><pre>%</pre></td>
+              <td><pre class="command">%</pre></td>
               <td></td>
               <td>Move to the <span class="label">matching bracket</span></td>
             </tr>

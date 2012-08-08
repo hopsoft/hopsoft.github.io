@@ -1,7 +1,33 @@
+* {
+}
+
 body {
   padding: 50px;
 }
 
+thead tr {
+  background-color: #ffffcf;
+}
+
+td {
+  vertical-align: middle;
+}
+
+pre.command {
+  font-size: 115%;
+  /*background-color: #002B36;*/
+  /*color: #fff;*/
+}
+
 .u {
   text-decoration: underline;
+  font-size: 110%;
+}
+
+.tab-content {
+  padding: 20px 0 0 30px;
+}
+
+#footer {
+  margin-top: 30px;
 }
