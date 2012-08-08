@@ -98,7 +98,7 @@ layout: bootstrap
         </tr>
 
         <tr>
-          <td><pre class="command">[number]G</pre></td>
+          <td><pre class="command"><span class="subdued">[</span>number<span class="subdued">]</span>G</pre></td>
           <td><span class="u">g</span>oto</td>
           <td>Move to the specified <span class="label">line number</span></td>
         </tr>
@@ -116,13 +116,13 @@ layout: bootstrap
         </tr>
 
         <tr>
-          <td><pre class="command"><CTRL-w>s</pre></td>
+          <td><pre class="command"><span class="subdued">&lt;</span>CTRL-w<span class="subdued">&gt;</span>s</pre></td>
           <td><span class="u">s</span>plit</td>
           <td><span class="label">Split</span> the <span class="label">window horizontally</span></td>
         </tr>
 
         <tr>
-          <td><pre class="command"><CTRL-w>v</pre></td>
+          <td><pre class="command"><span class="subdued">&lt;</span>CTRL-w<span class="subdued">&gt;</span>v</pre></td>
           <td></td>
           <td><span class="label">Split</span> the <span class="label">window vertically</span></td>
         </tr>

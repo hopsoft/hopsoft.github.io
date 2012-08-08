@@ -31,6 +31,10 @@ pre.command {
   font-size: 110%;
 }
 
+.subdued {
+  opacity: 0.4;
+}
+
 .tab-content {
   padding: 20px 0 20px 0;
 }
