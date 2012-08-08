@@ -129,7 +129,7 @@ layout: bootstrap
 
         <tr>
           <td><pre class="command">:ls</pre></td>
-          <td><span class="u">l</span>li<span class="u">s</span>t</td>
+          <td><span class="u">l</span>i<span class="u">s</span>t</td>
           <td><span class="label">List buffers</span></td>
         </tr>
 
