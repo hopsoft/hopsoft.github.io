@@ -8,6 +8,13 @@ body {
 thead tr {
   background-color: #ffffcf;
 }
+thead th {
+  cursor: pointer;
+}
+thead tr i {
+  color: #CCCCA6;
+  font-size: 120%;
+}
 
 td {
   vertical-align: middle;
