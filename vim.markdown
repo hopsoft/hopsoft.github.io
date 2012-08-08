@@ -75,23 +75,6 @@ layout: bootstrap
               <td>Move to the <span class="label">end of</span> the <span class="label">current word</span></td>
             </tr>
 
-          </tbody>
-        </table>
-
-      </div>
-
-      <div class="span5">
-
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Command</th>
-              <th>Mnemonic</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-
             <tr>
               <td><pre class="command">^</pre></td>
               <td></td>
