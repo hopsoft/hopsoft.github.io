@@ -5,7 +5,7 @@ layout: bootstrap
 
 <div class="row">
   <div class="span7">
-    <h1>This is my BOOM STICK!</h1><br />
+    <h1>Making stuff for profit &amp; fun</h1><br />
     <p>
       <ul class="thumbnails">
         <li>
