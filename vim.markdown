@@ -28,7 +28,7 @@ layout: bootstrap
         <tr>
           <td><pre class="command">.</pre></td>
           <td></td>
-          <td><span class="label">Repeat last action</span></td>
+          <td><span class="label">Repeat</span> the <span class="label">last command</span></td>
         </tr>
 
         <tr>

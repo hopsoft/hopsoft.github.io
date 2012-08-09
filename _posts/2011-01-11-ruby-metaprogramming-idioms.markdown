@@ -34,7 +34,8 @@ layout: bootstrap
     </div>
   </div>
 </div>
-<br /><br />
+<br />
+<br />
 
 
 ## Open Classes
