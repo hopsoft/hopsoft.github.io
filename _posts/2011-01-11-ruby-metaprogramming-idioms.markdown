@@ -13,20 +13,29 @@ layout: bootstrap
 
 <div class="row">
   <div class="span12">
-    {% include post_info.html %}
-
-    <img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" style="float:left;margin:0 15px 15px 0;border:solid 1px #000">
-    I recently finished the book [Metaprogramming Ruby](http://pragprog.com/titles/ppmetr/metaprogramming-ruby) by [Paolo Perrotta](http://forums.pragprog.com/users/21653) and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot; in the book.  I've used most of the techniques he describes, but have never been fully aware of their formal names.
-
-    The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
-
-    Perhaps you will find it useful too.  
-
-    *Just remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.*
+    <div class="subdued">{% include post_info.html %}</div>
+    <div class="hero-unit">
+      <img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" class="thumbnail pull-left" style="margin: 0 20px 20px 0">
+      <p>
+        I recently finished the book <a href="http://pragprog.com/titles/ppmetr/metaprogramming-ruby">Metaprogramming Ruby</a> by <a href="http://forums.pragprog.com/users/21653">Paolo Perrotta</a> and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot;.  I've used most of the techniques, but was never fully aware of their formal names.
+      </p>
+      <hr />
+      <p>
+        The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
+      </p>
+      <hr />
+      <p>
+        Perhaps you will find it useful too.  
+      </p>
+      <hr />
+      <p>
+        Just remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.
+      </p>
+    </div>
   </div>
 </div>
+<br /><br />
 
----
 
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
@@ -69,7 +78,6 @@ In Ruby all classes are open, meaning that you can define new functionality for 
 
 {% endhighlight %}
 
----
 
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
@@ -95,7 +103,6 @@ Monkeypatching is a somewhat negative term that refers to the ability to re-open
 
 {% endhighlight %}
 
----
 
 ## Namespace
 Use Ruby modules to create namespaces to avoid naming collisions.
@@ -116,7 +123,6 @@ Use Ruby modules to create namespaces to avoid naming collisions.
 
 {% endhighlight %}
 
----
 
 ## Kernel Method
 Defining methods in the Kernel module will make those methods available to all objects.
@@ -139,7 +145,6 @@ Defining methods in the Kernel module will make those methods available to all o
 
 {% endhighlight %}
 
----
 
 ## Dynamic Dispatch
 Ruby supports calling methods at runtime even if you don't know what those methods are at design time.
@@ -162,7 +167,6 @@ Ruby supports calling methods at runtime even if you don't know what those metho
 
 {% endhighlight %}
 
----
 
 ## Pattern Dispatch
 Similar to [Dynamic Dispatch](#dynamic_dispatch), but uses a convention or pattern to identify which methods to call.
@@ -201,7 +205,6 @@ Similar to [Dynamic Dispatch](#dynamic_dispatch), but uses a convention or patte
 
 {% endhighlight %}
 
----
 
 ## Dynamic Method
 Ruby supports defining methods at runtime even if you don't know what those methods are at design time.
@@ -228,7 +231,6 @@ Ruby supports defining methods at runtime even if you don't know what those meth
 
 {% endhighlight %}
 
----
 
 ## Ghost Method
 Ruby provides a mechanism that allows you to catch calls to methods that don't even exist.  Its possible to leverage this feature to support functionality that hasn't been defined.
@@ -250,7 +252,6 @@ Ruby provides a mechanism that allows you to catch calls to methods that don't e
 
 {% endhighlight %}
 
----
 
 ## Dynamic Proxy
 Wrapping an object or service and then forwarding method calls to the wrapped item is known as dynamic proxying.
@@ -278,7 +279,6 @@ Wrapping an object or service and then forwarding method calls to the wrapped it
 
 {% endhighlight %}
 
----
 
 ## Blank Slate
 Ruby allows you to remove functionality from a class.  This technique can be useful to ensure that your class doesn't expose unwanted or unexpected features.
@@ -302,7 +302,6 @@ Ruby allows you to remove functionality from a class.  This technique can be use
 
 {% endhighlight %}
 
----
 
 ## Scope Gate
 There are three ways to define a new scope in Ruby.  A new scope is created whenever you define a class, module, or method.  
@@ -348,7 +347,6 @@ Be aware that scoping in Ruby is different than some other languages.  Ruby does
 
 {% endhighlight %}
 
----
 
 ## Flat Scope
 Flatten the scope to gain access to variables that are otherwise unaccessible.
@@ -379,7 +377,6 @@ Flatten the scope to gain access to variables that are otherwise unaccessible.
 
 {% endhighlight %}
 
----
 
 ## Shared Scope
 Create a [Scope Gate](#scope_gate) to share variables across several contexts.
@@ -428,7 +425,6 @@ Create a [Scope Gate](#scope_gate) to share variables across several contexts.
 
 {% endhighlight %}
 
----
 
 ## Context Probe
 Ruby allows you to break the rules of encapsulation and reach into the internals of an object.
@@ -446,7 +442,6 @@ Ruby allows you to break the rules of encapsulation and reach into the internals
 
 {% endhighlight %}
 
----
 
 ## Clean Room
 A class or object used for the express purpose of evaluating Ruby inside of its context is called a clean room.
@@ -468,109 +463,91 @@ Clean rooms are used to change the current context to something expected or clea
 
 {% endhighlight %}
 
----
 
 ## Deferred Evaluation
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Class Instance Variable
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Singleton Method
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Class Macro
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Class Extension
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Object Extension
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Around Alias
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## String of Code
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Code Processor
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Sandbox
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Hook Method
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Class Extension Mixin
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Mimic Method
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Lazy Instance Variable
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Named Arguments
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Argument Array
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Self Yield
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
----
 
 ## Symbol to Proc
 {% highlight ruby linenos %} 
