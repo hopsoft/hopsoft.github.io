@@ -26,6 +26,12 @@ layout: bootstrap
       <tbody>
 
         <tr>
+          <td><pre class="command">.</pre></td>
+          <td></td>
+          <td><span class="label">Repeat last action</span></td>
+        </tr>
+
+        <tr>
           <td><pre class="command">h</pre></td>
           <td></td>
           <td>Move <span class="label">left 1 char</span></td>
