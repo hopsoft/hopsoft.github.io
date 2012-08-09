@@ -127,6 +127,24 @@ layout: bootstrap
           <td><span class="label">List buffers</span></td>
         </tr>
 
+        <tr>
+          <td><pre class="command">:w</pre></td>
+          <td><span class="u">w</span>rite</td>
+          <td><span class="label">Write</span> (or save) the <span class="label">current file</span></td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:q</pre></td>
+          <td><span class="u">q</span>uit</td>
+          <td><span class="label">Exit</span> the <span class="label">editor</span></td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:q!</pre></td>
+          <td><span class="u">q</span>uit</td>
+          <td><span class="label">Exit</span> the <span class="label">editor</span> and <span class="label">discard changes</span></td>
+        </tr>
+
       </tbody>
     </table>
 
