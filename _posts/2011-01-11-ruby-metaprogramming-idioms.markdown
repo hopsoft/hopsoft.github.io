@@ -553,3 +553,13 @@ Clean rooms are used to change the current context to something expected or clea
 {% highlight ruby linenos %} 
 {% endhighlight %}
 
+<div class="row">
+  <div class="span8">
+    <p>
+      Keep your eye on this page for updates.
+    </p>
+    <p>
+      {% include discus.html %}
+    </p>
+  </div>
+</div>
