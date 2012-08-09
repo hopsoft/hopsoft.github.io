@@ -126,10 +126,14 @@ layout: bootstrap
 
   </div>
 
-  <div class="span12">
+  <div class="span8">
     <p>
       Keep your eye on this page for updates.
+    </p>
+    <p>
+      {% include discus.html %}
     </p>
   </div>
 
 </div>
+
