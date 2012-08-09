@@ -3,19 +3,7 @@ title: VIM Reference / Cheat Sheet
 layout: bootstrap 
 ---
 
-<div class="row">
-  <div class="span12">
-    <ul class="breadcrumb">
-      <li>
-        <a href="/">Home</a> <span class="divider">/</span>
-      </li>
-      <li class="active">VIM Reference</li>
-    </ul>
-
-    <h1 class="page-header">{{ page.title }}</h1>
-
-  </div>
-</div>
+{% include breadcrumb.html %}
 
 <div class="row">
   <div class="span12">
