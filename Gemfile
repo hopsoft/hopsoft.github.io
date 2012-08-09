@@ -1,2 +1,3 @@
-source :gemcutter
-gem "jekyll", "0.10.0"
+source :rubygems
+gem "rack"
+gem "jekyll"

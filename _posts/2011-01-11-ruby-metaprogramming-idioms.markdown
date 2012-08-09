@@ -6,7 +6,7 @@ published: true
 categories: 
   - ruby
   - metaprogramming
-layout: post  
+layout: bootstrap  
 ---
 {% include post_info.html %}
 
