@@ -462,7 +462,7 @@ layout: bootstrap
   </div>
 
   <div class="span12">
-    <p>{% include discus.html %}</p>
+    <p>{% include disqus.html %}</p>
   </div>
 
 </div>

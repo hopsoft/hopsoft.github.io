@@ -555,12 +555,12 @@ end
 {% endhighlight %}
 
 <div class="row">
-  <div class="span8">
+  <div class="span12">
     <p>
       Keep your eye on this page for updates.
     </p>
     <p>
-      {% include discus.html %}
+      {% include disqus.html %}
     </p>
   </div>
 </div>

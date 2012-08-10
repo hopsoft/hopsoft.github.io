@@ -4,7 +4,7 @@ layout: bootstrap
 ---
 
 <div class="row">
-  <div class="span7">
+  <div class="span12">
     <p>
       <ul class="thumbnails">
         <li>
@@ -18,11 +18,18 @@ layout: bootstrap
       </ul>
     </p>
 
-    <h2>Websites</h2><br />
+    <h2>Blog Posts</h2><br />
+    <ul>
+      {% for post in site.posts limit:5 %}
+      <li><a href="{{post.url}}">{{post.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+    <h2>Cheat Sheets</h2><br />
     <ul>
       <li>
-        <a href="http://www.citydiff.com">CityDiff</a>
-        - compare your favorite cities
+        <a href="http://hopsoft.github.com/vim.html">VIM</a>
+        - vim reference &amp; cheat sheet
       </li>
     </ul>
 
@@ -45,24 +52,14 @@ layout: bootstrap
         - mysql data archiver
       </li>
     </ul>
-  </div>
 
-  <div class="well span4">
-    <h3>Blog Posts</h3><br />
-    <ul>
-      {% for post in site.posts limit:5 %}
-      <li><a href="{{post.url}}">{{post.title}}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="well span4">
-    <h3>Cool Stuff</h3><br />
+    <h2>Websites</h2><br />
     <ul>
       <li>
-        <a href="http://hopsoft.github.com/vim.html">VIM</a>
-        - vim reference &amp; cheat sheet
+        <a href="http://www.citydiff.com">CityDiff</a>
+        - compare your favorite cities
       </li>
     </ul>
   </div>
+
 </div>
