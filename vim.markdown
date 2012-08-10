@@ -493,7 +493,7 @@ layout: bootstrap
         </tr>
 
         <tr>
-          <td><pre class="command">&</pre></td>
+          <td><pre class="command">&amp;</pre></td>
           <td></td>
           <td>Repeat a search/replace operation on the next match</td>
         </tr>
