@@ -248,12 +248,6 @@ layout: bootstrap
         </tr>
 
         <tr>
-          <td><pre class="command">^</pre></td>
-          <td></td>
-          <td>Move to the start of the line</td>
-        </tr>
-
-        <tr>
           <td><pre class="command">$</pre></td>
           <td></td>
           <td>Move to the end of the line</td>
