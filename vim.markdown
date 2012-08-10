@@ -406,7 +406,7 @@ layout: bootstrap
         <tr>
           <td><pre class="command">:v <span class="subdued">[motion]</span> :w <span class="subdued">[filename]</span></pre></td>
           <td>
-            <span class="v">isual</span>rite<br />
+            <span class="u">v</span>isual<br />
             <span class="u">w</span>rite
           </td>
           <td>Save the visually selected lines to the specified filename</td>
