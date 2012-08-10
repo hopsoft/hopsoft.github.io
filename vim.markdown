@@ -12,8 +12,8 @@ layout: bootstrap
       <p>Use the <b>search</b> below to find what you need.</p>
       <h4>
         <small>
-        This reference documents commands from vimtutor through lesson 4... with a few extras.
-        More is on the way.
+          This reference documents commands from vimtutor through lesson 4... with a few extras.
+          More is on the way.
         </small>
       </h4>
     </div>
@@ -116,14 +116,26 @@ layout: bootstrap
         </tr>
 
         <tr>
+          <td><pre class="command"><span class="subdued">&lt;</span>CTRL-w<span class="subdued">&gt;</span></pre></td>
+          <td><span class="u">w</span>indow</td>
+          <td>Switch to another window</td>
+        </tr>
+
+        <tr>
           <td><pre class="command"><span class="subdued">&lt;</span>CTRL-w<span class="subdued">&gt;</span>s</pre></td>
-          <td><span class="u">s</span>plit</td>
+          <td>
+            <span class="u">w</span>indow<br />
+            <span class="u">s</span>plit
+          </td>
           <td>Split the window horizontally</td>
         </tr>
 
         <tr>
           <td><pre class="command"><span class="subdued">&lt;</span>CTRL-w<span class="subdued">&gt;</span>v</pre></td>
-          <td></td>
+          <td>
+            <span class="u">w</span>indow<br />
+            <span class="u">v</span>ertical
+          </td>
           <td>Split the window vertically</td>
         </tr>
 
@@ -137,6 +149,12 @@ layout: bootstrap
           <td><pre class="command">:w</pre></td>
           <td><span class="u">w</span>rite</td>
           <td>Write (or save) the current file</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:w <span class="subdued">[filename]</span></pre></td>
+          <td><span class="u">w</span>rite</td>
+          <td>Write (or save) the current file as the specified filename</td>
         </tr>
 
         <tr>
@@ -260,6 +278,12 @@ layout: bootstrap
         </tr>
 
         <tr>
+          <td><pre class="command">y</pre></td>
+          <td><span class="u">y</span>ank</td>
+          <td>Yank (or copy) text</td>
+        </tr>
+
+        <tr>
           <td><pre class="command">p</pre></td>
           <td><span class="u">p</span>ut</td>
           <td>Put (or paste) copied or deleted text after the cursor</td>
@@ -269,6 +293,12 @@ layout: bootstrap
           <td><pre class="command">r</pre></td>
           <td><span class="u">r</span>eplace</td>
           <td>Replace the character under the cursor</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">R</pre></td>
+          <td><span class="u">r</span>eplace</td>
+          <td>Enter replace mode</td>
         </tr>
 
         <tr>
@@ -286,19 +316,19 @@ layout: bootstrap
         <tr>
           <td><pre class="command">/<span class="subdued">[text]</span></pre></td>
           <td></td>
-          <td>Searches forward for the text</td>
+          <td>Search forward for the text</td>
         </tr>
 
         <tr>
           <td><pre class="command">?<span class="subdued">[text]</span></pre></td>
           <td></td>
-          <td>Searches backward for the text</td>
+          <td>Search backward for the text</td>
         </tr>
 
         <tr>
           <td><pre class="command">%</pre></td>
           <td></td>
-          <td>Finds the matching brace (or bracket)</td>
+          <td>Find the matching brace (or bracket)</td>
         </tr>
 
         <tr>
@@ -334,13 +364,13 @@ layout: bootstrap
         <tr>
           <td><pre class="command">n</pre></td>
           <td><span class="u">n</span>ext</td>
-          <td>Finds the next occurence of a search result</td>
+          <td>Find the next occurence of a search result</td>
         </tr>
 
         <tr>
           <td><pre class="command">N</pre></td>
           <td><span class="u">n</span>ext</td>
-          <td>Finds the previous occurence of a search result</td>
+          <td>Find the previous occurence of a search result</td>
         </tr>
 
         <tr>
@@ -353,6 +383,75 @@ layout: bootstrap
           <td><pre class="command"><span class="subdued">&lt;</span>CTRL-I<span class="subdued">&gt;</span></pre></td>
           <td></td>
           <td>Move to newer result while navigating search results</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:!<span class="subdued">[command]</span></pre></td>
+          <td></td>
+          <td>Execute an external command</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:r <span class="subdued">[filename]</span></pre></td>
+          <td></td>
+          <td>Read the specified file and put its contents below the cursor</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:r !dir</pre></td>
+          <td></td>
+          <td>Execute the dir command and put the results below the cursor</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:v <span class="subdued">[motion]</span> :w <span class="subdued">[filename]</span></pre></td>
+          <td>
+            <span class="v">isual</span>rite<br />
+            <span class="u">w</span>rite
+          </td>
+          <td>Save the visually selected lines to the specified filename</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">o</pre></td>
+          <td><span class="u">o</span>pen</td>
+          <td>Open a line below the cursor and switch to insert mode.</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">O</pre></td>
+          <td><span class="u">o</span>pen</td>
+          <td>Open a line above the cursor and switch to insert mode.</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:set <span class="subdued">[option]</span></pre></td>
+          <td></td>
+          <td>Set an option</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:set hls</pre></td>
+          <td></td>
+          <td>Turn on search highlighting</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:set nohls</pre></td>
+          <td></td>
+          <td>Turn off search highlighting</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:h</pre></td>
+          <td><span class="u">h</span>elp</td>
+          <td>Open VIM's built in help</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:h <span class="subdued">[text]</span></pre></td>
+          <td><span class="u">h</span>elp</td>
+          <td>Search VIM's built in help for specific answers (i.e. :h w)</td>
         </tr>
 
       </tbody>
