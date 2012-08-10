@@ -190,6 +190,12 @@ layout: bootstrap
         </tr>
 
         <tr>
+          <td><pre class="command">I</pre></td>
+          <td><span class="u">i</span>nsert</td>
+          <td>Insert text at the start of the line</td>
+        </tr>
+
+        <tr>
           <td><pre class="command">a</pre></td>
           <td><span class="u">a</span>ppend</td>
           <td>Append text after the cursor</td>
@@ -337,6 +343,18 @@ layout: bootstrap
           <td><pre class="command">%</pre></td>
           <td></td>
           <td>Find the matching brace (or bracket)</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">s</pre></td>
+          <td><span class="u">s</span>ubstitute</td>
+          <td>Substitute (or replace) the current character and remain in insert mode.</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">S</pre></td>
+          <td><span class="u">s</span>ubstitute</td>
+          <td>Substitute (or replace) the current line from the start of the line.</td>
         </tr>
 
         <tr>
