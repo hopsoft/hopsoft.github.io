@@ -42,6 +42,13 @@ pre.command {
 .tab-content {
   padding: 20px 0 20px 0;
 }
+.dataTables_filter * {
+  font-size: 120% !important;
+}
+.dataTables_filter input {
+  height: 120%;
+  width: 400px;
+}
 
 #footer {
   margin-top: 30px;

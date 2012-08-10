@@ -3,7 +3,7 @@
   function init() {
     $(".table-awesome").dataTable({
       "bPaginate": false,
-      "bInfo": false
+      "bInfo": true
     });
   }
 

@@ -6,20 +6,6 @@ layout: bootstrap
 {% include breadcrumb.html %}
 
 <div class="row">
-  <div class="span12">
-    <div class="hero-unit">
-      <h2>VIM is hard. <small>Don't sweat it... I've got your back</small></h2><br />
-      <p>Use the <b>search</b> below to find what you need.</p>
-      <hr />
-      <p>
-        I just started my journey of truly learning VIM.
-        Watch for changes as I update this doc with stuff I'm learning.
-      </p>
-      <p>
-        I'm reading <a href="http://pragprog.com/book/dnvim/practical-vim">Practical VIM</a> from PragProg, so there's good stuff on the way.
-      </p>
-    </div>
-  </div>
 
   <div class="span12">
 
@@ -510,6 +496,7 @@ layout: bootstrap
   </div>
 
   <div class="span12">
+    <hr /><br />
     <p>{% include disqus.html %}</p>
   </div>
 
