@@ -480,6 +480,30 @@ layout: bootstrap
           <td>Search VIM's built in help for specific answers (i.e. :h w)</td>
         </tr>
 
+        <tr>
+          <td><pre class="command">f<span class="subdued">[char]</span></pre></td>
+          <td><span class="u">f</span>ind</td>
+          <td>Find the next occurrence of char</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">;</pre></td>
+          <td></td>
+          <td>Move to the next target or match (i.e. after an f[char] find)</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">&</pre></td>
+          <td></td>
+          <td>Repeat a search/replace operation on the next match</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">*</pre></td>
+          <td></td>
+          <td>Search for the word under the cursor</td>
+        </tr>
+
       </tbody>
     </table>
 
