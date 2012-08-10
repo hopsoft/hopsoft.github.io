@@ -316,6 +316,12 @@ layout: bootstrap
         </tr>
 
         <tr>
+          <td><pre class="command">C</pre></td>
+          <td><span class="u">c</span>hange</td>
+          <td>Change (or replace) text to the end of the line</td>
+        </tr>
+
+        <tr>
           <td><pre class="command">/<span class="subdued">[text]</span></pre></td>
           <td></td>
           <td>Search forward for the text</td>
