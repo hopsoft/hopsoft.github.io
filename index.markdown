@@ -36,7 +36,7 @@ layout: bootstrap
     <h2>Open Source Projects</h2><br />
     <ul>
       <li>
-        <a href="https://github.com/hopsoft/coast">Coast</a> 
+        <a href="http://hopsoft.github.com/coast/">Coast</a> 
         - resourceful behavior for rails controllers
       </li>
       <li>
