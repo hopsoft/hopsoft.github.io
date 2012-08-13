@@ -40,7 +40,7 @@ layout: bootstrap
         - resourceful behavior for rails controllers
       </li>
       <li>
-        <a href="https://github.com/hopsoft/goldmine">Goldmine</a>
+        <a href="http://hopsoft.github.com/goldmine/">Goldmine</a>
         - pivot tables for the rubyist
       </li>
       <li>
