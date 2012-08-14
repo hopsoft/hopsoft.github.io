@@ -20,7 +20,9 @@
 
       isThumbnail = isThumbnail || $img.parents(".thumbnail").length > 0;
       if (!isThumbnail) {
-        $img.addClass("thumbnail");
+        if ($img.attr("src").indexOf("forkme") === -1) {
+          $img.addClass("thumbnail");
+        }
       }
     });
   }
