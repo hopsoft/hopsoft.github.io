@@ -25,7 +25,7 @@ layout: bootstrap
       {% endfor %}
     </ul>
 
-    <h2>Cheat Sheets</h2><br />
+    <h2>Tools</h2><br />
     <ul>
       <li>
         <a href="http://hopsoft.github.com/vim.html">VIM</a>
@@ -33,7 +33,7 @@ layout: bootstrap
       </li>
     </ul>
 
-    <h2>Open Source Projects</h2><br />
+    <h2>Open Source</h2><br />
     <ul>
       <li>
         <a href="http://hopsoft.github.com/coast/">Coast</a> 
@@ -53,13 +53,24 @@ layout: bootstrap
       </li>
     </ul>
 
-    <h2>Websites</h2><br />
+    <h2>Sites</h2><br />
     <ul>
       <li>
         <a href="http://www.citydiff.com">CityDiff</a>
         - compare your favorite cities
       </li>
     </ul>
+
+    <h2>Social</h2><br />
+    <ul>
+      <li>
+        <a href="https://twitter.com/natehop">Twitter</a>
+      </li>
+      <li>
+        <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a>
+      </li>
+    </ul>
+
   </div>
 
 </div>
