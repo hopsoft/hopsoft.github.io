@@ -484,6 +484,18 @@ layout: bootstrap
           <td>Search for the word under the cursor</td>
         </tr>
 
+        <tr>
+          <td><pre class="command">:b<span class="subdued">[number]</span></pre></td>
+          <td><span class="u">b</span>uffer</td>
+          <td>Load a buffer into the current window</td>
+        </tr>
+
+        <tr>
+          <td><pre class="command">:bd<span class="subdued">[number]</span></pre></td>
+          <td><span class="u">b</span>uffer</td>
+          <td>Delete a buffer</td>
+        </tr>
+
       </tbody>
     </table>
 
