@@ -8,11 +8,12 @@
 
   function initBreadcrumbs() {
     var
-      $breadcrumb = $(".breadcrumb");
+      $breadcrumb = $(".breadcrumb"),
+      $h1 = $("h1");
 
     // TODO: update to use a template
-    if ($breadcrumb.length === 0) {
-      $($(".container")[1]).prepend("<ul class='breadcrumb'><li><a href='http://hopsoft.github.com/'>Home</a> <span class='divider'>/</span></li><li class='active'>" + document.title + "</li></ul>");
+    if ($breadcrumb.length === 0 && $h1.length > 0) {
+      $($(".container")[1]).prepend("<ul class='breadcrumb'><li><a href='http://hopsoft.github.com/'>Home</a> <span class='divider'>/</span></li><li class='active'>" + $h1.html() + "</li></ul>");
     }
   }
 
