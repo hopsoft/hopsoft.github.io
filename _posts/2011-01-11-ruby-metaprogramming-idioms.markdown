@@ -17,20 +17,14 @@ layout: bootstrap
     <div class="hero-unit">
       <img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" class="thumbnail pull-left" style="margin: 0 20px 20px 0">
       <p>
-        I recently finished the book <a href="http://pragprog.com/titles/ppmetr/metaprogramming-ruby">Metaprogramming Ruby</a> by <a href="http://forums.pragprog.com/users/21653">Paolo Perrotta</a> and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot;.  I've used most of the techniques, but was never fully aware of their formal names.
+        I recently finished the book <a href="http://pragprog.com/titles/ppmetr/metaprogramming-ruby">Metaprogramming Ruby</a> by <a href="http://forums.pragprog.com/users/21653">Paolo Perrotta</a> and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot;.  I've used many of the techniques before, but was never really aware of their "formal" names.
       </p>
-      <hr />
+      <br />
       <p>
-        The idioms defined in the book are so helpful as a reference, I wanted to create a lexicon based on them for my own personal use.
+        The idioms defined in the book are so helpful that I created a reference based on them for my own use. 
+        Hopefully it helps others out too.
       </p>
-      <hr />
-      <p>
-        Perhaps you will find it useful too.  
-      </p>
-      <hr />
-      <p>
-        Just remember that this is a high level reference with simplified examples.  You should read the book to learn how to best apply these features.
-      </p>
+      <br />
     </div>
   </div>
 </div>
@@ -40,7 +34,7 @@ layout: bootstrap
 
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define original class
 class Example
@@ -82,7 +76,7 @@ end
 
 ## Monkeypatch
 Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality.  While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt.  Be sure to use caution when monkeypatching.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define original class
 class Example
@@ -107,7 +101,7 @@ Example.new.say_hello # => hello from monkeypatch
 
 ## Namespace
 Use Ruby modules to create namespaces to avoid naming collisions.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # create a namespace to avoid naming collisions
 module Example
@@ -127,7 +121,7 @@ Example::String.new.length # => 100
 
 ## Kernel Method
 Defining methods in the Kernel module will make those methods available to all objects.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # add a kernel method to make it available to all objects
 # this example also serves to illustrate that everything in Ruby is an object
@@ -149,7 +143,7 @@ Object.new.say_hello # => hello from Object
 
 ## Dynamic Dispatch
 Ruby supports calling methods at runtime even if you don't know what those methods are at design time.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # add methods that provide the ability
 # to dynamically call unknown methods on objects
@@ -171,7 +165,7 @@ invoke_with_args("remove all letter e's", :delete, "e") # => rmov all lttr 's
 
 ## Pattern Dispatch
 Similar to [Dynamic Dispatch](#dynamic_dispatch), but uses a convention or pattern to identify which methods to call.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # setup a contrived class to demonstrate pattern dispatch
 class Person
@@ -209,7 +203,7 @@ end
 
 ## Dynamic Method
 Ruby supports defining methods at runtime even if you don't know what those methods are at design time.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # setup some data that will drive what methods get defined
 $method_names = [:hello, :goodbye]
@@ -235,7 +229,7 @@ Example.new.goodbye("nathan") # => hello nathan!
 
 ## Ghost Method
 Ruby provides a mechanism that allows you to catch calls to methods that don't even exist.  Its possible to leverage this feature to support functionality that hasn't been defined.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define our example class
 class Example
@@ -256,7 +250,7 @@ Example.new.and_powerful # => You called 'and_powerful' with these arguments: []
 
 ## Dynamic Proxy
 Wrapping an object or service and then forwarding method calls to the wrapped item is known as dynamic proxying.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define our proxy class
 class Proxy
@@ -283,7 +277,7 @@ Proxy.new(true).length # => length is not supported by the wrapped object!
 
 ## Blank Slate
 Ruby allows you to remove functionality from a class.  This technique can be useful to ensure that your class doesn't expose unwanted or unexpected features.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # demonstrate how to remove functionality
 String.class_eval do
@@ -308,7 +302,7 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 There are three ways to define a new scope in Ruby.  A new scope is created whenever you define a class, module, or method.  
 
 Be aware that scoping in Ruby is different than some other languages.  Ruby does not chain scopes when performing lookups, so don't expect it to find variables defined in an outer scope.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # demonstrate scoping in ruby
 scope = "main scope"
@@ -351,7 +345,7 @@ puts(scope) # => global scope
 
 ## Flat Scope
 Flatten the scope to gain access to variables that are otherwise unaccessible.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define a variable in the main scope
 value = "sort of"
@@ -381,7 +375,7 @@ example.read_only # => sort of
 
 ## Shared Scope
 Create a [Scope Gate](#scope_gate) to share variables across several contexts.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # create a shared scope
 shared_scope = Proc.new do
@@ -429,7 +423,7 @@ Example.new.instance_method # => a shared variable
 
 ## Context Probe
 Ruby allows you to break the rules of encapsulation and reach into the internals of an object.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 # define a sample class that we can probe
 class Example
@@ -447,7 +441,7 @@ Example.new.instance_eval { puts @private } # => "this is a private instance var
 ## Clean Room
 A class or object used for the express purpose of evaluating Ruby inside of its context is called a clean room.
 Clean rooms are used to change the current context to something expected or clean which can help to avoid surprises.
-{% highlight ruby linenos %}
+{% highlight ruby %}
 
 def do_stuff
   @scope
@@ -466,92 +460,92 @@ end
 
 
 ## Deferred Evaluation
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Class Instance Variable
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Singleton Method
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Class Macro
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Class Extension
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Object Extension
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Around Alias
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## String of Code
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Code Processor
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Sandbox
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Hook Method
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Class Extension Mixin
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Mimic Method
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Lazy Instance Variable
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Named Arguments
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Argument Array
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Self Yield
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 
 ## Symbol to Proc
-{% highlight ruby linenos %} 
+{% highlight ruby %} 
 {% endhighlight %}
 
 <div class="row">
