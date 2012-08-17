@@ -125,8 +125,7 @@ layout: bootstrap
       <img src="/public/images/avatar_female.png" class="thumbnail left" />
       <div class="left">
         This is great, but its not quite what I need.<br />
-        It would be best if the app did the calculations for me.<br />
-        I could move twice as fast if the app handled the calculations too.
+        It would be best if the app did the calculations for me.
       </div>
       <br class="clear" />
     </div>
