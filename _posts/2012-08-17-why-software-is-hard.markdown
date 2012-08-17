@@ -99,8 +99,7 @@ layout: bootstrap
     <div class="bubble bubble-alt">
       <img src="/public/images/avatar_male.png" class="thumbnail left" />
       <div class="left">
-        So we have 1, 2, 4 for the first number<br />
-        and 8 for the second number?
+        So we have 1, 2, 4 for the first number and 8 for the second number?
       </div>
       <br class="clear" />
     </div>
@@ -251,7 +250,7 @@ layout: bootstrap
     <div class="bubble">
       <img src="/public/images/avatar_female.png" class="thumbnail left" />
       <div class="left">
-        This is great, but I need it to use all the numbers to produce the output.
+        This is great, but I need it to use <b>all</b> the numbers to produce the output.
       </div>
       <br class="clear" />
     </div>
