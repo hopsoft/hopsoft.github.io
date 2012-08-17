@@ -35,6 +35,14 @@ pre.command {
   /*color: #fff;*/
 }
 
+.left {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
 .u {
   text-decoration: underline;
   font-size: 110%;
@@ -53,6 +61,56 @@ pre.command {
 .dataTables_filter input {
   height: 120%;
   width: 400px;
+}
+
+.bubble {
+  clear: both;
+  margin-bottom: 5px;
+  background-color: #eeeeee;
+  border: solid 1px #e1e1e1;
+  padding: 10px;
+  width: 97%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.bubble .thumbnail {
+  height: 30px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.bubble .icon-user {
+  opacity: 0.5;
+}
+
+.bubble .icon-comment-alt {
+  opacity: 0.5;
+  font-size: 70%;
+  position: relative;
+  top: -5px;
+  left: -8px;
+  margin-right: -8px;
+}
+
+.bubble-alt {
+  margin-left: 5px;
+  background-color: #fff8da;
+  border: solid 1px #fef3c1;
+}
+
+.bubble-alt-2 {
+  margin-left: 5px;
+  background-color: #e9f6fa;
+  border: solid 1px #d3eef6;
+}
+
+.bubble-alt-3 {
+  margin-left: 5px;
+  background-color: #fef3f3;
+  border: solid 1px #fbdcdc;
 }
 
 #footer {
