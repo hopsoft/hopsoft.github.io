@@ -207,7 +207,7 @@ layout: bootstrap
       <img src="/public/images/avatar_male.png" class="thumbnail left" />
       <div class="left">
         Whoa... hold on. That operator is too new and risky for us to put into our production environment.<br />
-        It is neat but, we should wait until its been proven stable.
+        Its neat but, we should wait until its been proven stable.
       </div>
       <br class="clear" />
     </div>
