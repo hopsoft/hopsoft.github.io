@@ -215,7 +215,7 @@ layout: bootstrap
     <div class="bubble bubble-alt">
       <img src="/public/images/avatar_male.png" class="thumbnail left" />
       <div class="left">
-        You're right, but seeing that new operator gave me more insight into the problem.<br />
+        You're right, but seeing that new operator gave me additional insight into the problem.<br />
         I can solve it in a similar way without taking the risk.<br />
         8 + 8 = 16
       </div>
