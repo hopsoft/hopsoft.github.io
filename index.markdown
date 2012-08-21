@@ -4,19 +4,21 @@ layout: bootstrap
 ---
 
 <div class="row">
-  <div class="span12">
+  <div class="span3 affix">
     <p>
       <ul class="thumbnails">
         <li>
           <div class="thumbnail">
             <img src="http://www.gravatar.com/avatar/254ec240c9143768df8ec27182764cad.jpg?s=100" />
             <div class="caption">
-              <h5>Nathan<br />Hopkins</h5>
             </div>
           </div>
         </li>
       </ul>
     </p>
+  </div>
+  
+  <div class="span9 offset3">
 
     <h2>Blog Posts</h2><br />
     <ul>
