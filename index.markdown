@@ -39,7 +39,7 @@ layout: bootstrap
     <ul>
       <li>
         <a href="#">Hero</a> 
-        - simplify complex apps with process modeling <span class="subdued">comming soon...</span>
+        - simplify complex apps with process modeling <span class="subdued">coming soon...</span>
       </li>
       <li>
         <a href="http://hopsoft.github.com/coast/">Coast</a> 
