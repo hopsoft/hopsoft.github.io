@@ -38,6 +38,10 @@ layout: bootstrap
     <h2>Open Source</h2><br />
     <ul>
       <li>
+        <a href="#">Hero</a> 
+        - simplify complex apps with process modeling <span class="subdued">comming soon...</span>
+      </li>
+      <li>
         <a href="http://hopsoft.github.com/coast/">Coast</a> 
         - resourceful behavior for rails controllers
       </li>
