@@ -44,6 +44,10 @@ layout: bootstrap
         - pivot tables for the rubyist
       </li>
       <li>
+        <a href="https://github.com/hopsoft/grumpy_old_man">Grumpy Old Man</a>
+        - asserts for RSpec
+      </li>
+      <li>
         <a href="https://github.com/hopsoft/footing">Footing</a>
         - utility lib with sane monkey patching
       </li>
