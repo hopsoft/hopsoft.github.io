@@ -54,7 +54,7 @@ layout: bootstrap
         - asserts for RSpec
       </li>
       <li>
-        <a href="https://github.com/hopsoft/footing">Footing</a>
+        <a href="http://hopsoft.github.com/footing/">Footing</a>
         - utility lib with sane monkey patching
       </li>
       <li>
