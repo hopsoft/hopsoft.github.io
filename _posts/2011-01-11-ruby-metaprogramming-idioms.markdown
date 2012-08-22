@@ -25,6 +25,7 @@ layout: bootstrap
         Hopefully it helps others out too.
       </p>
       <br />
+      <br />
     </div>
   </div>
 </div>
