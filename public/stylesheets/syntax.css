@@ -18,7 +18,7 @@
   background-color: transparent;
 }
 
-code {
+.highlight pre code {
   font-family:'Anonymous Pro','Bitstream Vera Sans Mono','Courier', monospace;
   color: #fff;
 }
