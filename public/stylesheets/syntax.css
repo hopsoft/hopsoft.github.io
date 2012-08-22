@@ -16,6 +16,7 @@
 
 .highlight pre {
   background-color: transparent;
+  border: none;
 }
 
 .highlight pre code {
