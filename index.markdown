@@ -38,8 +38,8 @@ layout: bootstrap
     <h2>Open Source</h2><br />
     <ul>
       <li>
-        <a href="#">Hero</a> 
-        - simplify complex apps with process modeling <span class="subdued">coming soon...</span>
+        <a href="http://hopsoft.github.com/hero/">Hero</a> 
+        - simplify complex apps with process modeling
       </li>
       <li>
         <a href="http://hopsoft.github.com/coast/">Coast</a> 
