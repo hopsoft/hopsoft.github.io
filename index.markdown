@@ -4,38 +4,41 @@ layout: bootstrap
 ---
 
 <div class="row">
-  <div class="span3 affix">
+  <div id="intro" class="span3 well affix">
+    <img class="thumbnail left" src="http://www.gravatar.com/avatar/254ec240c9143768df8ec27182764cad.jpg?s=90" />
+    <p><b>Nathan Hopkins</b></p>
+    <ul class="unstyled">
+      <li><i class="icon-ok">&nbsp;</i> Father</li>
+      <li><i class="icon-ok">&nbsp;</i> Artist</li>
+      <li><i class="icon-ok">&nbsp;</i> Programmer</li>
+    </ul>
+    <hr />
     <p>
-      <ul class="thumbnails">
-        <li>
-          <div class="thumbnail">
-            <img src="http://www.gravatar.com/avatar/254ec240c9143768df8ec27182764cad.jpg?s=100" />
-            <div class="caption">
-            </div>
-          </div>
-        </li>
-      </ul>
+      I enjoy making stuff and am happily employed at <a href="http://www.1on1.com/">One on One Marketing</a>.
     </p>
+    <hr />
+    <p><b>See what I'm up to</b></p>
+    <ul class="unstyled">
+      <li><i class="icon-github">&nbsp;</i> <a href="https://github.com/hopsoft">Github</a></li>
+      <li><i class="icon-twitter">&nbsp;</i> <a href="https://twitter.com/natehop">Twitter</a></li>
+      <li><i class="icon-google-plus">&nbsp;</i> <a href="https://plus.google.com/u/1/116314478889360641913/posts/p/pub">Google+</a></li>
+      <li><i class="icon-linkedin">&nbsp;</i> <a href="https://www.linkedin.com/profile/view?id=2951631">LinkedIn</a></li>
+      <li><i class="icon-sign-blank">&nbsp;</i> <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a></li>
+    </ul>
   </div>
   
-  <div class="span9 offset3">
+  <div class="span8 offset4">
 
-    <h2>Blog Posts</h2><br />
+    <h2 class="page-header">Blog Posts</h2><br />
     <ul>
       {% for post in site.posts limit:5 %}
       <li><a href="{{post.url}}">{{post.title}}</a></li>
       {% endfor %}
     </ul>
+    <br />
+    <br />
 
-    <h2>Tools</h2><br />
-    <ul>
-      <li>
-        <a href="http://hopsoft.github.com/vim.html">VIM</a>
-        - vim reference &amp; cheat sheet
-      </li>
-    </ul>
-
-    <h2>Open Source</h2><br />
+    <h2 class="page-header">Open Source</h2><br />
     <ul>
       <li>
         <a href="http://hopsoft.github.com/hero/">Hero</a> 
@@ -62,24 +65,28 @@ layout: bootstrap
         - mysql data archiver
       </li>
     </ul>
+    <br />
+    <br />
 
-    <h2>Sites</h2><br />
+    <h2 class="page-header">Sites</h2><br />
     <ul>
       <li>
         <a href="http://www.citydiff.com">CityDiff</a>
         - compare your favorite cities
       </li>
     </ul>
+    <br />
+    <br />
 
-    <h2>Social</h2><br />
+    <h2 class="page-header">Tools</h2><br />
     <ul>
       <li>
-        <a href="https://twitter.com/natehop">Twitter</a>
-      </li>
-      <li>
-        <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a>
+        <a href="http://hopsoft.github.com/vim.html">VIM</a>
+        - vim reference &amp; cheat sheet
       </li>
     </ul>
+    <br />
+    <br />
 
   </div>
 
