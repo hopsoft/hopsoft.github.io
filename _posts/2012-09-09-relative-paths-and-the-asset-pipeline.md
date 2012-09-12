@@ -26,10 +26,9 @@ The pipeline assumes a context of one of the following directories when attempti
 
 My problem was that the stylesheet in question lived in **app/vendor/assets/javascripts/plugin_name**
 
-The pipeline can deal with this scenario; however,
-you need to provide a path that starts at the root of the project.
+The pipeline can deal with this scenario, but you must provide a path that starts at the root of the project.
 
-Here's how to do it. Add a require statement to the stylesheet manifest that looks something like this.
+Here's how to do it. Add a require statement to the stylesheet manifest that looks like this.
 
 `*= require ../../../vendor/assets/plugin_name/plugin.css`
 
