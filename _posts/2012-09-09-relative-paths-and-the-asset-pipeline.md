@@ -35,7 +35,7 @@ Simply add a require statement to the stylesheet manifest that looks like this.
 
 ## Alternate Solution
 
-A better solution might simply be to move the plugin's folder directly under assets.
+A better solution might be to move the plugin's folder directly under assets.
 
 <pre>
 |-project
