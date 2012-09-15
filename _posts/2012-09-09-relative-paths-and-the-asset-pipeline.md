@@ -14,7 +14,7 @@ layout: bootstrap
 
 I often use jQuery plugins (among others) in my applications and prefer to store them in a single directory. Typically saving them in **app/vendor/javascripts/plugin**
 
-```bash
+<pre>
 |-project
   |-app
   |-lib
@@ -23,7 +23,7 @@ I often use jQuery plugins (among others) in my applications and prefer to store
       |-javascripts
         |-plugin
       |-stylesheets
-```
+</pre>
 
 Sometimes the plugins contain other assets such as stylesheets,
 but requiring stylesheets from within the javascript directory
@@ -52,7 +52,7 @@ Its not enough to back up to the assets directory even though it seems a bit mor
 
 A better solution might simply be to move the plugin's folder directly under assets.
 
-```bash
+<pre>
 |-project
   |-app
   |-lib
@@ -61,7 +61,7 @@ A better solution might simply be to move the plugin's folder directly under ass
       |-javascripts
       |-plugin
       |-stylesheets
-```
+</pre>
 
 Then you can require the plugin's files just as you would anything else.
 Just be sure to watch out for naming collisions as your project grows.
