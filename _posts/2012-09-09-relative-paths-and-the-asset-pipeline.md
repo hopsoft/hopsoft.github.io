@@ -29,22 +29,12 @@ Sometimes the plugins contain other assets such as stylesheets,
 but requiring stylesheets from within the javascript directory
 can be a pain in the ass unless you know what you're doing.
 
-The pipeline assumes a context of one of the following directories when attempting to locate a stylesheet.
-
-* **app/assets/stylesheets**
-* **lib/assets/stylesheets**
-* **vendor/assets/stylesheets**
-
-My problem was that the stylesheet in question lived in **app/vendor/assets/javascripts/plugin**
-
-The pipeline can deal with this scenario, but you must provide a path that starts at the root of the project.
-
-Here's how to do it. Add a require statement to the stylesheet manifest that looks like this.
+Simply add a require statement to the stylesheet manifest that looks like this.
 
 `*= require ../../../vendor/assets/plugin/plugin.css`
 
-*Note: You must back up to the root of the project.
-Its not enough to back up to the assets directory even though it seems a bit more intuitive.*
+*Note: You must back out to the root of the project.
+Its not enough to back out to the assets directory even though it seems a bit more intuitive.*
 
 ---
 
