@@ -12,7 +12,18 @@ layout: bootstrap
 
 {% include breadcrumb.html %}
 
-I often use jQuery plugins (among others) in my applications and prefer to store them in a single directory. Typically saving them in **app/vendor/javascripts/plugin_name**
+I often use jQuery plugins (among others) in my applications and prefer to store them in a single directory. Typically saving them in **app/vendor/javascripts/plugin**
+
+```
+|-project
+  |-app
+  |-lib
+  |-vendor
+    |-assets
+      |-javascripts
+        |-plugin
+      |-stylesheets
+```
 
 Sometimes the plugins contain other assets such as stylesheets,
 but requiring stylesheets from within the javascript directory
@@ -35,10 +46,25 @@ Here's how to do it. Add a require statement to the stylesheet manifest that loo
 *Note: You must back up to the root of the project.
 Its not enough to back up to the assets directory even though it seems a bit more intuitive.*
 
+---
 
+## Alternate Solution
 
+A better solution might simply be to move the plugin's folder directly under assets.
 
+```
+|-project
+  |-app
+  |-lib
+  |-vendor
+    |-assets
+      |-javascripts
+      |-plugin
+      |-stylesheets
+```
 
+Then you can require the plugin's files just as you would anything else.
+Just be sure to watch out for naming collisions as your project grows.
 
 <div class="row">
   <div class="span12">
