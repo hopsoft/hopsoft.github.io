@@ -34,9 +34,7 @@ Simply add a require statement to the stylesheet manifest that looks like this.
 `*= require ../../../vendor/assets/plugin/plugin.css`
 
 *Note: You must back out to the root of the project.
-Its not enough to back out to the assets directory even though it seems a bit more intuitive.*
-
----
+Its not enough to back out to the assets directory... even though it seems a bit more intuitive.*
 
 ## Alternate Solution
 
