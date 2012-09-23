@@ -26,7 +26,7 @@ layout: bootstrap
       <li><i class="icon-sign-blank">&nbsp;</i> <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a></li>
     </ul>
   </div>
-  
+
   <div class="span8 offset4">
 
     <h2 class="page-header">Blog Posts</h2><br />
@@ -41,11 +41,11 @@ layout: bootstrap
     <h2 class="page-header">Open Source</h2><br />
     <ul>
       <li>
-        <a href="http://hopsoft.github.com/hero/">Hero</a> 
+        <a href="http://hopsoft.github.com/hero/">Hero</a>
         - simplify complex apps with process modeling
       </li>
       <li>
-        <a href="http://hopsoft.github.com/coast/">Coast</a> 
+        <a href="http://hopsoft.github.com/coast/">Coast</a>
         - resourceful behavior for rails controllers
       </li>
       <li>
@@ -55,6 +55,10 @@ layout: bootstrap
       <li>
         <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
         - asserts for RSpec
+      </li>
+      <li>
+        <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
+        - a tiny mocking script
       </li>
       <li>
         <a href="http://hopsoft.github.com/footing/">Footing</a>
