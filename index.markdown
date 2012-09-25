@@ -8,9 +8,9 @@ layout: bootstrap
     <img class="thumbnail left" src="http://www.gravatar.com/avatar/254ec240c9143768df8ec27182764cad.jpg?s=90" />
     <p><b>Nathan Hopkins</b></p>
     <ul class="unstyled">
-      <li><i class="icon-ok">&nbsp;</i> Father</li>
-      <li><i class="icon-ok">&nbsp;</i> Artist</li>
-      <li><i class="icon-ok">&nbsp;</i> Programmer</li>
+      <li><i class="icon-heart">&nbsp;</i> Father</li>
+      <li><i class="icon-heart-empty">&nbsp;</i> Artist</li>
+      <li><i class="icon-heart-empty">&nbsp;</i> Programmer</li>
     </ul>
     <hr />
     <p>
@@ -46,7 +46,7 @@ layout: bootstrap
       </li>
       <li>
         <a href="http://hopsoft.github.com/coast/">Coast</a>
-        - resourceful behavior for rails controllers
+        - rest for rails controllers
       </li>
       <li>
         <a href="http://hopsoft.github.com/goldmine/">Goldmine</a>
@@ -54,15 +54,15 @@ layout: bootstrap
       </li>
       <li>
         <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
-        - a tiny testing "framework"
+        - a tiny testing framework
       </li>
       <li>
         <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
-        - a tiny mocking "framework"
+        - a tiny mocking framework
       </li>
       <li>
         <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
-        - asserts for RSpec
+        - asserts for rspec
       </li>
       <li>
         <a href="http://hopsoft.github.com/footing/">Footing</a>
