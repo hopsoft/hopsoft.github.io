@@ -53,12 +53,16 @@ layout: bootstrap
         - pivot tables for the rubyist
       </li>
       <li>
-        <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
-        - asserts for RSpec
+        <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
+        - a tiny testing "framework"
       </li>
       <li>
         <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
-        - a tiny mocking script
+        - a tiny mocking "framework"
+      </li>
+      <li>
+        <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
+        - asserts for RSpec
       </li>
       <li>
         <a href="http://hopsoft.github.com/footing/">Footing</a>
