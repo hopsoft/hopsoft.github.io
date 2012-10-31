@@ -58,6 +58,10 @@ layout: bootstrap
         - asserts for rspec
       </li>
       <li>
+        <a href="http://hopsoft.github.com/model_probe/">ModelProbe</a>
+        - introspect the schema behind your models at runtime
+      </li>
+      <li>
         <a href="http://hopsoft.github.com/footing/">Footing</a>
         - utility lib with sane monkey patching
       </li>
