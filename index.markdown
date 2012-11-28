@@ -16,7 +16,7 @@ layout: bootstrap
     </ul>
     <hr />
     <p>
-      I enjoy making stuff and am currently employed by <a href="http://www.1on1.com/">One on One</a>.
+      I enjoy making stuff and am currently employed by 1on1.
     </p>
   </div>
 
