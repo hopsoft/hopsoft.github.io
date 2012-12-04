@@ -34,6 +34,14 @@ layout: bootstrap
     <h2 class="page-header">Open Source</h2><br />
     <ul>
       <li>
+        <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
+        - a tiny testing framework
+      </li>
+      <li>
+        <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
+        - a tiny mocking framework
+      </li>
+      <li>
         <a href="http://hopsoft.github.com/hero/">Hero</a>
         - simplify complex apps with process modeling
       </li>
@@ -46,12 +54,12 @@ layout: bootstrap
         - pivot tables for the rubyist
       </li>
       <li>
-        <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
-        - a tiny testing framework
+        <a href="https://github.com/hopsoft/coin">Coin</a>
+        - an absurdly simple in memory object caching system
       </li>
       <li>
-        <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
-        - a tiny mocking framework
+        <a href="https://github.com/hopsoft/coin_rack">CoinRack</a>
+        - a simple rack app that provides a rest interface to coin
       </li>
       <li>
         <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
