@@ -111,3 +111,11 @@ No deadlocks this time. The moral here is to use MonitorMixin for all
 but the simplest of use cases... and even then, you should consider
 using it.
 
+<div class="row">
+  <div class="span12">
+    <br />
+    <p>
+      {% include disqus.html %}
+    </p>
+  </div>
+</div>
