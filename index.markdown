@@ -16,7 +16,7 @@ layout: bootstrap
     </ul>
     <hr />
     <p>
-      I enjoy making stuff and am currently employed by 1on1.
+      I enjoy making stuff and am currently employed by 1:1.
     </p>
   </div>
 
@@ -35,7 +35,7 @@ layout: bootstrap
     <ul>
       <li>
         <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
-        - a tiny testing framework
+        - ruby's no-nonsense testing framework
       </li>
       <li>
         <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
