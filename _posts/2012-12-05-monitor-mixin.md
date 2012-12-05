@@ -66,7 +66,7 @@ sync in work
 	from ./example.rb:25:in `<main>'
 {% endhighlight %}
 
-These types of bugs can be dificult to track down. 
+Sure enough, we have a deadlock on our hands. These types of bugs can be dificult to track down. 
 
 A solution for this problem is to use MonitorMixin because MonitorMixin is
 intelligent enough to know that a lock has already been obtained.
