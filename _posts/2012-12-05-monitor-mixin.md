@@ -14,11 +14,11 @@ layout: bootstrap
 {% include breadcrumb.html %}
 
 There are some good reasons to use MonitorMixin instead of the plain old
-Mutex when writing multithreaded code in Ruby. Namely to avoid deadlocks.
+Mutex when writing multi-threaded code in Ruby. Namely to avoid deadlocks.
 
 Consider this example.
 
-```ruby
+{% highlight ruby %}
 # example.rb
 require "thread"
 
@@ -44,7 +44,7 @@ class Example
 end
 
 Example.new.start_work
-```
+{% endhighlight %}
 
 Af first glance you might not see it, but this will cause a deadlock
 because the block passed to work from start_work attempts to obtain a 
@@ -53,7 +53,7 @@ place.
 
 Lets run it just to be sure.
 
-```bash
+{% highlight bash %}
 $ ruby ./example.rb
 sync in work
 <internal:prelude>:8:in `lock': deadlock; recursive locking (ThreadError)
@@ -64,16 +64,16 @@ sync in work
 	from ./example.rb:10:in `work'
 	from ./example.rb:17:in `start_work'
 	from ./example.rb:25:in `<main>'
-```
+{% endhighlight %}
 
 These types of bugs can be dificult to track down. 
 
-An solution for this problem is to use MonitorMixin. MonitorMixin is
+A solution for this problem is to use MonitorMixin because MonitorMixin is
 intelligent enough to know that a lock has already been obtained.
 
-Lets have a look at this example using MonitorMixin.
+Lets refactor our example to use MonitorMixin.
 
-```ruby
+{% highlight ruby %}
 # example.rb
 require "monitor"
 
@@ -97,16 +97,17 @@ class Example
 end
 
 Example.new.start_work
-```
+{% endhighlight %}
 
 Now lets run it.
 
-```bash
+{% highlight bash %}
 $ ruby ./example.rb
 sync in work
 sync in start_work block
-```
+{% endhighlight %}
 
 No deadlocks this time. The moral here is to use MonitorMixin for all
-but the simplest of use cases.
+but the simplest of use cases... and even then, you should consider
+using it.
 
