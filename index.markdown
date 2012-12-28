@@ -91,7 +91,7 @@ layout: bootstrap
     <br />
     <br />
 
-    <h2 class="page-header">Tools & Misc</h2><br />
+    <h2 class="page-header">Tools &amp; Misc</h2><br />
     <ul>
       <li>
         <a href="https://github.com/hopsoft/rails_standards">Rails Standards Guides</a>
