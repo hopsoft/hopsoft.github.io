@@ -16,7 +16,7 @@ layout: bootstrap
     </ul>
     <hr />
     <p>
-      I enjoy making stuff and am currently employed by 1:1.
+      I enjoy making stuff and am currently employed by 1:1
     </p>
   </div>
 
@@ -91,8 +91,12 @@ layout: bootstrap
     <br />
     <br />
 
-    <h2 class="page-header">Tools</h2><br />
+    <h2 class="page-header">Tools & Misc</h2><br />
     <ul>
+      <li>
+        <a href="https://github.com/hopsoft/rails_standards">Rails Standards Guides</a>
+        - standards guide for creating rails apps
+      </li>
       <li>
         <a href="http://hopsoft.github.com/vim.html">VIM</a>
         - vim reference &amp; cheat sheet
