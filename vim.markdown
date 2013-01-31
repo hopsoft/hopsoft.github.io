@@ -499,13 +499,13 @@ layout: bootstrap
         <tr>
           <td><pre class='command'><span class='subdued'>&lt;</span>CTRL-w<span class='subdued'>&gt;</span>J</pre></td>
           <td></td>
-          <td>Move the active pane to the bottom <span class='subdued'>- horizontal orientation</span></td>
+          <td>Move the active pane to the bottom</td>
         </tr>
 
         <tr>
           <td><pre class='command'><span class='subdued'>&lt;</span>CTRL-w<span class='subdued'>&gt;</span>L</pre></td>
           <td></td>
-          <td>Move the active pane to the far right <span class='subdued'>- vertial orientation</span></td>
+          <td>Move the active pane to the far right</td>
         </tr>
 
       </tbody>
