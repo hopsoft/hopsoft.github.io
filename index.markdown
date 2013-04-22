@@ -9,7 +9,7 @@ layout: bootstrap
     <p><b>Nathan Hopkins</b></p>
     <ul class="unstyled">
       <li><i class="icon-github">&nbsp;</i> <a href="https://github.com/hopsoft">Github</a></li>
-      <li><i class="icon-twitter">&nbsp;</i> <a href="https://twitter.com/natehop">Twitter</a></li>
+      <li><i class="icon-twitter">&nbsp;</i> <a href="https://twitter.com/hopsoft">Twitter</a></li>
       <li><i class="icon-google-plus">&nbsp;</i> <a href="https://plus.google.com/u/1/116314478889360641913/posts/p/pub">Google+</a></li>
       <li><i class="icon-linkedin">&nbsp;</i> <a href="https://www.linkedin.com/profile/view?id=2951631">LinkedIn</a></li>
       <!-- <li><i class="icon-sign-blank">&nbsp;</i> <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a></li> -->
