@@ -8,12 +8,10 @@ categories:
   - threading
   - software
   - programming
-layout: wisewords
+layout: post
 ---
 
-{% include breadcrumb.html %}
-
-There are some good reasons to use MonitorMixin instead of the plain old
+There are good reasons to use MonitorMixin instead of the plain old
 Mutex when writing multi-threaded code in Ruby. Namely to avoid deadlocks.
 
 Consider this example.
@@ -111,11 +109,4 @@ No deadlocks this time. The moral here is to use MonitorMixin for all
 but the simplest of use cases... and even then, you should consider
 using it.
 
-<div class="row">
-  <div class="span12">
-    <br />
-    <p>
-      {% include disqus.html %}
-    </p>
-  </div>
-</div>
+{% include disqus.html %}
