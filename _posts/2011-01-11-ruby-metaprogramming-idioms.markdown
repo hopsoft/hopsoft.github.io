@@ -3,10 +3,10 @@ title: Ruby Metaprogramming Idioms
 authors: Nathan Hopkins
 date: 2011-01-13
 published: true
-categories: 
+categories:
   - ruby
   - metaprogramming
-layout: bootstrap  
+layout: wisewords
 ---
 
 {% include breadcrumb.html %}
@@ -21,7 +21,7 @@ layout: bootstrap
       </p>
       <br />
       <p>
-        The idioms defined in the book are so helpful that I created a reference based on them for my own use. 
+        The idioms defined in the book are so helpful that I created a reference based on them for my own use.
         Hopefully it helps others out too.
       </p>
       <br />
@@ -300,7 +300,7 @@ BlankSlate.new.public_methods # => ["public_methods", "__send__", "respond_to?",
 
 
 ## Scope Gate
-There are three ways to define a new scope in Ruby.  A new scope is created whenever you define a class, module, or method.  
+There are three ways to define a new scope in Ruby.  A new scope is created whenever you define a class, module, or method.
 
 Be aware that scoping in Ruby is different than some other languages.  Ruby does not chain scopes when performing lookups, so don't expect it to find variables defined in an outer scope.
 {% highlight ruby %}
@@ -461,92 +461,92 @@ end
 
 
 ## Deferred Evaluation
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Class Instance Variable
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Singleton Method
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Class Macro
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Class Extension
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Object Extension
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Around Alias
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## String of Code
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Code Processor
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Sandbox
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Hook Method
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Class Extension Mixin
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Mimic Method
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Lazy Instance Variable
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Named Arguments
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Argument Array
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Self Yield
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 
 ## Symbol to Proc
-{% highlight ruby %} 
+{% highlight ruby %}
 {% endhighlight %}
 
 <div class="row">

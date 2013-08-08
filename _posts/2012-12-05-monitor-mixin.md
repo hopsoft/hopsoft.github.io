@@ -8,7 +8,7 @@ categories:
   - threading
   - software
   - programming
-layout: bootstrap
+layout: wisewords
 ---
 
 {% include breadcrumb.html %}
@@ -47,7 +47,7 @@ Example.new.start_work
 {% endhighlight %}
 
 Af first glance you might not see it, but this will cause a deadlock
-because the block passed to work from start_work attempts to obtain a 
+because the block passed to work from start_work attempts to obtain a
 lock that it can never get. This is because work already has a lock in
 place.
 
@@ -66,7 +66,7 @@ sync in work
 	from ./example.rb:25:in `<main>'
 {% endhighlight %}
 
-Sure enough, we have a deadlock on our hands. These types of bugs can be dificult to track down. 
+Sure enough, we have a deadlock on our hands. These types of bugs can be dificult to track down.
 
 A solution for this problem is to use MonitorMixin because MonitorMixin is
 intelligent enough to know that a lock has already been obtained.

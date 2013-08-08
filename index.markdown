@@ -1,6 +1,6 @@
 ---
 title: Hopsoft
-layout: bootstrap
+layout: wisewords
 ---
 
 <div class="row">

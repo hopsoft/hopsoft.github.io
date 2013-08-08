@@ -7,7 +7,7 @@ categories:
   - rails
   - software
   - programming
-layout: bootstrap
+layout: wisewords
 ---
 
 {% include breadcrumb.html %}
