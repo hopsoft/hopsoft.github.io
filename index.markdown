@@ -3,54 +3,41 @@ title: Hopsoft
 layout: wisewords
 ---
 
-<div class="row">
-  <div id="intro" class="span3 well affix">
-    <img class="thumbnail left" src="http://www.gravatar.com/avatar/254ec240c9143768df8ec27182764cad.jpg?s=90" />
-    <p><b>Nathan Hopkins</b></p>
-    <ul class="unstyled">
-      <li><i class="icon-github">&nbsp;</i> <a href="https://github.com/hopsoft">Github</a></li>
-      <li><i class="icon-twitter">&nbsp;</i> <a href="https://twitter.com/hopsoft">Twitter</a></li>
-      <li><i class="icon-google-plus">&nbsp;</i> <a href="https://plus.google.com/u/1/116314478889360641913/posts/p/pub">Google+</a></li>
-      <li><i class="icon-linkedin">&nbsp;</i> <a href="https://www.linkedin.com/profile/view?id=2951631">LinkedIn</a></li>
-      <!-- <li><i class="icon-sign-blank">&nbsp;</i> <a href="http://coderwall.com/p/u/hopsoft">Coderwall</a></li> -->
-    </ul>
-    <hr />
-    <p>
-      I enjoy making stuff and am currently employed by 1:1
-    </p>
-  </div>
+<div class="row main-content">
 
-  <div class="span8 offset4">
+  <div class="offset3 span6 zone-content">
 
-    <h2 class="page-header">Blog</h2><br />
+    <h2 class="page-header">Blog</h2>
     <ul>
       {% for post in site.posts limit:5 %}
       <li><a href="{{post.url}}">{{post.title}}</a></li>
       {% endfor %}
     </ul>
-    <br />
-    <br />
 
-    <h2 class="page-header">Open Source</h2><br />
+    <h2 class="page-header">Open Source</h2>
     <ul>
       <li>
-        <a href="http://hopsoft.github.com/micro_test">MicroTest</a>
+        <a href="https://github.com/hopsoft/micro_test">MicroTest</a>
         - ruby's no-nonsense testing framework
       </li>
       <li>
-        <a href="http://hopsoft.github.com/micro_mock">MicroMock</a>
+        <a href="https://github.com/hopsoft/micro_mock">MicroMock</a>
         - a tiny mocking framework
       </li>
       <li>
-        <a href="http://hopsoft.github.com/hero/">Hero</a>
+        <a href="https://github.com/hopsoft/legion/">Legion</a>
+        - concurrent processing made easy
+      </li>
+      <li>
+        <a href="https://github.com/hopsoft/hero/">Hero</a>
         - simplify complex apps with process modeling
       </li>
       <li>
-        <a href="http://hopsoft.github.com/coast/">Coast</a>
+        <a href="https://github.com/hopsoft/coast/">Coast</a>
         - rest for rails controllers
       </li>
       <li>
-        <a href="http://hopsoft.github.com/goldmine/">Goldmine</a>
+        <a href="https://github.com/hopsoft/goldmine/">Goldmine</a>
         - pivot tables for the rubyist
       </li>
       <li>
@@ -62,15 +49,15 @@ layout: wisewords
         - a simple rack app that provides a rest interface to coin
       </li>
       <li>
-        <a href="http://hopsoft.github.com/grumpy_old_man">Grumpy Old Man</a>
+        <a href="https://github.com/hopsoft/grumpy_old_man">Grumpy Old Man</a>
         - asserts for rspec
       </li>
       <li>
-        <a href="http://hopsoft.github.com/model_probe/">ModelProbe</a>
+        <a href="https://github.com/hopsoft/model_probe/">ModelProbe</a>
         - introspect the schema behind your models at runtime
       </li>
       <li>
-        <a href="http://hopsoft.github.com/footing/">Footing</a>
+        <a href="https://github.com/hopsoft/footing/">Footing</a>
         - utility lib with sane monkey patching
       </li>
       <li>
@@ -78,23 +65,19 @@ layout: wisewords
         - mysql data archiver
       </li>
     </ul>
-    <br />
-    <br />
 
-    <h2 class="page-header">Sites</h2><br />
+    <h2 class="page-header">Sites</h2>
     <ul>
       <li>
         <a href="http://www.citydiff.com">CityDiff</a>
         - compare your favorite cities
       </li>
     </ul>
-    <br />
-    <br />
 
-    <h2 class="page-header">Tools &amp; Misc</h2><br />
+    <h2 class="page-header">Tools &amp; Misc</h2>
     <ul>
       <li>
-        <a href="https://github.com/hopsoft/rails_standards">Rails Standards Guides</a>
+        <a href="https://github.com/hopsoft/rails_standards">Rails Standards Guide</a>
         - standards guide for creating rails apps
       </li>
       <li>
@@ -102,8 +85,6 @@ layout: wisewords
         - vim reference &amp; cheat sheet
       </li>
     </ul>
-    <br />
-    <br />
 
   </div>
 
