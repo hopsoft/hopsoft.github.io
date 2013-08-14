@@ -46,8 +46,6 @@ Chaining scopes to create complex queries is one of the things I love about Acti
 
 > ## Be mindful of the queries that ActiveRecord creates for you.
 
-<br />
-
 Consider the following query created by chaining these scopes together.
 
 {% highlight ruby %}
