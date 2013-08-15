@@ -63,7 +63,7 @@ Location
 {% endhighlight %}
 
 On the surface this looks pretty good,
-but in reality the performance is poor _(around 400ms with 100k records)_...
+but in reality the performance is poor _(around 400ms given the db size)_...
 even though indexes exist in all the right places.
 
 How might we improve performance?
