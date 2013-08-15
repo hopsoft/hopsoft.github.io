@@ -2,19 +2,27 @@
 
 jekyll build
 
-if [ $? -eq 0 ]; then
-  mkdir /tmp/jekyll
-  rm -rf /tmp/jekyll/*
-  cp -R ./_site/* /tmp/jekyll
-  git checkout master
-  rm -rf ./*
-  cp -R /tmp/jekyll/* ./
-  git add -A .
-  git commit -m "Site published on $(date)"
-  git push origin master
-  git checkout source
-  rm -rf /tmp/jekyll
-  echo "Site published successfully."
-else
+if [ $? -ne 0 ]; then
   echo "Jekyll build failed!"
+  exit 1
 fi
+
+mkdir /tmp/jekyll
+rm -rf /tmp/jekyll/*
+cp -R ./_site/* /tmp/jekyll
+git checkout master
+
+if [ $? -ne 0 ]; then
+  echo "Unable to checkout master! Do you have uncommited changes?"
+  exit 1
+fi
+
+rm -rf ./*
+cp -R /tmp/jekyll/* ./
+git add -A .
+git commit -m "Site published on $(date)"
+git push origin master
+git checkout source
+git clean -f -d
+rm -rf /tmp/jekyll
+echo "Site published successfully."
