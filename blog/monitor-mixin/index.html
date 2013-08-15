@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>MonitorMixin is your friend</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 12/05/12
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <p>There are good reasons to use MonitorMixin instead of the plain old Mutex when writing multi-threaded code in Ruby. Namely to avoid deadlocks.</p>
+
+<p>Consider this example.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># example.rb</span>
+<span class='nb'>require</span> <span class='s2'>&quot;thread&quot;</span>
+
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='k'>def</span> <span class='nf'>initialize</span>
+    <span class='vi'>@mutex</span> <span class='o'>=</span> <span class='no'>Mutex</span><span class='o'>.</span><span class='n'>new</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>work</span>
+    <span class='vi'>@mutex</span><span class='o'>.</span><span class='n'>synchronize</span> <span class='k'>do</span>
+      <span class='nb'>puts</span> <span class='s2'>&quot;sync in work&quot;</span>
+      <span class='k'>yield</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>start_work</span>
+    <span class='n'>work</span> <span class='k'>do</span>
+      <span class='vi'>@mutex</span><span class='o'>.</span><span class='n'>synchronize</span> <span class='k'>do</span>
+        <span class='nb'>puts</span> <span class='s2'>&quot;sync in start_work block&quot;</span>
+      <span class='k'>end</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>start_work</span>
+</code></pre></div>
+<p>Af first glance you might not see it, but this will cause a deadlock because the block passed to work from start_work attempts to obtain a lock that it can never get. This is because work already has a lock in place.</p>
+
+<p>Lets run it just to be sure.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>ruby ./example.rb
+sync in work
+&lt;internal:prelude&gt;:8:in <span class='sb'>`</span>lock<span class='s1'>&#39;: deadlock; recursive locking (ThreadError)</span>
+<span class='s1'>	from &lt;internal:prelude&gt;:8:in `synchronize&#39;</span>
+	from ./example.rb:18:in <span class='sb'>`</span>block in start_work<span class='s1'>&#39;</span>
+<span class='s1'>	from ./example.rb:12:in `block in work&#39;</span>
+	from &lt;internal:prelude&gt;:10:in <span class='sb'>`</span>synchronize<span class='s1'>&#39;</span>
+<span class='s1'>	from ./example.rb:10:in `work&#39;</span>
+	from ./example.rb:17:in <span class='sb'>`</span>start_work<span class='s1'>&#39;</span>
+<span class='s1'>	from ./example.rb:25:in `&lt;main&gt;&#39;</span>
+</code></pre></div>
+<p>Sure enough, we have a deadlock on our hands. These types of bugs can be dificult to track down.</p>
+
+<p>A solution for this problem is to use MonitorMixin because MonitorMixin is intelligent enough to know that a lock has already been obtained.</p>
+
+<p>Lets refactor our example to use MonitorMixin.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># example.rb</span>
+<span class='nb'>require</span> <span class='s2'>&quot;monitor&quot;</span>
+
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='kp'>include</span> <span class='no'>MonitorMixin</span>
+
+  <span class='k'>def</span> <span class='nf'>work</span>
+    <span class='n'>synchronize</span> <span class='k'>do</span>
+      <span class='nb'>puts</span> <span class='s2'>&quot;sync in work&quot;</span>
+      <span class='k'>yield</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+
+  <span class='k'>def</span> <span class='nf'>start_work</span>
+    <span class='n'>work</span> <span class='k'>do</span>
+      <span class='n'>synchronize</span> <span class='k'>do</span>
+        <span class='nb'>puts</span> <span class='s2'>&quot;sync in start_work block&quot;</span>
+      <span class='k'>end</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>start_work</span>
+</code></pre></div>
+<p>Now lets run it.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>ruby ./example.rb
+sync in work
+sync in start_work block
+</code></pre></div>
+<p>No deadlocks this time. The moral here is to use MonitorMixin for all but the simplest of use cases&#8230; and even then, you should consider using it.</p>
+<br /><br /><br /><div id='disqus_thread' /><script type='text/javascript'>
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'MonitorMixin is your friend';
+    var disqus_identifier = '/blog/monitor-mixin';
+    var disqus_url = 'http://hopsoft.github.com/blog/monitor-mixin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script><noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript><a class='dsq-brlink' href='http://disqus.com'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'MonitorMixin is your friend';
+    var disqus_identifier = '/blog/monitor-mixin';
+    var disqus_url = 'http://hopsoft.github.com/blog/monitor-mixin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+
