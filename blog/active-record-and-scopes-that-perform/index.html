@@ -108,7 +108,7 @@
 <span class='c1'># AND (similarity(lower(name), &#39;palo&#39;) &gt;= 0.6)</span>
 <span class='c1'># AND (ST_Within(lonlat::geometry, ST_Expand(ST_GeomFromText(&#39;POINT(37.4419 122.1419)&#39;, 4326), 0.002)))</span>
 </code></pre></div>
-<p>On the surface this looks pretty good, but in reality the performance is poor <em>(around 400ms with 100k records)</em>&#8230; even though indexes exist in all the right places.</p>
+<p>On the surface this looks pretty good, but in reality the performance is poor <em>(around 400ms given the db size)</em>&#8230; even though indexes exist in all the right places.</p>
 
 <p>How might we improve performance? Lets reduce the number of records similarity matching and distance comparisons need to be performed on.</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>subquery</span> <span class='o'>=</span> <span class='no'>Location</span>
