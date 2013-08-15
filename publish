@@ -23,6 +23,7 @@ git add -A .
 git commit -m "Site published on $(date)"
 git push origin master
 git checkout source
+git push origin source
 git clean -f -d
 rm -rf /tmp/jekyll
 echo "Site published successfully."
