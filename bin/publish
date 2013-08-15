@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+mkdir /tmp/jekyll
+rm -rf /tmp/jekyll/*
+jekyll build -d /tmp/jekyll
+
+# publish on github only if jekyll build was successful
+if [ $? -eq 0 ]; then
+  echo "Jekyll build failed!"
+  exit
+end
+
+git checkout master
+rm -rf ./*
+cp -Rv /tmp/jekyll/* ./
+git add -A .
+git commit -m "Publish site $(date)"
+#git push origin master
+#git checkout source
+rm -rf /tmp/jekyll
+echo "Published to Github."
+
