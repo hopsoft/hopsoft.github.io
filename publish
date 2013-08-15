@@ -14,6 +14,7 @@ git checkout master
 
 if [ $? -ne 0 ]; then
   echo "Unable to checkout master! Do you have uncommited changes?"
+  rm -rf /tmp/jekyll
   exit 1
 fi
 
