@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>ActiveRecord and Scopes that Perform</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 08/14/13
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <p>I&#8217;m currently using Rails with PostgreSQL and am taking advantage of some advanced features within my named scopes. Primarily <a href='http://www.postgresql.org/docs/9.2/static/pgtrgm.html'>trigram</a> text comparisons and some <a href='http://postgis.net'>PostGIS</a> distance queries.</p>
+
+<p>I have advanced scopes like this.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>scope</span> <span class='ss'>:name_similar_to</span><span class='p'>,</span> <span class='o'>-&gt;</span> <span class='p'>(</span><span class='nb'>name</span><span class='p'>,</span> <span class='n'>min_match</span><span class='o'>=</span><span class='mi'>0</span><span class='o'>.</span><span class='mi'>6</span><span class='p'>)</span> <span class='k'>do</span>
+  <span class='n'>where</span> <span class='s2'>&quot;similarity(lower(name), ?) &gt;= ?&quot;</span><span class='p'>,</span>
+    <span class='nb'>name</span><span class='o'>.</span><span class='n'>downcase</span><span class='p'>,</span>
+    <span class='n'>min_match</span>
+<span class='k'>end</span>
+
+<span class='n'>scope</span> <span class='ss'>:close_to</span><span class='p'>,</span> <span class='o'>-&gt;</span> <span class='p'>(</span><span class='n'>longitude</span><span class='p'>,</span> <span class='n'>latitude</span><span class='p'>)</span> <span class='k'>do</span>
+  <span class='n'>where</span> <span class='s2'>&quot;ST_Within(lonlat::geometry, ST_Expand(ST_GeomFromText(&#39;POINT(? ?)&#39;, 4326), ?))&quot;</span><span class='p'>,</span>
+    <span class='n'>longitude</span><span class='p'>,</span>
+    <span class='n'>latitude</span><span class='p'>,</span>
+    <span class='mi'>0</span><span class='o'>.</span><span class='mo'>002</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>I also have simple scopes like this.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>scope</span> <span class='ss'>:postal_code</span><span class='p'>,</span> <span class='o'>-&gt;</span> <span class='p'>(</span><span class='n'>postal_code</span><span class='p'>)</span> <span class='k'>do</span>
+  <span class='n'>where</span><span class='p'>(</span><span class='n'>postal_code</span><span class='p'>:</span> <span class='n'>postal_code</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>gsub</span><span class='p'>(</span><span class='sr'>/\-/</span><span class='p'>,</span> <span class='s2'>&quot;&quot;</span><span class='p'>))</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>Chaining scopes to create complex queries is one of the things I love about ActiveRecord&#8230; but be careful.</p>
+
+<blockquote>
+<h2 id='be_mindful_of_the_queries_that_activerecord_creates_for_you'>Be mindful of the queries that ActiveRecord creates for you.</h2>
+</blockquote>
+
+<p>Consider the following query created by chaining these scopes together.</p>
+<div class='highlight'><pre><code class='ruby'><span class='no'>Location</span>
+  <span class='o'>.</span><span class='n'>name_similar_to</span><span class='p'>(</span><span class='s2'>&quot;Palo&quot;</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>close_to</span><span class='p'>(</span><span class='mi'>37</span><span class='o'>.</span><span class='mi'>4419</span><span class='p'>,</span> <span class='mi'>122</span><span class='o'>.</span><span class='mi'>1419</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>postal_code</span><span class='p'>(</span><span class='mi'>94303</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>to_sql</span>
+
+<span class='c1'># SELECT &quot;standard_hotels&quot;.*</span>
+<span class='c1'># FROM &quot;standard_hotels&quot;</span>
+<span class='c1'># WHERE &quot;standard_hotels&quot;.&quot;postal_code&quot; = &#39;94303&#39;</span>
+<span class='c1'># AND (similarity(lower(name), &#39;palo&#39;) &gt;= 0.6)</span>
+<span class='c1'># AND (ST_Within(lonlat::geometry, ST_Expand(ST_GeomFromText(&#39;POINT(37.4419 122.1419)&#39;, 4326), 0.002)))</span>
+</code></pre></div>
+<p>On the surface this looks pretty good, but in reality the performance is poor <em>(around 400ms with 100k records)</em>&#8230; even though indexes exist in all the right places.</p>
+
+<p>How might we improve performance? Lets reduce the number of records similarity matching and distance comparisons need to be performed on.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>subquery</span> <span class='o'>=</span> <span class='no'>Location</span>
+  <span class='o'>.</span><span class='n'>select</span><span class='p'>(</span><span class='ss'>:id</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>postal_code</span><span class='p'>(</span><span class='mi'>94303</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>to_sql</span>
+
+<span class='no'>Location</span>
+  <span class='o'>.</span><span class='n'>name_similar_to</span><span class='p'>(</span><span class='s2'>&quot;Palo&quot;</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>close_to</span><span class='p'>(</span><span class='mi'>37</span><span class='o'>.</span><span class='mi'>4419</span><span class='p'>,</span> <span class='mi'>122</span><span class='o'>.</span><span class='mi'>1419</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>where</span><span class='p'>(</span><span class='s2'>&quot;id in (</span><span class='si'>#{</span><span class='n'>subquery</span><span class='si'>}</span><span class='s2'>)&quot;</span><span class='p'>)</span>
+  <span class='o'>.</span><span class='n'>to_sql</span>
+
+<span class='c1'># SELECT &quot;standard_hotels&quot;.*</span>
+<span class='c1'># FROM &quot;standard_hotels&quot;</span>
+<span class='c1'># WHERE (similarity(lower(name), &#39;palo&#39;) &gt;= 0.6)</span>
+<span class='c1'># AND (ST_Within(lonlat::geometry, ST_Expand(ST_GeomFromText(&#39;POINT(37.4419 122.1419)&#39;, 4326), 0.002)))</span>
+<span class='c1'># AND (id in (SELECT id FROM &quot;standard_hotels&quot;  WHERE &quot;standard_hotels&quot;.&quot;postal_code&quot; = &#39;94303&#39;))</span>
+</code></pre></div>
+<p>That did it! The query now runs in 60ms instead of 400ms. Narrowing the initial results with a subquery yielded an 85% speed gain.</p>
+
+<p>It&#8217;s always a good idea to review the queries chained scopes are creating for you.</p>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'ActiveRecord and Scopes that Perform';
+    var disqus_identifier = '/blog/active-record-and-scopes-that-perform';
+    var disqus_url = 'http://hopsoft.github.com/blog/active-record-and-scopes-that-perform';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+

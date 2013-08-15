@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>Ruby Metaprogramming Idioms</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 01/13/11
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <img class='thumbnail pull-left' src='http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg' style='margin: 0 20px 20px 0' /><p>
+  I recently finished the book <a href='http://pragprog.com/titles/ppmetr/metaprogramming-ruby'>Metaprogramming Ruby</a> by <a href='http://forums.pragprog.com/users/21653'>Paolo Perrotta</a> and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot;.  I've used many of the techniques before, but was never really aware of their "formal" names.
+</p><p>
+  The idioms defined in the book are so helpful that I created a reference based on them for my own use.
+  Hopefully it helps others out too.
+</p>
+<h2 id='open_classes'>Open Classes</h2>
+
+<p>In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define original class</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='k'>def</span> <span class='nf'>say_hello</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;hello&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># re-open the class</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='c1'># add new functionality</span>
+  <span class='k'>def</span> <span class='nf'>do_stuff</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;doing stuff&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>do_stuff</span> <span class='c1'># =&gt; doing stuff</span>
+
+<span class='c1'># other ways to reopen the class</span>
+
+<span class='c1'># open the instance of the class definition</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>instance_eval</span> <span class='k'>do</span>
+<span class='k'>end</span>
+
+<span class='c1'># open the eigenclass</span>
+<span class='c1'># you need to understand Ruby&#39;s object model</span>
+<span class='c1'># to fully understand what the eigenclass is</span>
+<span class='k'>class</span> <span class='o'>&lt;&lt;</span> <span class='no'>Example</span>
+<span class='k'>end</span>
+
+<span class='c1'># syntactic sugar for class &lt;&lt; Example</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>class_eval</span> <span class='k'>do</span>
+<span class='k'>end</span>
+</code></pre></div>
+<h2 id='monkeypatch'>Monkeypatch</h2>
+
+<p>Monkeypatching is a somewhat negative term that refers to the ability to re-open a class and re-define its existing functionality. While some frown on this practice, it can be a powerful tool in your metaprogramming toolbelt. Be sure to use caution when monkeypatching.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define original class</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='k'>def</span> <span class='nf'>say_hello</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;hello&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># re-open the class and monkeypatch some of its existing functionality</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='c1'># re-define existing funnctionality</span>
+  <span class='k'>def</span> <span class='nf'>say_hello</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;hello from monkeypatch&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from monkeypatch</span>
+</code></pre></div>
+<h2 id='namespace'>Namespace</h2>
+
+<p>Use Ruby modules to create namespaces to avoid naming collisions.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># create a namespace to avoid naming collisions</span>
+<span class='k'>module</span> <span class='nn'>Example</span>
+  <span class='k'>class</span> <span class='nc'>String</span>
+    <span class='k'>def</span> <span class='nf'>length</span>
+      <span class='mi'>100</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='nb'>String</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; 0</span>
+<span class='ss'>Example</span><span class='p'>:</span><span class='ss'>:String</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; 100</span>
+</code></pre></div>
+<h2 id='kernel_method'>Kernel Method</h2>
+
+<p>Defining methods in the Kernel module will make those methods available to all objects.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># add a kernel method to make it available to all objects</span>
+<span class='c1'># this example also serves to illustrate that everything in Ruby is an object</span>
+<span class='k'>module</span> <span class='nn'>Kernel</span>
+  <span class='k'>def</span> <span class='nf'>say_hello</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;hello from </span><span class='si'>#{</span><span class='nb'>self</span><span class='o'>.</span><span class='n'>class</span><span class='o'>.</span><span class='n'>name</span><span class='si'>}</span><span class='s2'>&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='no'>Class</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from Class</span>
+<span class='no'>Object</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from Class</span>
+<span class='no'>Object</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from Object</span>
+<span class='mi'>1</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from Fixnum</span>
+<span class='s2'>&quot;&quot;</span><span class='o'>.</span><span class='n'>say_hello</span> <span class='c1'># =&gt; hello from String</span>
+</code></pre></div>
+<h2 id='dynamic_dispatch'>Dynamic Dispatch</h2>
+
+<p>Ruby supports calling methods at runtime even if you don&#8217;t know what those methods are at design time.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># add methods that provide the ability</span>
+<span class='c1'># to dynamically call unknown methods on objects</span>
+<span class='k'>def</span> <span class='nf'>invoke</span><span class='p'>(</span><span class='n'>object</span><span class='p'>,</span> <span class='n'>method_name</span><span class='p'>)</span>
+  <span class='n'>object</span><span class='o'>.</span><span class='n'>send</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='k'>def</span> <span class='nf'>invoke_with_args</span><span class='p'>(</span><span class='n'>object</span><span class='p'>,</span> <span class='n'>method_name</span><span class='p'>,</span> <span class='o'>*</span><span class='n'>args</span><span class='p'>)</span>
+  <span class='n'>object</span><span class='o'>.</span><span class='n'>send</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>,</span> <span class='o'>*</span><span class='n'>args</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='n'>invoke</span><span class='p'>(</span><span class='s2'>&quot;get my length&quot;</span><span class='p'>,</span> <span class='ss'>:length</span><span class='p'>)</span> <span class='c1'># =&gt; 13</span>
+<span class='n'>invoke</span><span class='p'>(</span><span class='s2'>&quot;reverse me&quot;</span><span class='p'>,</span> <span class='ss'>:reverse</span><span class='p'>)</span> <span class='c1'># =&gt; em esrever</span>
+<span class='n'>invoke_with_args</span><span class='p'>(</span><span class='s2'>&quot;remove all letter e&#39;s&quot;</span><span class='p'>,</span> <span class='ss'>:delete</span><span class='p'>,</span> <span class='s2'>&quot;e&quot;</span><span class='p'>)</span> <span class='c1'># =&gt; rmov all lttr &#39;s</span>
+</code></pre></div>
+<h2 id='pattern_dispatch'>Pattern Dispatch</h2>
+
+<p>Similar to <a href='#dynamic_dispatch'>Dynamic Dispatch</a>, but uses a convention or pattern to identify which methods to call.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># setup a contrived class to demonstrate pattern dispatch</span>
+<span class='k'>class</span> <span class='nc'>Person</span>
+  <span class='kp'>attr_accessor</span> <span class='ss'>:first_name</span>
+  <span class='kp'>attr_accessor</span> <span class='ss'>:last_name</span>
+  <span class='kp'>attr_accessor</span> <span class='ss'>:pets_name</span>
+  <span class='kp'>attr_accessor</span> <span class='ss'>:mothers_maiden_name</span>
+
+  <span class='k'>def</span> <span class='nf'>drag_queen_name</span>
+    <span class='s2'>&quot;</span><span class='si'>#{</span><span class='n'>pets_name</span><span class='si'>}</span><span class='s2'> </span><span class='si'>#{</span><span class='n'>mothers_maiden_name</span><span class='si'>}</span><span class='s2'>&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># construct an instance of the class</span>
+<span class='n'>person</span> <span class='o'>=</span> <span class='no'>Person</span><span class='o'>.</span><span class='n'>new</span>
+<span class='n'>person</span><span class='o'>.</span><span class='n'>first_name</span> <span class='o'>=</span> <span class='s2'>&quot;john&quot;</span>
+<span class='n'>person</span><span class='o'>.</span><span class='n'>last_name</span> <span class='o'>=</span> <span class='s2'>&quot;doe&quot;</span>
+<span class='n'>person</span><span class='o'>.</span><span class='n'>pets_name</span> <span class='o'>=</span> <span class='s2'>&quot;muffin&quot;</span>
+<span class='n'>person</span><span class='o'>.</span><span class='n'>mothers_maiden_name</span> <span class='o'>=</span> <span class='s2'>&quot;brown&quot;</span>
+
+<span class='c1'># use pattern dispatch to invoke all &#39;name&#39; methods</span>
+<span class='n'>person</span><span class='o'>.</span><span class='n'>public_methods</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>method_name</span><span class='o'>|</span>
+  <span class='nb'>puts</span> <span class='s2'>&quot;</span><span class='si'>#{</span><span class='n'>method_name</span><span class='si'>}</span><span class='s2'> = </span><span class='si'>#{</span><span class='n'>person</span><span class='o'>.</span><span class='n'>send</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>)</span><span class='si'>}</span><span class='s2'>&quot;</span> <span class='k'>if</span> <span class='n'>method_name</span> <span class='o'>=~</span> <span class='sr'>/_name$/</span>
+<span class='k'>end</span>
+
+<span class='c1'># -- output --</span>
+<span class='c1'># first_name = john</span>
+<span class='c1'># last_name = doe</span>
+<span class='c1'># pets_name = muffin</span>
+<span class='c1'># mothers_maiden_name = brown</span>
+<span class='c1'># drag_queen_name = muffin brown</span>
+</code></pre></div>
+<h2 id='dynamic_method'>Dynamic Method</h2>
+
+<p>Ruby supports defining methods at runtime even if you don&#8217;t know what those methods are at design time.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># setup some data that will drive what methods get defined</span>
+<span class='vg'>$method_names</span> <span class='o'>=</span> <span class='o'>[</span><span class='ss'>:hello</span><span class='p'>,</span> <span class='ss'>:goodbye</span><span class='o'>]</span>
+
+<span class='c1'># define our example class</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='c1'># define some dynamic methods</span>
+  <span class='vg'>$method_names</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>method_name</span><span class='o'>|</span>
+    <span class='n'>define_method</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>)</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>name</span><span class='o'>|</span>
+      <span class='nb'>puts</span> <span class='s2'>&quot;</span><span class='si'>#{</span><span class='n'>method_name</span><span class='si'>}</span><span class='s2'> </span><span class='si'>#{</span><span class='nb'>name</span><span class='si'>}</span><span class='s2'>!&quot;</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># test out our dynamic methods</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>respond_to?</span> <span class='ss'>:hello</span> <span class='c1'># =&gt; true</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>respond_to?</span> <span class='ss'>:goodbye</span> <span class='c1'># =&gt; true</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>hello</span><span class='p'>(</span><span class='s2'>&quot;nathan&quot;</span><span class='p'>)</span> <span class='c1'># =&gt; hello nathan!</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>goodbye</span><span class='p'>(</span><span class='s2'>&quot;nathan&quot;</span><span class='p'>)</span> <span class='c1'># =&gt; hello nathan!</span>
+</code></pre></div>
+<h2 id='ghost_method'>Ghost Method</h2>
+
+<p>Ruby provides a mechanism that allows you to catch calls to methods that don&#8217;t even exist. Its possible to leverage this feature to support functionality that hasn&#8217;t been defined.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define our example class</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='c1'># catch all calls to methods that don&#39;t exist</span>
+  <span class='k'>def</span> <span class='nf'>method_missing</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>,</span> <span class='o'>*</span><span class='n'>args</span><span class='p'>)</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;You called &#39;</span><span class='si'>#{</span><span class='n'>method_name</span><span class='si'>}</span><span class='s2'>&#39; with these arguments: </span><span class='si'>#{</span><span class='n'>args</span><span class='o'>.</span><span class='n'>inspect</span><span class='si'>}</span><span class='s2'>&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># invoke methods that haven&#39;t been defined</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>some_method</span> <span class='c1'># =&gt; You called &#39;some_method&#39; with these arguments: []</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>another_method</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='p'>)</span> <span class='c1'># =&gt; You called &#39;another_method&#39; with these arguments: [1, 2, 3]</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>this_is_cool</span><span class='p'>(</span><span class='kp'>true</span><span class='p'>)</span> <span class='c1'># =&gt; You called &#39;this_is_cool&#39; with these arguments: [true]</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>and_powerful</span> <span class='c1'># =&gt; You called &#39;and_powerful&#39; with these arguments: []</span>
+</code></pre></div>
+<h2 id='dynamic_proxy'>Dynamic Proxy</h2>
+
+<p>Wrapping an object or service and then forwarding method calls to the wrapped item is known as dynamic proxying.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define our proxy class</span>
+<span class='k'>class</span> <span class='nc'>Proxy</span>
+  <span class='k'>def</span> <span class='nf'>initialize</span><span class='p'>(</span><span class='n'>object</span><span class='p'>)</span>
+    <span class='vi'>@object</span> <span class='o'>=</span> <span class='n'>object</span>
+  <span class='k'>end</span>
+
+  <span class='c1'># forward all calls to the wrapped object</span>
+  <span class='k'>def</span> <span class='nf'>method_missing</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>,</span> <span class='o'>*</span><span class='n'>args</span><span class='p'>)</span>
+    <span class='vi'>@object</span><span class='o'>.</span><span class='n'>send</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>,</span> <span class='o'>*</span><span class='n'>args</span><span class='p'>)</span>
+  <span class='k'>rescue</span>
+    <span class='nb'>puts</span> <span class='s2'>&quot;</span><span class='si'>#{</span><span class='n'>method_name</span><span class='si'>}</span><span class='s2'> is not supported by the wrapped object!&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># usage</span>
+<span class='no'>Proxy</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='s2'>&quot;this is a string&quot;</span><span class='p'>)</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; 16</span>
+<span class='no'>Proxy</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='o'>[</span><span class='mi'>1</span><span class='p'>,</span> <span class='mi'>2</span><span class='p'>,</span> <span class='mi'>3</span><span class='o'>]</span><span class='p'>)</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; 3</span>
+<span class='no'>Proxy</span><span class='o'>.</span><span class='n'>new</span><span class='p'>({</span><span class='ss'>:a</span> <span class='o'>=&gt;</span> <span class='mi'>1</span><span class='p'>,</span> <span class='ss'>:b</span> <span class='o'>=&gt;</span> <span class='mi'>2</span><span class='p'>})</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; 2</span>
+<span class='no'>Proxy</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='kp'>true</span><span class='p'>)</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; length is not supported by the wrapped object!</span>
+</code></pre></div>
+<h2 id='blank_slate'>Blank Slate</h2>
+
+<p>Ruby allows you to remove functionality from a class. This technique can be useful to ensure that your class doesn&#8217;t expose unwanted or unexpected features.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># demonstrate how to remove functionality</span>
+<span class='nb'>String</span><span class='o'>.</span><span class='n'>class_eval</span> <span class='k'>do</span>
+  <span class='n'>undef_method</span> <span class='ss'>:length</span>
+<span class='k'>end</span>
+<span class='s2'>&quot;test&quot;</span><span class='o'>.</span><span class='n'>length</span> <span class='c1'># =&gt; NoMethodError: undefined method `length&#39; for &quot;test&quot;:String</span>
+
+<span class='c1'># create a blank slate class</span>
+<span class='k'>class</span> <span class='nc'>BlankSlate</span>
+  <span class='nb'>public_instance_methods</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>method_name</span><span class='o'>|</span>
+    <span class='n'>undef_method</span><span class='p'>(</span><span class='n'>method_name</span><span class='p'>)</span> <span class='k'>unless</span> <span class='n'>method_name</span> <span class='o'>=~</span> <span class='sr'>/^__|^(public_methods|method_missing|respond_to\?)$/</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># see what methods are now available</span>
+<span class='no'>BlankSlate</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>public_methods</span> <span class='c1'># =&gt; [&quot;public_methods&quot;, &quot;__send__&quot;, &quot;respond_to?&quot;, &quot;__id__&quot;]</span>
+</code></pre></div>
+<h2 id='scope_gate'>Scope Gate</h2>
+
+<p>There are three ways to define a new scope in Ruby. A new scope is created whenever you define a class, module, or method.</p>
+
+<p>Be aware that scoping in Ruby is different than some other languages. Ruby does not chain scopes when performing lookups, so don&#8217;t expect it to find variables defined in an outer scope.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># demonstrate scoping in ruby</span>
+<span class='n'>scope</span> <span class='o'>=</span> <span class='s2'>&quot;main scope&quot;</span>
+<span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; main scope</span>
+
+<span class='k'>class</span> <span class='nc'>ExampleClass</span>
+  <span class='c1'># the main scoped variable isn&#39;t defined in the classes&#39; scope</span>
+  <span class='n'>defined?</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; nil</span>
+  <span class='n'>scope</span> <span class='o'>=</span> <span class='s2'>&quot;class scope&quot;</span>
+  <span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; class scope</span>
+<span class='k'>end</span>
+
+<span class='c1'># the main scoped variable is unchanged by the classes&#39; scoped variable</span>
+<span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; global scope</span>
+
+<span class='k'>module</span> <span class='nn'>ExampleModule</span>
+  <span class='c1'># the main scoped variable isn&#39;t defined in the module&#39;s scope</span>
+  <span class='n'>defined?</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; nil</span>
+  <span class='n'>scope</span> <span class='o'>=</span> <span class='s2'>&quot;module scope&quot;</span>
+  <span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; module scope</span>
+<span class='k'>end</span>
+
+<span class='c1'># the main scoped variable is unchanged by the module&#39;s scoped variable</span>
+<span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; main scope</span>
+
+<span class='k'>def</span> <span class='nf'>example_method</span>
+  <span class='c1'># the main scoped variable isn&#39;t defined in the method&#39;s scope</span>
+  <span class='n'>defined?</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; nil</span>
+  <span class='n'>scope</span> <span class='o'>=</span> <span class='s2'>&quot;method scope&quot;</span>
+  <span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span>
+<span class='k'>end</span>
+
+<span class='n'>example_method</span> <span class='c1'># =&gt; method scope</span>
+
+<span class='c1'># the main scoped variable is unchanged by the method&#39;s scoped variable</span>
+<span class='nb'>puts</span><span class='p'>(</span><span class='n'>scope</span><span class='p'>)</span> <span class='c1'># =&gt; global scope</span>
+</code></pre></div>
+<h2 id='flat_scope'>Flat Scope</h2>
+
+<p>Flatten the scope to gain access to variables that are otherwise unaccessible.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define a variable in the main scope</span>
+<span class='n'>value</span> <span class='o'>=</span> <span class='s2'>&quot;sort of&quot;</span>
+
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='kp'>attr_reader</span> <span class='ss'>:read_only</span>
+
+  <span class='k'>def</span> <span class='nf'>initialize</span>
+    <span class='vi'>@read_only</span> <span class='o'>=</span> <span class='kp'>true</span>
+    <span class='c1'># the main scoped variable is not defined in this scope gate</span>
+    <span class='n'>defined?</span><span class='p'>(</span><span class='n'>value</span><span class='p'>)</span> <span class='c1'># =&gt; nil</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>read_only</span> <span class='c1'># =&gt; true</span>
+
+<span class='c1'># flatten the scope with a closure (block) to share variables between scopes</span>
+<span class='c1'># note that we are also violating encapsulation here</span>
+<span class='n'>example</span><span class='o'>.</span><span class='n'>instance_eval</span> <span class='k'>do</span>
+  <span class='vi'>@read_only</span> <span class='o'>=</span> <span class='n'>value</span>
+<span class='k'>end</span>
+
+<span class='n'>example</span><span class='o'>.</span><span class='n'>read_only</span> <span class='c1'># =&gt; sort of</span>
+</code></pre></div>
+<h2 id='shared_scope'>Shared Scope</h2>
+
+<p>Create a <a href='#scope_gate'>Scope Gate</a> to share variables across several contexts.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># create a shared scope</span>
+<span class='n'>shared_scope</span> <span class='o'>=</span> <span class='no'>Proc</span><span class='o'>.</span><span class='n'>new</span> <span class='k'>do</span>
+  <span class='c1'># define a variable to share</span>
+  <span class='n'>shared</span> <span class='o'>=</span> <span class='s2'>&quot;a shared variable&quot;</span>
+
+  <span class='c1'># use closures (blocks) to ensure access to the variable</span>
+  <span class='no'>Example</span> <span class='o'>=</span> <span class='no'>Class</span><span class='o'>.</span><span class='n'>new</span> <span class='k'>do</span>
+    <span class='nb'>puts</span> <span class='n'>shared</span> <span class='c1'># =&gt; a shared variable</span>
+
+    <span class='c1'># set a reference to the eigenclass so we can later define a class method</span>
+    <span class='c1'># while retaining access to the shared variable</span>
+    <span class='n'>eigenclass</span> <span class='o'>=</span> <span class='k'>class</span> <span class='o'>&lt;&lt;</span> <span class='nb'>self</span>
+      <span class='c1'># this is a scope gate without access to the shared variable</span>
+      <span class='nb'>self</span>
+    <span class='k'>end</span>
+
+    <span class='c1'># use the eigenclass to define a class method</span>
+    <span class='c1'># with access to the shared variable</span>
+    <span class='n'>eigenclass</span><span class='o'>.</span><span class='n'>class_eval</span> <span class='k'>do</span>
+      <span class='n'>define_method</span> <span class='ss'>:class_method</span> <span class='k'>do</span>
+        <span class='n'>shared</span>
+      <span class='k'>end</span>
+    <span class='k'>end</span>
+
+    <span class='c1'># define an instance method with access to the shared variable</span>
+    <span class='n'>define_method</span> <span class='ss'>:instance_method</span> <span class='k'>do</span>
+      <span class='n'>shared</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># call the shared scope proc to execute its code</span>
+<span class='n'>shared_scope</span><span class='o'>.</span><span class='n'>call</span>
+
+<span class='c1'># the scoped variable &#39;shared&#39; is not available to the main scope</span>
+<span class='n'>defined?</span><span class='p'>(</span><span class='n'>shared</span><span class='p'>)</span> <span class='c1'># =&gt; nil</span>
+
+<span class='c1'># demonstrate the methods</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>class_method</span> <span class='c1'># =&gt; a shared variable</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>instance_method</span> <span class='c1'># =&gt; a shared variable</span>
+</code></pre></div>
+<h2 id='context_probe'>Context Probe</h2>
+
+<p>Ruby allows you to break the rules of encapsulation and reach into the internals of an object.</p>
+<div class='highlight'><pre><code class='ruby'><span class='c1'># define a sample class that we can probe</span>
+<span class='k'>class</span> <span class='nc'>Example</span>
+  <span class='k'>def</span> <span class='nf'>initialize</span>
+    <span class='vi'>@private</span> <span class='o'>=</span> <span class='s2'>&quot;this is a private instance variable&quot;</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+
+<span class='c1'># send a context probe into an instance of the Example class</span>
+<span class='no'>Example</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>instance_eval</span> <span class='p'>{</span> <span class='nb'>puts</span> <span class='vi'>@private</span> <span class='p'>}</span> <span class='c1'># =&gt; &quot;this is a private instance variable&quot;</span>
+</code></pre></div>
+<h2 id='clean_room'>Clean Room</h2>
+
+<p>A class or object used for the express purpose of evaluating Ruby inside of its context is called a clean room. Clean rooms are used to change the current context to something expected or clean which can help to avoid surprises.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>do_stuff</span>
+  <span class='vi'>@scope</span>
+<span class='k'>end</span>
+
+<span class='vi'>@scope</span> <span class='o'>=</span> <span class='s2'>&quot;outer scope&quot;</span>
+<span class='nb'>puts</span> <span class='n'>do_stuff</span> <span class='c1'># =&gt; outer scope</span>
+
+<span class='c1'># illustrate how to use a simple clean room</span>
+<span class='no'>Object</span><span class='o'>.</span><span class='n'>new</span><span class='o'>.</span><span class='n'>instance_eval</span> <span class='k'>do</span>
+  <span class='vi'>@scope</span> <span class='o'>=</span> <span class='s2'>&quot;clean room scope&quot;</span>
+  <span class='nb'>puts</span> <span class='n'>do_stuff</span> <span class='c1'># =&gt; clean room scope</span>
+<span class='k'>end</span>
+</code></pre></div>
+<h2 id='deferred_evaluation'>Deferred Evaluation</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='class_instance_variable'>Class Instance Variable</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='singleton_method'>Singleton Method</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='class_macro'>Class Macro</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='class_extension'>Class Extension</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='object_extension'>Object Extension</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='around_alias'>Around Alias</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='string_of_code'>String of Code</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='code_processor'>Code Processor</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='sandbox'>Sandbox</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='hook_method'>Hook Method</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='class_extension_mixin'>Class Extension Mixin</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='mimic_method'>Mimic Method</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='lazy_instance_variable'>Lazy Instance Variable</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='named_arguments'>Named Arguments</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='argument_array'>Argument Array</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='self_yield'>Self Yield</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div>
+<h2 id='symbol_to_proc'>Symbol to Proc</h2>
+<div class='highlight'><pre><code class='ruby'>
+</code></pre></div><br /><br /><br /><div id='disqus_thread' /><script type='text/javascript'>
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'Ruby Metaprogramming Idioms';
+    var disqus_identifier = '/blog/ruby-metaprogramming-idioms';
+    var disqus_url = 'http://hopsoft.github.com/blog/ruby-metaprogramming-idioms';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script><noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript><a class='dsq-brlink' href='http://disqus.com'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'Ruby Metaprogramming Idioms';
+    var disqus_identifier = '/blog/ruby-metaprogramming-idioms';
+    var disqus_url = 'http://hopsoft.github.com/blog/ruby-metaprogramming-idioms';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+
