@@ -10,7 +10,7 @@ layout: post
 ---
 
 
-<img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" class="thumbnail pull-left" style="margin: 0 20px 20px 0">
+<img src="http://shared2.pragprog.com/images/covers/190x228/ppmetr.jpg" class="thumbnail pull-left" style="margin: 20px 20px 20px 0">
 <p>
   I recently finished the book <a href="http://pragprog.com/titles/ppmetr/metaprogramming-ruby">Metaprogramming Ruby</a> by <a href="http://forums.pragprog.com/users/21653">Paolo Perrotta</a> and found it very informative.  Paolo introduces several metaprogramming techniques which he referes to as &quot;spells&quot;.  I've used many of the techniques before, but was never really aware of their "formal" names.
 </p>
@@ -18,6 +18,8 @@ layout: post
   The idioms defined in the book are so helpful that I created a reference based on them for my own use.
   Hopefully it helps others out too.
 </p>
+
+<hr style="clear:both" />
 
 ## Open Classes
 In Ruby all classes are open, meaning that you can define new functionality for the class after the class has already been defined.

@@ -1,5 +1,5 @@
 ---
-title: ActiveRecord and Scopes that Perform
+title: ActiveRecord &amp; Scopes that Perform
 authors: Nathan Hopkins
 date: 2013-08-14
 published: true

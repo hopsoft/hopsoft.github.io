@@ -6,9 +6,15 @@ layout: wisewords
 <h2 class="page-header">Blog</h2>
 <ul>
   {% for post in site.posts limit:5 %}
-  <li><a href="{{post.url}}">{{post.title}}</a></li>
+  <li>
+    <a href="{{post.url}}">{{post.title}}</a>
+    <p>{{ post.excerpt }}</p>
+  </li>
   {% endfor %}
 </ul>
+
+<div style="clear:both"></div>
+<br />
 
 <h2 class="page-header">Open Source</h2>
 <ul>
