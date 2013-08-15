@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>Don&#39;t Rely on Github to Build Jekyll</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 08/15/13
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <p>Apparently my local Jekyll configuration has drifted from Github&#8217;s. Yesterday my Jekyll based Github Pages site would no longer build on Github&#8230; even though things worked fine locally.</p>
+
+<p>I decided to change the repo to support local compilation and publishing. No more depending on Github to do it for me.</p>
+
+<h3 id='heres_how_i_did_it'>Here&#8217;s how I did it.</h3>
+
+<p>First, prepare the repo.</p>
+<div class='highlight'><pre><code class='bash'>git checkout -b <span class='nb'>source </span>master
+git push -u origin <span class='nb'>source</span>
+git checkout master
+rm -rf ./*
+git add -A
+git commit -m <span class='s2'>&quot;Preparing for self build &amp; publish.&quot;</span>
+git push origin master
+git checkout <span class='nb'>source</span>
+</code></pre></div>
+<p>Next, add this bash script to the root of the project.</p>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/usr/bin/env bash</span>
+
+jekyll build
+
+<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>  </span><span class='nb'>echo</span> <span class='s2'>&quot;Jekyll build failed!&quot;</span>
+  <span class='nb'>exit </span>1
+<span class='k'>fi</span>
+
+mkdir /tmp/jekyll
+rm -rf /tmp/jekyll/*
+cp -R ./_site/* /tmp/jekyll
+git checkout master
+
+<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>  </span><span class='nb'>echo</span> <span class='s2'>&quot;Unable to checkout master! Do you have uncommited changes?&quot;</span>
+  rm -rf /tmp/jekyll
+  <span class='nb'>exit </span>1
+<span class='k'>fi</span>
+
+rm -rf ./*
+cp -R /tmp/jekyll/* ./
+git add -A .
+git commit -m <span class='s2'>&quot;Site published on $(date)&quot;</span>
+git push origin master
+git checkout <span class='nb'>source</span>
+git push origin <span class='nb'>source</span>
+git clean -f -d
+rm -rf /tmp/jekyll
+<span class='nb'>echo</span> <span class='s2'>&quot;Site published successfully.&quot;</span>
+</code></pre></div>
+<p>Finally, start publishing.</p>
+<div class='highlight'><pre><code class='bash'>git checkout <span class='nb'>source</span>
+./publish
+</code></pre></div>
+<p>This has the added benefit of providing freedom to use a customized Jekyll setup.</p>
+
+<p><strong>Enjoy!</strong></p>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'Don&#39;t Rely on Github to Build Jekyll';
+    var disqus_identifier = '/blog/dont-rely-on-github-to-build-jekyll';
+    var disqus_url = 'http://hopsoft.github.com/blog/dont-rely-on-github-to-build-jekyll';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+
