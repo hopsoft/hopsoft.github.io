@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>Understanding Pointers</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 08/30/13
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <p>Pointers are perhaps the least approachable subject related to software development. I posit that it&#8217;s due to poor examples written by advanced engineers who&#8217;ve forgotten what it&#8217;s like for devs with less understanding. Here&#8217;s my stab at explaining them.</p>
+
+<h2 id='exotic_cars__timeshares'>Exotic Cars &amp; Timeshares</h2>
+
+<p><img alt='Lamborghini' src='/public/images/lamborghini.jpg' /></p>
+
+<p>Consider the following scenario.</p>
+
+<p>Quinton is a member of Gotham Dream Cars&#8217; <a href='http://www.gothamdreamcars.com/dreamshare-club'>Dream Share</a> program. He &#8220;owns&#8221; a <a href='http://www.gothamdreamcars.com/exotic-car-rental/san-francisco/lamborghini-lp640-roadster'>Lamborghini LP640 Roadster</a>&#8230; <em>at least part of one.</em> Angelina is also a member and &#8220;owns&#8221; the same Lamborghini LP640 Roadster. They both &#8220;own&#8221; several other exotic cars through Dream Share.</p>
+
+<p>All of Quinton&#8217;s &amp; Angelina&#8217;s vehicles are kept in individual garages specifically tailored for storing exotic cars.</p>
+
+<h2 id='expressing_it_with_code_specifically_golang'>Expressing it with Code&#8230; specifically <a href='http://golang.org/'>Golang</a></h2>
+
+<p>First we&#8217;ll make some statements about our exotic car scenario in English. Then we&#8217;ll then express the same statements using with Go.</p>
+
+<blockquote>
+<p>A blueprint exists for building exotic cars.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='kd'>type</span> <span class='nx'>Car</span> <span class='kd'>struct</span> <span class='p'>{</span>
+  <span class='nx'>name</span> <span class='kt'>string</span>
+  <span class='nx'>driver</span> <span class='kt'>string</span>
+  <span class='nx'>miles</span> <span class='kt'>int</span>
+<span class='p'>}</span>
+</code></pre></div>
+<blockquote>
+<p>A brand new Lamborghini has been constructed.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='nx'>lamborghini</span> <span class='o'>:=</span> <span class='nx'>Car</span><span class='p'>{</span><span class='nx'>name</span><span class='p'>:</span> <span class='s'>&quot;Lamborghini&quot;</span><span class='p'>,</span> <span class='nx'>miles</span><span class='p'>:</span> <span class='mi'>0</span><span class='p'>}</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
+</code></pre></div>
+<blockquote>
+<p>We&#8217;ve discovered which garage the Lamborghini is stored in.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='nx'>address</span> <span class='o'>:=</span> <span class='o'>&amp;</span><span class='nx'>lamborghini</span> <span class='c1'>// =&gt; 0x2101aa180</span>
+</code></pre></div>
+<blockquote>
+<p>The ability to drive &amp; park exists.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='c1'>// accepts a pointer (or address) to a Car</span>
+<span class='kd'>func</span> <span class='nx'>drive</span><span class='p'>(</span><span class='nx'>car</span> <span class='o'>*</span><span class='nx'>Car</span><span class='p'>,</span> <span class='nx'>driver</span> <span class='kt'>string</span><span class='p'>,</span> <span class='nx'>miles</span> <span class='kt'>int</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>car</span><span class='p'>.</span><span class='nx'>driver</span> <span class='p'>=</span> <span class='nx'>driver</span>
+  <span class='nx'>car</span><span class='p'>.</span><span class='nx'>miles</span> <span class='o'>+=</span> <span class='nx'>miles</span>
+<span class='p'>}</span>
+
+<span class='c1'>// accepts a pointer (or address) to a Car</span>
+<span class='kd'>func</span> <span class='nx'>park</span><span class='p'>(</span><span class='nx'>car</span> <span class='o'>*</span><span class='nx'>Car</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='nx'>car</span><span class='p'>.</span><span class='nx'>driver</span> <span class='p'>=</span> <span class='s'>&quot;&quot;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<blockquote>
+<p>Quinton can drive &#8220;his&#8221; Lamborghini 100 miles then park it.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='nx'>drive</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>,</span> <span class='s'>&quot;Quinton&quot;</span><span class='p'>,</span> <span class='mi'>100</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini Quinton 100}</span>
+<span class='nx'>park</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  100}</span>
+</code></pre></div>
+<blockquote>
+<p>Angelina can drive &#8220;her&#8221; Lamborghini 100 miles then park it.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='nx'>drive</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>,</span> <span class='s'>&quot;Angelina&quot;</span><span class='p'>,</span> <span class='mi'>100</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini Angelina 200}</span>
+<span class='nx'>park</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  200}</span>
+</code></pre></div>
+<blockquote>
+<p>Dream Share can replace the Lamborghini with a new one.</p>
+</blockquote>
+<div class='highlight'><pre><code class='go'><span class='o'>*</span><span class='nx'>address</span> <span class='p'>=</span> <span class='nx'>Car</span><span class='p'>{</span><span class='nx'>name</span><span class='p'>:</span> <span class='s'>&quot;Lamborghini&quot;</span><span class='p'>,</span> <span class='nx'>miles</span><span class='p'>:</span> <span class='mi'>0</span><span class='p'>}</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
+<span class='nx'>fmt</span><span class='p'>.</span><span class='nx'>Println</span><span class='p'>(</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
+</code></pre></div>
+<h2 id='wait_what'>Wait&#8230; What?</h2>
+
+<p>If you didn&#8217;t quite grok the example above, perhaps a visualization will help.</p>
+
+<p><img alt='Pointers' src='/public/images/pointers.png' /></p>
+
+<p>When working with a variable we can directly manipulate the value.</p>
+
+<p>Methods are different. They receive a copy of the value unless they are defined to accept a pointer <em>(or address)</em> to the original value.</p>
+
+<p>The <strong>drive</strong> &amp; <strong>park</strong> methods above both accept a pointer. This allows them to manipulate the original <strong>lamborghini</strong> value.</p>
+
+<p>Also note that it&#8217;s possible to simply replace the value <em>(change the memory used to hold the value)</em> at a particular address as we did in the last example.</p>
+<hr />
+<p>I&#8217;m not convinced my attempt to explain pointers improves on the existing docs, but hopefully it helps.</p>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'Understanding Pointers';
+    var disqus_identifier = '/blog/understanding-pointers';
+    var disqus_url = 'http://hopsoft.github.io/blog/understanding-pointers';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+
