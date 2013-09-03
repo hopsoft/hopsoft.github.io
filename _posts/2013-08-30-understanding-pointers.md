@@ -106,7 +106,7 @@ They receive a copy of the value unless they are defined to accept a pointer _(o
 The __drive__ & __park__ methods above both accept a pointer.
 This allows them to manipulate the original __lamborghini__ value.
 
-Also note that it's possible to simply replace the value _(change the memory used to hold the value)_
+Also note that it's possible to replace the entire value _(change the memory used to hold the value)_
 at a particular address as we did in the last example.
 
 ---
