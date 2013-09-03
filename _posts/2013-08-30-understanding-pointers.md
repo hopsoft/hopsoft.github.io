@@ -32,7 +32,7 @@ specifically tailored for storing exotic cars.
 ## Expressing it with Code... specifically [Golang](http://golang.org/)
 
 First we'll make some statements about our exotic car scenario in English.
-Then we'll then express the same statements using with Go.
+Then we'll then express the same statements with Go.
 
 > A blueprint exists for building exotic cars.
 
