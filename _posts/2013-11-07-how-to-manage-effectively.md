@@ -8,11 +8,11 @@ categories:
 layout: post
 ---
 
-![Management Fail](/public/images/dilbert-vision-crop.jpg)
-
 I’ve been listening to The [Personal MBA](http://personalmba.com/) recently.
 It's chock-full of great information.
 I just finished the section on management & wanted to capture a few notes that I found especially helpful.
+
+![Management Fail](/public/images/dilbert-vision-crop.gif)
 
 The book is a refreshing contrast to many of the management scenarios I’ve experienced.
 
