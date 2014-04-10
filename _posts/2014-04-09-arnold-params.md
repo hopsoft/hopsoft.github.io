@@ -19,12 +19,13 @@ Sometimes you've gotta reach for the big guns.
 
 ## When Strong Params Aren't Strong Enough
 
-
 Though the [FieldMapper](https://github.com/hopsoft/field_mapper) gem
 is capable of doing a lot more, we've been getting mileage
 out of it for param validation.
-*You should stick with [strong params](http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters) for [lightweight](http://youtu.be/HHZhw94C5vQ) use cases.*
 
+*__Warning__: This doesn't pass [DHH's bullshit meter](http://david.heinemeierhansson.com/2012/the-parley-letter.html) for the typical case.*
+*Only reach for a solution like this when you need to [go to 11](http://youtu.be/4xgx4k83zzc).*
+*Stick with [strong params](http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters) for [lightweight](http://youtu.be/HHZhw94C5vQ) use cases.*
 
 ### Benefits
 
@@ -228,3 +229,5 @@ We're also leveraging __ActiveRecord::Validations__ quite a bit.
 Let's see strong parameters do that.
 
 ![Bro... Do you even lift?](/public/images/arnold2.jpg)
+
+*__Note__: You could likely do something similar with [tabeless models](http://yehudakatz.com/2010/01/10/activemodel-make-any-ruby-object-feel-like-activerecord/).*
