@@ -193,14 +193,20 @@ Movies
   <span class='n'>before_action</span> <span class='ss'>:validate_params</span><span class='p'>,</span> <span class='ss'>only</span><span class='p'>:</span> <span class='o'>[</span><span class='ss'>:some_action</span><span class='o'>]</span>
 
   <span class='k'>def</span> <span class='nf'>some_action</span>
-    <span class='c1'># logic here...</span>
+    <span class='c1'># work with: permitted_params ...</span>
   <span class='k'>end</span>
 
   <span class='kp'>protected</span>
 
+  <span class='kp'>attr_reader</span> <span class='ss'>:permitted_params</span>
+
   <span class='k'>def</span> <span class='nf'>validate_params</span>
     <span class='n'>plat</span> <span class='o'>=</span> <span class='no'>StarParams</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='s2'>&quot;star&quot;</span><span class='o'>]</span><span class='p'>)</span>
-    <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='p'>{</span> <span class='ss'>errors</span><span class='p'>:</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>.</span><span class='n'>full_messages</span> <span class='p'>}</span> <span class='k'>unless</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>valid?</span>
+    <span class='k'>if</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>valid?</span>
+      <span class='vi'>@permitted_params</span> <span class='o'>=</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>to_hash</span><span class='p'>(</span><span class='n'>include_meta</span><span class='p'>:</span> <span class='kp'>false</span><span class='p'>)</span>
+    <span class='k'>else</span>
+      <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='p'>{</span> <span class='ss'>errors</span><span class='p'>:</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>.</span><span class='n'>full_messages</span> <span class='p'>}</span>
+    <span class='k'>end</span>
   <span class='k'>end</span>
 <span class='k'>end</span>
 </code></pre></div>
