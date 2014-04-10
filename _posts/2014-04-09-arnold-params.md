@@ -155,14 +155,20 @@ class SomeController < ApplicationController
   before_action :validate_params, only: [:some_action]
 
   def some_action
-    # logic here...
+    # work with: permitted_params ...
   end
 
   protected
 
+  attr_reader :permitted_params
+
   def validate_params
     plat = StarParams.new(params["star"])
-    render json: { errors: plat.errors.full_messages } unless plat.valid?
+    if plat.valid?
+      @permitted_params = plat.to_hash(include_meta: false)
+    else
+      render json: { errors: plat.errors.full_messages }
+    end
   end
 end
 {% endhighlight %}
