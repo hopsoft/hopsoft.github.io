@@ -74,7 +74,9 @@
 
 <h2 id="when_strong_params_arent_strong_enough">When Strong Params Aren’t Strong Enough</h2>
 
-<p>Though the <a href="https://github.com/hopsoft/field_mapper">FieldMapper</a> gem is capable of doing a lot more, we’ve been getting mileage out of it for param validation. <em>You should stick with <a href="http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong params</a> for <a href="http://youtu.be/HHZhw94C5vQ">lightweight</a> use cases.</em></p>
+<p>Though the <a href="https://github.com/hopsoft/field_mapper">FieldMapper</a> gem is capable of doing a lot more, we’ve been getting mileage out of it for param validation.</p>
+
+<p><em><strong>Warning</strong>: This doesn’t pass <a href="http://david.heinemeierhansson.com/2012/the-parley-letter.html">DHH’s bullshit meter</a> for the typical case.</em> <em>Only reach for a solution like this when you need to <a href="http://youtu.be/4xgx4k83zzc">go to 11</a>.</em> <em>Stick with <a href="http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong params</a> for <a href="http://youtu.be/HHZhw94C5vQ">lightweight</a> use cases.</em></p>
 
 <h3 id="benefits">Benefits</h3>
 
@@ -253,6 +255,8 @@ Movies
 <p><strong>FieldMapper</strong> is doing some heavy lifting for us. We’re also leveraging <strong>ActiveRecord::Validations</strong> quite a bit. Let’s see strong parameters do that.</p>
 
 <p><img src="/public/images/arnold2.jpg" alt="Bro Do you even lift?" /></p>
+
+<p><em><strong>Note</strong>: You could likely do something similar with <a href="http://yehudakatz.com/2010/01/10/activemodel-make-any-ruby-object-feel-like-activerecord/">tabeless models</a>.</em></p>
       <br />
 <br />
 <br />
