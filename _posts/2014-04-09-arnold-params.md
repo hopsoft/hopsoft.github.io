@@ -34,7 +34,7 @@ out of it for param validation.
 
 ### Scenario
 
-A Rack API endpoint that accepts params for the following objects:
+An API endpoint that accepts params for the following objects:
 
 {% highlight sh %}
 Star
