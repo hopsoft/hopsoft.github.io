@@ -24,7 +24,7 @@ is capable of doing a lot more, we've been getting mileage
 out of it for param validation.
 
 *__Warning__: This doesn't pass [DHH's bullshit meter](http://david.heinemeierhansson.com/2012/the-parley-letter.html) for the typical case.*
-*Only reach for a solution like this when you need to [go to 11](http://youtu.be/4xgx4k83zzc).*
+*Only reach for a solution like this for complex scenarios when you need to [go to 11](http://youtu.be/4xgx4k83zzc).*
 *Stick with [strong params](http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters) for [lightweight](http://youtu.be/HHZhw94C5vQ) use cases.*
 
 ### Benefits
