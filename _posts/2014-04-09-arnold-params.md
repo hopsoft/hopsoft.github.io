@@ -13,7 +13,8 @@ layout: post
 We've been using [FieldMapper](https://github.com/hopsoft/field_mapper)
 with [ActiveModel::Validations](http://edgeguides.rubyonrails.org/active_record_validations.html)
 for robust param validation in our Rack/Rails apps with great results.
-Sometimes you've gotta reach for the big guns.
+
+> Sometimes you've gotta reach for the big guns.
 
 ![Arnold](/public/images/arnold.jpg)
 
