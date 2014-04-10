@@ -68,21 +68,21 @@
   <hr />
   <div class="row main-content">
     <div class="span10 offset1 zone-content">
-      <p>Pointers are perhaps the least approachable subject related to software development. I posit that it&#8217;s due to poor examples written by advanced engineers who&#8217;ve forgotten what it&#8217;s like for devs with less understanding. Here&#8217;s my stab at explaining them.</p>
+      <p>Pointers are perhaps the least approachable subject related to software development. I posit that it’s due to poor examples written by advanced engineers who’ve forgotten what it’s like for devs with less understanding. Here’s my stab at explaining them.</p>
 
-<h2 id='exotic_cars__timeshares'>Exotic Cars &amp; Timeshares</h2>
+<h2 id="exotic_cars__timeshares">Exotic Cars &amp; Timeshares</h2>
 
-<p><img alt='Lamborghini' src='/public/images/lamborghini.jpg' /></p>
+<p><img src="/public/images/lamborghini.jpg" alt="Lamborghini" /></p>
 
 <p>Consider the following scenario.</p>
 
-<p>Quinton is a member of Gotham Dream Cars&#8217; <a href='http://www.gothamdreamcars.com/dreamshare-club'>Dream Share</a> program. He &#8220;owns&#8221; a <a href='http://www.gothamdreamcars.com/exotic-car-rental/san-francisco/lamborghini-lp640-roadster'>Lamborghini LP640 Roadster</a>&#8230; <em>at least part of one.</em> Angelina is also a member and &#8220;owns&#8221; the same Lamborghini LP640 Roadster. They both &#8220;own&#8221; several other exotic cars through Dream Share.</p>
+<p>Quinton is a member of Gotham Dream Cars’ <a href="http://www.gothamdreamcars.com/dreamshare-club">Dream Share</a> program. He “owns” a <a href="http://www.gothamdreamcars.com/exotic-car-rental/san-francisco/lamborghini-lp640-roadster">Lamborghini LP640 Roadster</a>… <em>at least part of one.</em> Angelina is also a member and “owns” the same Lamborghini LP640 Roadster. They both “own” several other exotic cars through Dream Share.</p>
 
-<p>All of Quinton&#8217;s &amp; Angelina&#8217;s vehicles are kept in individual garages specifically tailored for storing exotic cars.</p>
+<p>All of Quinton’s &amp; Angelina’s vehicles are kept in individual garages specifically tailored for storing exotic cars.</p>
 
-<h2 id='expressing_it_with_code_specifically_golang'>Expressing it with Code&#8230; specifically <a href='http://golang.org/'>Golang</a></h2>
+<h2 id="expressing_it_with_code_specifically_golang">Expressing it with Code… specifically <a href="http://golang.org/">Golang</a></h2>
 
-<p>First we&#8217;ll make some statements about our exotic car scenario in English. Then we&#8217;ll then express the same statements with Go.</p>
+<p>First we’ll make some statements about our exotic car scenario in English. Then we’ll then express the same statements with Go.</p>
 
 <blockquote>
 <p>A blueprint exists for building exotic cars.</p>
@@ -99,7 +99,7 @@
 <div class='highlight'><pre><code class='go'><span class='nx'>lamborghini</span> <span class='o'>:=</span> <span class='nx'>Car</span><span class='p'>{</span><span class='nx'>name</span><span class='p'>:</span> <span class='s'>&quot;Lamborghini&quot;</span><span class='p'>,</span> <span class='nx'>miles</span><span class='p'>:</span> <span class='mi'>0</span><span class='p'>}</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
 </code></pre></div>
 <blockquote>
-<p>We&#8217;ve discovered which garage the Lamborghini is stored in.</p>
+<p>We’ve discovered which garage the Lamborghini is stored in.</p>
 </blockquote>
 <div class='highlight'><pre><code class='go'><span class='nx'>address</span> <span class='o'>:=</span> <span class='o'>&amp;</span><span class='nx'>lamborghini</span> <span class='c1'>// =&gt; 0x2101aa180</span>
 </code></pre></div>
@@ -118,13 +118,13 @@
 <span class='p'>}</span>
 </code></pre></div>
 <blockquote>
-<p>Quinton can drive &#8220;his&#8221; Lamborghini 100 miles then park it.</p>
+<p>Quinton can drive “his” Lamborghini 100 miles then park it.</p>
 </blockquote>
 <div class='highlight'><pre><code class='go'><span class='nx'>drive</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>,</span> <span class='s'>&quot;Quinton&quot;</span><span class='p'>,</span> <span class='mi'>100</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini Quinton 100}</span>
 <span class='nx'>park</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  100}</span>
 </code></pre></div>
 <blockquote>
-<p>Angelina can drive &#8220;her&#8221; Lamborghini 100 miles then park it.</p>
+<p>Angelina can drive “her” Lamborghini 100 miles then park it.</p>
 </blockquote>
 <div class='highlight'><pre><code class='go'><span class='nx'>drive</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>,</span> <span class='s'>&quot;Angelina&quot;</span><span class='p'>,</span> <span class='mi'>100</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini Angelina 200}</span>
 <span class='nx'>park</span><span class='p'>(</span><span class='o'>&amp;</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  200}</span>
@@ -135,11 +135,11 @@
 <div class='highlight'><pre><code class='go'><span class='o'>*</span><span class='nx'>address</span> <span class='p'>=</span> <span class='nx'>Car</span><span class='p'>{</span><span class='nx'>name</span><span class='p'>:</span> <span class='s'>&quot;Lamborghini&quot;</span><span class='p'>,</span> <span class='nx'>miles</span><span class='p'>:</span> <span class='mi'>0</span><span class='p'>}</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
 <span class='nx'>fmt</span><span class='p'>.</span><span class='nx'>Println</span><span class='p'>(</span><span class='nx'>lamborghini</span><span class='p'>)</span> <span class='c1'>// =&gt; {Lamborghini  0}</span>
 </code></pre></div>
-<h2 id='wait_what'>Wait&#8230; What?</h2>
+<h2 id="wait_what">Wait… What?</h2>
 
-<p>If you didn&#8217;t quite grok the example above, perhaps a visualization will help.</p>
+<p>If you didn’t quite grok the example above, perhaps a visualization will help.</p>
 
-<p><img alt='Pointers' src='/public/images/pointers.png' /></p>
+<p><img src="/public/images/pointers.png" alt="Pointers" /></p>
 
 <p>When working with a variable we can directly manipulate the value.</p>
 
@@ -147,9 +147,9 @@
 
 <p>The <strong>drive</strong> &amp; <strong>park</strong> methods above both accept a pointer. This allows them to manipulate the original <strong>lamborghini</strong> value.</p>
 
-<p>Also note that it&#8217;s possible to replace the entire value <em>(change the memory used to hold the value)</em> at a particular address as we did in the last example.</p>
+<p>Also note that it’s possible to replace the entire value <em>(change the memory used to hold the value)</em> at a particular address as we did in the last example.</p>
 <hr />
-<p>I&#8217;m not convinced my attempt to explain pointers improves on the existing docs, but hopefully it helps.</p>
+<p>I’m not convinced my attempt to explain pointers improves on the existing docs, but hopefully it helps.</p>
       <br />
 <br />
 <br />

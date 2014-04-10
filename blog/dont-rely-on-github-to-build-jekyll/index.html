@@ -68,11 +68,11 @@
   <hr />
   <div class="row main-content">
     <div class="span10 offset1 zone-content">
-      <p>Apparently my local Jekyll configuration has drifted from Github&#8217;s. Yesterday my Jekyll based Github Pages site would no longer build on Github&#8230; even though things worked fine locally.</p>
+      <p>Apparently my local Jekyll configuration has drifted from Github’s. Yesterday my Jekyll based Github Pages site would no longer build on Github… even though things worked fine locally.</p>
 
 <p>I decided to change the repo to support local compilation and publishing. No more depending on Github to do it for me.</p>
 
-<h3 id='heres_how_i_did_it'>Here&#8217;s how I did it.</h3>
+<h3 id="heres_how_i_did_it">Here’s how I did it.</h3>
 
 <p>First, prepare the repo.</p>
 <div class='highlight'><pre><code class='bash'>git checkout -b <span class='nb'>source </span>master
@@ -89,7 +89,7 @@ git checkout <span class='nb'>source</span>
 
 jekyll build
 
-<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span><span class='p'>;</span> <span class='k'>then</span>
 <span class='k'>  </span><span class='nb'>echo</span> <span class='s2'>&quot;Jekyll build failed!&quot;</span>
   <span class='nb'>exit </span>1
 <span class='k'>fi</span>
@@ -99,7 +99,7 @@ rm -rf /tmp/jekyll/*
 cp -R ./_site/* /tmp/jekyll
 git checkout master
 
-<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span>; <span class='k'>then</span>
+<span class='k'>if</span> <span class='o'>[</span> <span class='nv'>$?</span> -ne 0 <span class='o'>]</span><span class='p'>;</span> <span class='k'>then</span>
 <span class='k'>  </span><span class='nb'>echo</span> <span class='s2'>&quot;Unable to checkout master! Do you have uncommited changes?&quot;</span>
   rm -rf /tmp/jekyll
   <span class='nb'>exit </span>1

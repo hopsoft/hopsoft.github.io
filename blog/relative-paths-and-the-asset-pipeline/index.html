@@ -69,34 +69,40 @@
   <div class="row main-content">
     <div class="span10 offset1 zone-content">
       <p>I often use jQuery plugins (among others) in my applications and prefer to store them in a single directory. Typically saving them in <strong>app/vendor/javascripts/plugin</strong></p>
-<div class='highlight'><pre><code class='bash'>|-project
-  |-app
-  |-lib
-  |-vendor
-    |-assets
-      |-javascripts
-        |-plugin
-      |-stylesheets
+<div class='highlight'><pre><code class='bash'><span class='p'>|</span>-project
+  <span class='p'>|</span>-app
+  <span class='p'>|</span>-lib
+  <span class='p'>|</span>-vendor
+    <span class='p'>|</span>-assets
+      <span class='p'>|</span>-javascripts
+        <span class='p'>|</span>-plugin
+      <span class='p'>|</span>-stylesheets
 </code></pre></div>
-<p>Sometimes the plugins contain other assets such as stylesheets, but requiring stylesheets from within the javascript directory can be a pain in the ass unless you know what you&#8217;re doing.</p>
+<p>Sometimes the plugins contain other assets such as stylesheets, but requiring stylesheets from within the javascript directory can be a pain in the ass unless you know what you’re doing.</p>
 
 <p>Simply add a require statement to the stylesheet manifest that looks like this.</p>
 <div class='highlight'><pre><code class='bash'>*<span class='o'>=</span> require ../../../vendor/assets/plugin/plugin.css
 </code></pre></div>
-<h3 id='alternate_solution'>Alternate Solution</h3>
+<h3 id="alternate_solution">Alternate Solution</h3>
 
-<p>A better solution might be to move the plugin&#8217;s folder directly under assets.</p>
-<div class='highlight'><pre><code class='bash'>|-project
-  |-app
-  |-lib
-  |-vendor
-    |-assets
-      |-javascripts
-      |-plugin
-      |-stylesheets
+<p>A better solution might be to move the plugin’s folder directly under assets.</p>
+<div class='highlight'><pre><code class='bash'><span class='p'>|</span>-project
+  <span class='p'>|</span>-app
+  <span class='p'>|</span>-lib
+  <span class='p'>|</span>-vendor
+    <span class='p'>|</span>-assets
+      <span class='p'>|</span>-javascripts
+      <span class='p'>|</span>-plugin
+      <span class='p'>|</span>-stylesheets
 </code></pre></div>
-<p>Then you can require the plugin&#8217;s files just as you would anything else. Just be sure to watch out for naming collisions as your project grows.</p>
-<br /><br /><br /><div id='disqus_thread' /><script type='text/javascript'>
+<p>Then you can require the plugin’s files just as you would anything else. Just be sure to watch out for naming collisions as your project grows.</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<p><br /></p>
+<div id='disqus_thread' /><script type='text/javascript'><![CDATA[
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
     // The following are highly recommended additional parameters. Remove the slashes in front to use.
@@ -110,7 +116,8 @@
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-</script><noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript><a class='dsq-brlink' href='http://disqus.com'>comments powered by <span class='logo-disqus'>Disqus</span></a>
+]]></script><noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a></noscript>
+<p><a class='dsq-brlink' href='http://disqus.com'>comments powered by <span class='logo-disqus'>Disqus</span></a></p>
       <br />
 <br />
 <br />

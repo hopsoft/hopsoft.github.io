@@ -68,7 +68,7 @@
   <hr />
   <div class="row main-content">
     <div class="span10 offset1 zone-content">
-      <p>I&#8217;m currently using Rails with PostgreSQL and am taking advantage of some advanced features within my named scopes. Primarily <a href='http://www.postgresql.org/docs/9.2/static/pgtrgm.html'>trigram</a> text comparisons and some <a href='http://postgis.net'>PostGIS</a> distance queries.</p>
+      <p>I’m currently using Rails with PostgreSQL and am taking advantage of some advanced features within my named scopes. Primarily <a href="http://www.postgresql.org/docs/9.2/static/pgtrgm.html">trigram</a> text comparisons and some <a href="http://postgis.net">PostGIS</a> distance queries.</p>
 
 <p>I have advanced scopes like this.</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>scope</span> <span class='ss'>:name_similar_to</span><span class='p'>,</span> <span class='o'>-&gt;</span> <span class='p'>(</span><span class='nb'>name</span><span class='p'>,</span> <span class='n'>min_match</span><span class='o'>=</span><span class='mi'>0</span><span class='o'>.</span><span class='mi'>6</span><span class='p'>)</span> <span class='k'>do</span>
@@ -89,10 +89,10 @@
   <span class='n'>where</span><span class='p'>(</span><span class='n'>postal_code</span><span class='p'>:</span> <span class='n'>postal_code</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>gsub</span><span class='p'>(</span><span class='sr'>/\-/</span><span class='p'>,</span> <span class='s2'>&quot;&quot;</span><span class='p'>))</span>
 <span class='k'>end</span>
 </code></pre></div>
-<p>Chaining scopes to create complex queries is one of the things I love about ActiveRecord&#8230; but be careful.</p>
+<p>Chaining scopes to create complex queries is one of the things I love about ActiveRecord… but be careful.</p>
 
 <blockquote>
-<h2 id='be_mindful_of_the_queries_that_activerecord_creates_for_you'>Be mindful of the queries that ActiveRecord creates for you.</h2>
+<h2 id="be_mindful_of_the_queries_that_activerecord_creates_for_you">Be mindful of the queries that ActiveRecord creates for you.</h2>
 </blockquote>
 
 <p>Consider the following query created by chaining these scopes together.</p>
@@ -108,7 +108,7 @@
 <span class='c1'># AND (similarity(lower(name), &#39;palo&#39;) &gt;= 0.6)</span>
 <span class='c1'># AND (ST_Within(lonlat::geometry, ST_Expand(ST_GeomFromText(&#39;POINT(37.4419 122.1419)&#39;, 4326), 0.002)))</span>
 </code></pre></div>
-<p>On the surface this looks pretty good, but in reality the performance is poor <em>(around 400ms given the db size)</em>&#8230; even though indexes exist in all the right places.</p>
+<p>On the surface this looks pretty good, but in reality the performance is poor <em>(around 400ms given the db size)</em>… even though indexes exist in all the right places.</p>
 
 <p>How might we improve performance? Lets reduce the number of records similarity matching and distance comparisons need to be performed on.</p>
 <div class='highlight'><pre><code class='ruby'><span class='n'>subquery</span> <span class='o'>=</span> <span class='no'>Location</span>
@@ -130,7 +130,7 @@
 </code></pre></div>
 <p>That did it! The query now runs in 60ms instead of 400ms. Narrowing the initial results with a subquery yielded an 85% speed gain.</p>
 
-<p>It&#8217;s always a good idea to review the queries chained scopes are creating for you.</p>
+<p>It’s always a good idea to review the queries chained scopes are creating for you.</p>
       <br />
 <br />
 <br />

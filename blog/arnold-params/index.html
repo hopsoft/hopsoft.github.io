@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Hopsoft</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|PT+Serif|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+
+    <link href="/public/wisewords/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/public/wisewords/css/socialicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/glyphicons.css" rel="stylesheet">
+    <link href="/public/wisewords/css/halflings.css" rel="stylesheet">
+    <link href="/public/wisewords/css/template.css" rel="stylesheet">
+    <link href="/public/wisewords/css/colors/color-red.css" rel="stylesheet" id="colorcss">
+    <link href="/public/stylesheets/syntax.css" type="text/css" rel="stylesheet" media="screen">
+
+    <script src="/public/wisewords/js/modernizr.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35179381-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="masthead clearfix">
+  <a href="/">
+    <img id="logo" src="/public/images/logo.png" alt="Hopsoft" />
+  </a>
+
+  <ul  class="nav pull-right">
+    <li class="pull-left"><a href="https://github.com/hopsoft"><i class="glyphicons-icon github"></i></a></li>
+    <li class="pull-left"><a href="https://twitter.com/hopsoft"><i class="glyphicons-icon twitter"></i></a></li>
+    <li class="pull-left"><a href="http://www.linkedin.com/profile/view?id=2951631"><i class="glyphicons-icon linked_in"></i></a></li>
+    <li class="pull-left"><a href="https://plus.google.com/116314478889360641913"><i class="glyphicons-icon google_plus"></i></a></li>
+  </ul>
+
+</div>
+<hr />
+
+
+
+  <h1>Arnold Params</h1>
+  <div class="muted" style="text-align: center">
+    Written by Nathan Hopkins on 04/09/14
+  </div>
+  <hr />
+  <div class="row main-content">
+    <div class="span10 offset1 zone-content">
+      <p>We’ve been using <a href="https://github.com/hopsoft/field_mapper">FieldMapper</a> with <a href="http://edgeguides.rubyonrails.org/active_record_validations.html">ActiveModel::Validations</a> for robust param validation in our Rack/Rails apps with great results. Sometimes you’ve gotta reach for the big guns.</p>
+
+<p><img src="/public/images/arnold.jpg" alt="Arnold" /></p>
+
+<h2 id="when_strong_params_arent_strong_enough">When Strong Params Aren’t Strong Enough</h2>
+
+<p>Though the <a href="https://github.com/hopsoft/field_mapper">FieldMapper</a> gem is capable of doing a lot more, we’ve been getting mileage out of it for param validation. <em>You should stick with <a href="http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong params</a> for <a href="http://youtu.be/HHZhw94C5vQ">lightweight</a> use cases.</em></p>
+
+<h3 id="benefits">Benefits</h3>
+
+<ul>
+<li>Simplifies your controllers</li>
+
+<li>Isolates concerns</li>
+
+<li>Handles complex use cases</li>
+</ul>
+
+<h3 id="scenario">Scenario</h3>
+
+<p>A Rack API endpoint that accepts params for the following objects:</p>
+<div class='highlight'><pre><code class='sh'>Star
+- name   <span class='c'># String        2..30 chars *required</span>
+- movies <span class='c'># Array&lt;Movie&gt;</span>
+- lines  <span class='c'># Array&lt;String&gt; 4 or less (2..100 chars per line)</span>
+
+Movies
+- name  <span class='c'># String 2..50 chars *required</span>
+- gross <span class='c'># Money</span>
+</code></pre></div>
+<h3 id="solution">Solution</h3>
+
+<p><strong>1.</strong> Require dependencies</p>
+<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s2'>&quot;field_mapper&quot;</span>
+<span class='nb'>require</span> <span class='s2'>&quot;active_model&quot;</span>
+</code></pre></div>
+<p><strong>2.</strong> Define a plat for MovieParams</p>
+
+<p>Plat definitions are admittedly the ugliest bit. In an actual project you’d have these tucked away in <code>lib</code> or <code>app/plats</code>… so not too terrible in practice.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>MovieParams</span> <span class='o'>&lt;</span> <span class='no'>FieldMapper</span><span class='o'>::</span><span class='no'>Standard</span><span class='o'>::</span><span class='no'>Plat</span>
+  <span class='kp'>include</span> <span class='no'>ActiveModel</span><span class='o'>::</span><span class='no'>Validations</span>
+
+  <span class='c1'># declare fields</span>
+  <span class='n'>field</span> <span class='ss'>:name</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>String</span>
+  <span class='n'>field</span> <span class='ss'>:gross</span><span class='p'>,</span> <span class='ss'>type</span><span class='p'>:</span> <span class='no'>Money</span><span class='p'>,</span> <span class='ss'>default</span><span class='p'>:</span> <span class='s2'>&quot;$0.00 USD&quot;</span>
+
+  <span class='c1'># declare validators after fields</span>
+  <span class='n'>validates</span> <span class='ss'>:name</span><span class='p'>,</span>
+    <span class='ss'>presence</span><span class='p'>:</span> <span class='kp'>true</span><span class='p'>,</span>
+    <span class='ss'>length</span><span class='p'>:</span> <span class='p'>{</span> <span class='n'>allow_blank</span><span class='p'>:</span> <span class='kp'>true</span><span class='p'>,</span> <span class='ss'>minimum</span><span class='p'>:</span> <span class='mi'>2</span><span class='p'>,</span> <span class='ss'>maximum</span><span class='p'>:</span> <span class='mi'>50</span> <span class='p'>}</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p><strong>3.</strong> Define a plat for StarParams</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>StarParams</span> <span class='o'>&lt;</span> <span class='no'>FieldMapper</span><span class='o'>::</span><span class='no'>Standard</span><span class='o'>::</span><span class='no'>Plat</span>
+  <span class='kp'>include</span> <span class='no'>ActiveModel</span><span class='o'>::</span><span class='no'>Validations</span>
+
+  <span class='c1'># declare fields</span>
+  <span class='n'>field</span> <span class='ss'>:name</span><span class='p'>,</span>   <span class='ss'>type</span><span class='p'>:</span> <span class='nb'>String</span>
+  <span class='n'>field</span> <span class='ss'>:movies</span><span class='p'>,</span> <span class='ss'>type</span><span class='p'>:</span> <span class='no'>FieldMapper</span><span class='o'>::</span><span class='no'>Types</span><span class='o'>::</span><span class='no'>List</span><span class='o'>[</span><span class='no'>MovieParams</span><span class='o'>]</span><span class='p'>,</span> <span class='ss'>default</span><span class='p'>:</span> <span class='o'>[]</span>
+  <span class='n'>field</span> <span class='ss'>:lines</span><span class='p'>,</span>  <span class='ss'>type</span><span class='p'>:</span> <span class='no'>FieldMapper</span><span class='o'>::</span><span class='no'>Types</span><span class='o'>::</span><span class='no'>List</span><span class='o'>[</span><span class='nb'>String</span><span class='o'>]</span><span class='p'>,</span>      <span class='ss'>default</span><span class='p'>:</span> <span class='o'>[]</span>
+
+  <span class='k'>def</span> <span class='nf'>line</span><span class='p'>(</span><span class='n'>minmax</span><span class='p'>)</span>
+    <span class='n'>lines</span><span class='o'>.</span><span class='n'>public_send</span><span class='p'>(</span><span class='n'>minmax</span><span class='p'>)</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>a</span><span class='p'>,</span> <span class='n'>b</span><span class='o'>|</span>
+      <span class='n'>a</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>length</span> <span class='o'>&lt;=&gt;</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>length</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+
+  <span class='c1'># declare validators after fields</span>
+  <span class='n'>validates</span> <span class='ss'>:name</span><span class='p'>,</span>
+    <span class='ss'>presence</span><span class='p'>:</span> <span class='kp'>true</span><span class='p'>,</span>
+    <span class='ss'>length</span><span class='p'>:</span> <span class='p'>{</span> <span class='n'>allow_blank</span><span class='p'>:</span> <span class='kp'>true</span><span class='p'>,</span> <span class='ss'>minimum</span><span class='p'>:</span> <span class='mi'>2</span><span class='p'>,</span> <span class='ss'>maximum</span><span class='p'>:</span> <span class='mi'>30</span> <span class='p'>}</span>
+
+  <span class='n'>validates</span> <span class='ss'>:lines</span><span class='p'>,</span> <span class='ss'>length</span><span class='p'>:</span> <span class='p'>{</span> <span class='ss'>maximum</span><span class='p'>:</span> <span class='mi'>4</span><span class='p'>,</span> <span class='ss'>message</span><span class='p'>:</span> <span class='s2'>&quot;too many (maximum is 4)&quot;</span> <span class='p'>}</span>
+
+  <span class='n'>validate</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>params</span><span class='o'>|</span>
+    <span class='k'>if</span> <span class='n'>params</span><span class='o'>.</span><span class='n'>line</span><span class='p'>(</span><span class='ss'>:min</span><span class='p'>)</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>length</span> <span class='o'>&lt;</span> <span class='mi'>2</span>
+      <span class='n'>params</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>[</span><span class='ss'>:lines</span><span class='o'>]</span> <span class='o'>&lt;&lt;</span> <span class='s2'>&quot;are too short (min is 2 characters)&quot;</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+
+  <span class='n'>validate</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>params</span><span class='o'>|</span>
+    <span class='k'>if</span> <span class='n'>params</span><span class='o'>.</span><span class='n'>line</span><span class='p'>(</span><span class='ss'>:max</span><span class='p'>)</span><span class='o'>.</span><span class='n'>to_s</span><span class='o'>.</span><span class='n'>length</span> <span class='o'>&gt;</span> <span class='mi'>100</span>
+      <span class='n'>params</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>[</span><span class='ss'>:lines</span><span class='o'>]</span> <span class='o'>&lt;&lt;</span> <span class='s2'>&quot;are too long (max is 100 characters)&quot;</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+
+  <span class='n'>validate</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>params</span><span class='o'>|</span>
+    <span class='n'>params</span><span class='o'>.</span><span class='n'>movies</span><span class='o'>.</span><span class='n'>each</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>movie</span><span class='o'>|</span>
+      <span class='k'>if</span> <span class='o'>!</span><span class='n'>movie</span><span class='o'>.</span><span class='n'>valid?</span>
+        <span class='n'>params</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>[</span><span class='ss'>:movies</span><span class='o'>].</span><span class='n'>concat</span> <span class='n'>movie</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>.</span><span class='n'>full_messages</span>
+      <span class='k'>end</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p><strong>4.</strong> Define some query string params</p>
+
+<p>This part isn’t strictly necessary since your framework does all of this for you. I just wanted to show something that will run in the console.</p>
+<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s2'>&quot;rack&quot;</span>
+<span class='nb'>require</span> <span class='s2'>&quot;active_support/all&quot;</span>
+
+<span class='n'>readable_params</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='ss'>star</span><span class='p'>:</span> <span class='p'>{</span>
+    <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Arnold&quot;</span><span class='p'>,</span>
+    <span class='ss'>movies</span><span class='p'>:</span> <span class='o'>[</span><span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;The Terminator&quot;</span><span class='p'>,</span> <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$38,371,200 USD&quot;</span> <span class='p'>}</span><span class='o'>]</span><span class='p'>,</span>
+    <span class='ss'>lines</span><span class='p'>:</span> <span class='o'>[</span><span class='s2'>&quot;I&#39;ll be back.&quot;</span><span class='o'>]</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='n'>query</span> <span class='o'>=</span> <span class='n'>readable_params</span><span class='o'>.</span><span class='n'>to_query</span> <span class='c1'># =&gt; star[lines][]=I&#39;ll be back.&amp;star[movies][][gross]=$38,371,200 USD&amp;star[movies][][name]=The Terminator&amp;star[name]=Arnold</span>
+<span class='n'>params</span> <span class='o'>=</span> <span class='no'>Rack</span><span class='o'>::</span><span class='no'>Utils</span><span class='o'>.</span><span class='n'>parse_nested_query</span><span class='p'>(</span><span class='n'>query</span><span class='p'>)</span>
+</code></pre></div>
+<p><strong>5.</strong> Validate params in your controller</p>
+
+<p>Controllers clean up nicely because plats are doing all of the param wrangling.</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>SomeController</span> <span class='o'>&lt;</span> <span class='no'>ApplicationController</span>
+  <span class='n'>before_action</span> <span class='ss'>:validate_params</span><span class='p'>,</span> <span class='ss'>only</span><span class='p'>:</span> <span class='o'>[</span><span class='ss'>:some_action</span><span class='o'>]</span>
+
+  <span class='k'>def</span> <span class='nf'>some_action</span>
+    <span class='c1'># logic here...</span>
+  <span class='k'>end</span>
+
+  <span class='kp'>protected</span>
+
+  <span class='k'>def</span> <span class='nf'>validate_params</span>
+    <span class='n'>plat</span> <span class='o'>=</span> <span class='no'>StarParams</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='s2'>&quot;star&quot;</span><span class='o'>]</span><span class='p'>)</span>
+    <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='p'>{</span> <span class='ss'>errors</span><span class='p'>:</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>.</span><span class='n'>full_messages</span> <span class='p'>}</span> <span class='k'>unless</span> <span class='n'>plat</span><span class='o'>.</span><span class='n'>valid?</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p><strong>6.</strong> How about more complex params</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>readable_params</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='ss'>star</span><span class='p'>:</span> <span class='p'>{</span>
+    <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Arnold&quot;</span><span class='p'>,</span>
+    <span class='ss'>movies</span><span class='p'>:</span> <span class='o'>[</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;The Terminator&quot;</span><span class='p'>,</span> <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$38,371,200 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Predator&quot;</span><span class='p'>,</span>       <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$59,735,548 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Total Recall&quot;</span><span class='p'>,</span>   <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$119,412,921 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;True Lies&quot;</span><span class='p'>,</span>      <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$146,282,411 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Terminator 2&quot;</span><span class='p'>,</span>   <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$204,843,345 USD&quot;</span> <span class='p'>},</span>
+    <span class='o'>]</span><span class='p'>,</span>
+    <span class='ss'>lines</span><span class='p'>:</span> <span class='o'>[</span>
+      <span class='s2'>&quot;I&#39;ll be back.&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;I Lied.&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;Hasta la vista, baby.&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;Get to the chopper!&quot;</span><span class='p'>,</span>
+    <span class='o'>]</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='n'>query</span> <span class='o'>=</span> <span class='n'>readable_params</span><span class='o'>.</span><span class='n'>to_query</span> <span class='c1'># =&gt; star[lines][]=I&#39;ll be back.&amp;star[lines][]=I Lied.&amp;star[lines][]=Hasta la vista, baby.&amp;star[lines][]=Get to the chopper!&amp;star[movies][][gross]=$38,371,200 USD&amp;star[movies][][name]=The Terminator&amp;star[movies][][gross]=$59,735,548 USD&amp;star[movies][][name]=Predator&amp;star[movies][][gross]=$119,412,921 USD&amp;star[movies][][name]=Total Recall&amp;star[movies][][gross]=$146,282,411 USD&amp;star[movies][][name]=True Lies&amp;star[movies][][gross]=$204,843,345 USD&amp;star[movies][][name]=Terminator 2&amp;star[name]=Arnold</span>
+<span class='n'>params</span> <span class='o'>=</span> <span class='no'>Rack</span><span class='o'>::</span><span class='no'>Utils</span><span class='o'>.</span><span class='n'>parse_nested_query</span><span class='p'>(</span><span class='n'>query</span><span class='p'>)</span>
+<span class='n'>plat</span> <span class='o'>=</span> <span class='no'>StarParams</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='s2'>&quot;star&quot;</span><span class='o'>]</span><span class='p'>)</span>
+<span class='n'>plat</span><span class='o'>.</span><span class='n'>valid?</span> <span class='c1'># =&gt; true</span>
+</code></pre></div>
+<p><strong>7.</strong> Let’s pump in lots of invalid data</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>readable_params</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='ss'>star</span><span class='p'>:</span> <span class='p'>{</span>
+    <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;A&quot;</span><span class='p'>,</span>
+    <span class='ss'>movies</span><span class='p'>:</span> <span class='o'>[</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;The Terminator&quot;</span><span class='p'>,</span> <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$38,371,200 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$59,735,548 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Total Recall&quot;</span><span class='p'>,</span>   <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$119,412,921 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;True Lies&quot;</span><span class='p'>,</span>      <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$146,282,411 USD&quot;</span> <span class='p'>},</span>
+      <span class='p'>{</span> <span class='nb'>name</span><span class='p'>:</span> <span class='s2'>&quot;Terminator 2&quot;</span><span class='p'>,</span>   <span class='ss'>gross</span><span class='p'>:</span> <span class='s2'>&quot;$204,843,345 USD&quot;</span> <span class='p'>},</span>
+    <span class='o'>]</span><span class='p'>,</span>
+    <span class='ss'>lines</span><span class='p'>:</span> <span class='o'>[</span>
+      <span class='s2'>&quot;I&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;I Lied.&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;Hasta la vista, baby.&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;Get to the chopper!&quot;</span><span class='p'>,</span>
+      <span class='s2'>&quot;First I&#39;m gonna use you as a human shield, then I gonna take that chisel and kill the guard with it. Then I was thinking about breaking your neck.&quot;</span>
+    <span class='o'>]</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='n'>query</span> <span class='o'>=</span> <span class='n'>readable_params</span><span class='o'>.</span><span class='n'>to_query</span>
+<span class='n'>params</span> <span class='o'>=</span> <span class='no'>Rack</span><span class='o'>::</span><span class='no'>Utils</span><span class='o'>.</span><span class='n'>parse_nested_query</span><span class='p'>(</span><span class='n'>query</span><span class='p'>)</span>
+<span class='n'>plat</span> <span class='o'>=</span> <span class='no'>StarParams</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='s2'>&quot;star&quot;</span><span class='o'>]</span><span class='p'>)</span>
+<span class='n'>plat</span><span class='o'>.</span><span class='n'>valid?</span> <span class='c1'># =&gt; false</span>
+<span class='n'>plat</span><span class='o'>.</span><span class='n'>errors</span><span class='o'>.</span><span class='n'>full_messages</span> <span class='c1'># =&gt; [&quot;Name is too short (minimum is 2 characters)&quot;, &quot;Lines too many (maximum is 4)&quot;, &quot;Lines are too short (min is 2 characters)&quot;, &quot;Lines are too long (max is 100 characters)&quot;, &quot;Movies Name can&#39;t be blank&quot;]</span>
+</code></pre></div>
+<p><strong>FieldMapper</strong> is doing some heavy lifting for us. We’re also leveraging <strong>ActiveRecord::Validations</strong> quite a bit. Let’s see strong parameters do that.</p>
+
+<p><img src="/public/images/arnold2.jpg" alt="Bro Do you even lift?" /></p>
+      <br />
+<br />
+<br />
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'hopsoft'; // required: replace example with your forum shortname
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_title = 'Arnold Params';
+    var disqus_identifier = '/blog/arnold-params';
+    var disqus_url = 'http://hopsoft.github.io/blog/arnold-params';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+<footer>
+  <hr />
+  <div class="pull-right">
+    <small class="muted">Copyright &copy; 2008-2013 Hopsoft</small>
+  </div>
+</footer>
+
+
+</div>  <!-- End Container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/public/wisewords/js/jquery-1.9.1.js"></script>
+<script src="/public/wisewords/js/bootstrap.js"></script>
+<script src="/public/wisewords/js/tinynav.js"></script>
+<script src="/public/wisewords/js/template.js"></script>
+
+</body>
+</html>
+
